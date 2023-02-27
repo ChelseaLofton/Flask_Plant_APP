@@ -13,32 +13,32 @@ _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.INFO)
 
 
-def search_plantbook(species, token):
-    """ Searches plantbook and list results """
-    url = "https://open.plantbook.io/api/v1/plant/detail/{}".format(species)
-    headers = {"Authorization": "Bearer {}".format(token)}
-    try:
-        result = requests.get(url, headers=headers)
-        result.raise_for_status()
-    except requests.exceptions.Timeout:
-        # Maybe set up for a retry, or continue in a retry loop
-        _LOGGER.error("Timeout connecting to {}".format(url))
-        return
-    except requests.exceptions.TooManyRedirects:
-        # Tell the user their URL was bad and try a different one
-        _LOGGER.error("Too many redirects connecting to {}".format(url))
-        return
-    except requests.exceptions.HTTPError as err:
-        _LOGGER.error(err)
-        return
-    except requests.exceptions.RequestException as err:
-        # catastrophic error. bail.
-        _LOGGER.error(err)
-        return
-    res = result.json()
-    _LOGGER.debug("Fetched data from {}:".format(url))
-    _LOGGER.debug(res)
-    print(tabulate(res.items(), headers=['Key', 'Value'], tablefmt="psql"))
+# def search_plantbook(species, token):
+#     """ Searches plantbook and list results """
+#     url = "https://open.plantbook.io/api/v1/plant/detail/{}".format(species)
+#     headers = {"Authorization": "Bearer {}".format(token)}
+#     try:
+#         result = requests.get(url, headers=headers)
+#         result.raise_for_status()
+#     except requests.exceptions.Timeout:
+#         # Maybe set up for a retry, or continue in a retry loop
+#         _LOGGER.error("Timeout connecting to {}".format(url))
+#         return
+#     except requests.exceptions.TooManyRedirects:
+#         # Tell the user their URL was bad and try a different one
+#         _LOGGER.error("Too many redirects connecting to {}".format(url))
+#         return
+#     except requests.exceptions.HTTPError as err:
+#         _LOGGER.error(err)
+#         return
+#     except requests.exceptions.RequestException as err:
+#         # catastrophic error. bail.
+#         _LOGGER.error(err)
+#         return
+#     res = result.json()
+#     _LOGGER.debug("Fetched data from {}:".format(url))
+#     _LOGGER.debug(res)
+#     print(tabulate(res.items(), headers=['Key', 'Value'], tablefmt="psql"))
 
     # print(tabulate(res['results'], headers={'pid': 'PID', 'display_pid': 'Display PID', 'alias': 'Alias'}, tablefmt="psql"))
     # print("{} plants found".format(len(res['results'])))
