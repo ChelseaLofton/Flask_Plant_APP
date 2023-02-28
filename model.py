@@ -8,6 +8,7 @@ class PlantSensor(db.Model):
     __tablename__ = "plant_sensors"
 
     sensor_id = db.Column(db.String, primary_key=True)
+    battery = db.Column(db.Integer, nullable = True)
     conductivity = db.Column(db.Integer)
     illuminance = db.Column(db.Integer)
     moisture = db.Column(db.Integer)
@@ -70,6 +71,7 @@ class ClimateControl(db.Model):
     hum_port = db.Column(db.Intger)
     light_port = db.Column(db.Integer)
 
+
     def __repr__(self):
         return f"<location_id={self.location_id}>"
 
@@ -78,10 +80,12 @@ class HumiditySensor(db.Model):
     """control via location_id. (These are currently working attribute names, not actual)"""
     __tablename__ = 'humidity_sensors'
 
-    sensor_id = db.Column(db.Integer, primary_key = True)
-    temperature = db.Column(db.Integer)
-    humidity = db.Column(db.Integer)
-    location_id = db.relationship('ClimateControl', backpopulates='climate_controls')
-    
+    humidity_sensor_id = db.Column(db.String, primary_key = True)
+    humidity = db.Column(db.Float)
+    pressure = db.Column(db.Float)
+    temperature = db.Column(db.Float)
+    battery = db.Column(db.Integer)
+
+
     def __repr__(self):
-        return f"<sensor_id = {self.sensor_id}, temperature={self.temperature}, humidity={self.humidity} location_id={self.location_id}>"
+        return f"<location_id = {self.location_id}, humidity={self.humidity}, temperature={self.temperature},  battery={self.battery}>"
