@@ -14,22 +14,24 @@ with Client(
 ) as client:
     
 
-    sensors = client.get_entities()["sensor"] # returns a dictionary of groups, we want sensor group
+    sensors = client.get_entities()["sensor"] # returns a dictionary of groups, we want sensor group 
+    outlet = client.get_entities()["switch"]    # return my outlet
 
-for entity_id, entity in sensors.entities.items(): #class sensors to object entity class entities
+for entity_id, entity in sensors.entities.items(): #class sensors to object entity class entities sensors.entities is a dict, with entity_id as a key, value will be an instance of the Entity class given for that id
     
-    print(entity_id)
-    print(entity)
-    print(entity.state)
+    # print(entity_id)
+    # print(entity)
+    # print(entity.state)
     
     print(f" {entity_id} = {entity.state.state}")
+    # print("---------")
 # pprint(entities.keys())
 # 
 # 
 # 
 # 
 # 
-# # entities = [Client.get_entity(entity) for entity in entity_data]
+# # entities = [Client.get_entity(entity.state) for entity in entity_data]
 
 # entities_bystate = Client.get_states(entity_data)
     
@@ -44,13 +46,4 @@ for entity_id, entity in sensors.entities.items(): #class sensors to object enti
 
 # data= []
 # for sensor in sensors:
-#     data.append({
-#             'name': sensor.name,
-#             'state': sensor.state,
-#             'unit_of_measurement': sensor.attributes.get('unit_of_measurement', ''),
-#             'last_updated': sensor.last_updated,
-#         })
-
-#     # Print the data to the console
-# for row in data:
-#     print(row)
+#    
