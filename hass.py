@@ -50,32 +50,37 @@ with Client(
 
 
 
-humidity_sensors = {}
+# humidity_sensors = {}
 
-for entity_id, entity in sensors.entities.items():
+# for entity_id, entity in sensors.entities.items():
     
-    if entity_id.startswith("lumi_lumi_"):
-        sensor_id = entity_id.split("_")[2]
-        reading = entity_id.split("_")[-1]
+#     if entity_id.startswith("lumi_lumi_"):
+#         sensor_id = entity_id.split("_")[2]
+#         reading = entity_id.split("_")[-1]
         
-        if sensor_id == "vibration":
-            continue
+#         if sensor_id == "vibration":
+#             continue
         
-        # elif sensor_id == "weather":
-        #     battery_reading = entity.state
-        #     print(battery_reading)
+#         # elif sensor_id == "weather":
+#         #     battery_reading = entity.state
+#         #     print(battery_reading)
 
 
-        if sensor_id not in humidity_sensors:
-            humidity_sensors[sensor_id] = {}
+#         if sensor_id not in humidity_sensors:
+#             humidity_sensors[sensor_id] = {}
 
-        if reading not in humidity_sensors[sensor_id]:
-            humidity_sensors[sensor_id][reading] = []
+#         if reading not in humidity_sensors[sensor_id]:
+#             humidity_sensors[sensor_id][reading] = []
 
 
-        humidity_sensors[sensor_id][reading].append(entity.state.state)
+#         humidity_sensors[sensor_id][reading].append(entity.state.state)
 
-print(humidity_sensors)
+# print(humidity_sensors)
+
+
+
+for entity_id, entity in outlet.entities.items():
+    print(entity)
 
 
         # print(sensor_id)
