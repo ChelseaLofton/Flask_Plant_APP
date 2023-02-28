@@ -15,9 +15,7 @@ with Client(
 
     entities = client.get_entities()
 
-for entity in entities.items():
-    if entity.includes('switch'):
-        print(entity)
+print(entities)
 # 
 # 
 # 
