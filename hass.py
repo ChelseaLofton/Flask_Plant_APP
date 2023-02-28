@@ -1,5 +1,6 @@
 # from flask import flask
 from homeassistant_api import Client
+from pprint import pprint
 
 # import subprocess
 import json
@@ -13,9 +14,16 @@ with Client(
 ) as client:
     
 
-    entities = client.get_entities()
+    sensors = client.get_entities()["sensor"] # returns a dictionary of groups, we want sensor group
 
-print(entities)
+for entity_id, entity in sensors.entities.items(): #class sensors to object entity class entities
+    
+    print(entity_id)
+    print(entity)
+    print(entity.state)
+    
+    print(f" {entity_id} = {entity.state.state}")
+# pprint(entities.keys())
 # 
 # 
 # 
