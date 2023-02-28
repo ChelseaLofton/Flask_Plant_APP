@@ -11,7 +11,7 @@ class PlantSensor(db.Model):
     conductivity = db.Column(db.Integer)
     illuminance = db.Column(db.Integer)
     moisture = db.Column(db.Integer)
-    plant_temperature = db.Columb(db.Integer)
+    plant_temperature = db.Columb(db.Float)
     labeled_number = db.Columndb.Integer
 
 

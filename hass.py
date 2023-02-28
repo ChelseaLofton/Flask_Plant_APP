@@ -25,25 +25,3 @@ for entity_id, entity in sensors.entities.items(): #class sensors to object enti
     
     print(f" {entity_id} = {entity.state.state}")
     # print("---------")
-# pprint(entities.keys())
-# 
-# 
-# 
-# 
-# 
-# # entities = [Client.get_entity(entity.state) for entity in entity_data]
-
-# entities_bystate = Client.get_states(entity_data)
-    
-# for entity_id in entity_ids.keys():
-#     print(entity_id)
-
-
-# print(entities)
-# print(entities_bystate)
-
-# sensors = [entity for entity in entities if entity.entity_type == 'sensor']
-
-# data= []
-# for sensor in sensors:
-#    
