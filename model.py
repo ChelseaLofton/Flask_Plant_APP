@@ -2,24 +2,6 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
-class PlantSensor(db.Model):
-    """Each plants individual sensor, via sensor id, back populates plants"""
-    
-    __tablename__ = "plant_sensors"
-
-    sensor_id = db.Column(db.String, primary_key=True)
-    battery = db.Column(db.Integer, nullable = True)
-    conductivity = db.Column(db.Integer)
-    illuminance = db.Column(db.Integer)
-    moisture = db.Column(db.Integer)
-    plant_temperature = db.Columb(db.Float)
-    labeled_number = db.Columndb.Integer
-
-
-    def __repr__(self):
-        return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}>"
-
-
 
 class Plantbook(db.Model):
     """Is a database of tolerance values vie pid will back populate plants"""
@@ -62,18 +44,39 @@ class Plant(db.Model):
         return f"<plant_id = {self.plant_id}>"
 
 
-class ClimateControl(db.Model):
-    """This table is for a ZigBee power strip which has a humdifier & light plugged in"""
-    __tablename__ = "climate_controls"
+class PlantSensor(db.Model):
+    """Each plants individual sensor, via sensor id, back populates plants"""
+    
+    __tablename__ = "plant_sensors"
 
-    location_id = db.Column(db.String, primary_key = True)
-    sensor_id = db.Column(db.String)
-    hum_port = db.Column(db.Intger)
-    light_port = db.Column(db.Integer)
+    sensor_id = db.Column(db.String, primary_key=True)
+    battery = db.Column(db.Integer, nullable = True)
+    conductivity = db.Column(db.Integer)
+    illuminance = db.Column(db.Integer)
+    moisture = db.Column(db.Integer)
+    plant_temperature = db.Columb(db.Float)
+    labeled_number = db.Columndb.Integer
 
 
     def __repr__(self):
-        return f"<location_id={self.location_id}>"
+        return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}>"
+
+
+class Outlets(db.Model):
+    """This table is for a ZigBee power strip which has a humdifier & light plugged in"""
+    __tablename__ = "climate_controls"
+
+    outlet_id = db.Column(db.String, primary_key = True)
+    switch_id = db.Column(db.String)
+    switch_id = db.Column(db.String)
+    switch_id = db.Column(db.String)
+    switch_id = db.Column(db.String)
+    switch_id = db.Column(db.String)
+    lock = db.Column(db.String)
+
+
+    def __repr__(self):
+        return f"<outlet_id={self.outlet_id}>"
 
 class HumiditySensor(db.Model):
     """This is a table for an individual temp/hum sensor which backpopulates the climate"""
