@@ -8,9 +8,16 @@ import os
 secret = os.environ.get('PB_SECRET')
 client_id = 'lK0bHixwBIjEtY1IbDunhhQZCUB397zy2bAicja3'
 
+
+
 logging.basicConfig()
 _LOGGER = logging.getLogger(__name__)
 _LOGGER.setLevel(logging.INFO)
+
+# curl --location 'https://open.plantbook.io/api/v1/token/' \
+# --form 'grant_type="client_credentials"' \
+# --form 'client_id="lK0bHixwBIjEtY1IbDunhhQZCUB397zy2bAicja3"' \
+# --form 'client_secret="U4lMm8WoCIl7JZRtRi4kYYS2LhPtcDgbgap37gX3Rv6RyG0UpCepyZtY7u6O2xSbR3ucHEgTTlWuoL3JwdbqD59qF31BnU23pcu4uV72HDV0cRQpZ6MwwkcRFePho1gt"'
 
 
 def search_plantbook(species, token):
@@ -35,10 +42,12 @@ def search_plantbook(species, token):
         # catastrophic error. bail.
         _LOGGER.error(err)
         return
-    res = result.json()                                             #convert result to json
-    _LOGGER.debug("Fetched data from {}:".format(url))
-    _LOGGER.debug(res)
-    print(tabulate(res.items(), headers=['Key', 'Value'], tablefmt="psql"))
+    return result.json()                                             #convert result to json
+    
+    
+    # _LOGGER.debug("Fetched data from {}:".format(url))
+    # _LOGGER.debug(res)
+    # print(tabulate(res.items(), headers=['Key', 'Value'], tablefmt="psql"))
 
     # print(tabulate(res['results'], headers={'pid': 'PID', 'display_pid': 'Display PID', 'alias': 'Alias'}, tablefmt="psql"))
     # print("{} plants found".format(len(res['results'])))
