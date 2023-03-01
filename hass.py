@@ -24,29 +24,38 @@ with Client(
     outlet = client.get_entities()["switch"]   
 
 
-plant_sensors = {}
+# plant_sensors = {}
 
 
-for entity_id, entity in sensors.entities.items():  # class sensors to object entity class entities sensors.entities is a dict, with entity_id as a key, value will be an instance of the Entity class given for that id
+# for entity_id, entity in sensors.entities.items():  # class sensors to object entity class entities sensors.entities is a dict, with entity_id as a key, value will be an instance of the Entity class given for that id
     
-    if entity_id.startswith("plant_sensor_"):
-        sensor_id = entity_id.split("_")[2]
-        reading = entity_id.split("_")[-1]
-        # # print(sensor_id)
-        # print(reading)
+#     if entity_id.startswith("plant_sensor_"):
+#         sensor_id = entity_id.split("_")[2]
+#         reading = entity_id.split("_")[-1]
+#         # # print(sensor_id)
+#         # print(reading)
     
-        if len(sensor_id) != 2:                    #ignores all sensors that are not plant_sensors
-            continue    
+#         if len(sensor_id) != 2:                    #ignores all sensors that are not plant_sensors
+#             continue    
     
-        if sensor_id not in plant_sensors:          
-            plant_sensors[sensor_id] = {}          #adds our sliced id as a key in our dictionary and set the value to an empty dictionary
+#         if sensor_id not in plant_sensors:          
+#             plant_sensors[sensor_id] = {}          #adds our sliced id as a key in our dictionary and set the value to an empty dictionary
     
-        if reading not in plant_sensors[sensor_id]:
-            plant_sensors[sensor_id][reading]= []
-    
-        plant_sensors[sensor_id][reading].append(entity.state.state)
+#         if reading not in plant_sensors[sensor_id]:
+#             plant_sensors[sensor_id][reading]= []
 
-pprint(plant_sensors)
+#         try:
+#             value = float(entity.state.state)
+            
+#             if value.is_integer():
+#                 value = int(value)
+        
+#         except ValueError:
+#             value = entity.state.state
+    
+#         plant_sensors[sensor_id][reading].append(value)
+
+# pprint(plant_sensors)
 
 
 
@@ -67,39 +76,48 @@ pprint(plant_sensors)
 #         if reading not in humidity_sensors[sensor_id]:
 #             humidity_sensors[sensor_id][reading] = []
 
+#         try:
+#             value = float(entity.state.state)
+            
+#             if value.is_integer():
+#                 value = int(value)
+        
+#         except ValueError:
+#             value = entity.state.state
+    
+#         humidity_sensors[sensor_id][reading].append(value)
 
-#         humidity_sensors[sensor_id][reading].append(entity.state.state)
 
 # pprint(humidity_sensors)
 
 
 
-# outlets = {}
+outlets = {}
 
-# for entity_id, entity in outlet.entities.items():   
-#     if entity_id.startswith('tzlivingroom'):
-#         outlet_id = entity_id.split("_")[0]
-#         switch_key = entity_id.split("_")[-1]
+for entity_id, entity in outlet.entities.items():   
+    if entity_id.startswith('tzlivingroom'):
+        outlet_id = entity_id.split("_")[0]
+        switch_key = entity_id.split("_")[-1]
 
-#         if outlet_id not in outlets:
-#             outlets[outlet_id] = {}
+        if outlet_id not in outlets:
+            outlets[outlet_id] = {}
 
-#         if switch_key == "lock":
-#             continue
+        if switch_key == "lock":
+            continue
 
-#         elif switch_key == 'switch':
-#             switch_id = 1
+        elif switch_key == 'switch':
+            switch_id = 1
         
-#         else:
-#             switch_id =switch_key
+        else:
+            switch_id =switch_key
         
-#         if switch_id not in outlets[outlet_id]:
-#             outlets[outlet_id][switch_id]= []
+        if switch_id not in outlets[outlet_id]:
+            outlets[outlet_id][switch_id]= []
 
-#         outlets[outlet_id][switch_id].append(entity.state.state)
+        outlets[outlet_id][switch_id].append(entity.state.state)
 
 
-# pprint(outlets)
+pprint(outlets)
 
     
 
