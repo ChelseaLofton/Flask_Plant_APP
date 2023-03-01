@@ -50,56 +50,56 @@ pprint(plant_sensors)
 
 
 
-humidity_sensors = {}
+# humidity_sensors = {}
 
-for entity_id, entity in sensors.entities.items():
+# for entity_id, entity in sensors.entities.items():
     
-    if entity_id.startswith("lumi_lumi_"):
-        sensor_id = entity_id.split("_")[2]
-        reading = entity_id.split("_")[-1]
+#     if entity_id.startswith("lumi_lumi_"):
+#         sensor_id = entity_id.split("_")[2]
+#         reading = entity_id.split("_")[-1]
         
-        if sensor_id == "vibration":
-            continue
+#         if sensor_id == "vibration":
+#             continue
 
-        if sensor_id not in humidity_sensors:
-            humidity_sensors[sensor_id] = {}
+#         if sensor_id not in humidity_sensors:
+#             humidity_sensors[sensor_id] = {}
 
-        if reading not in humidity_sensors[sensor_id]:
-            humidity_sensors[sensor_id][reading] = []
-
-
-        humidity_sensors[sensor_id][reading].append(entity.state.state)
-
-pprint(humidity_sensors)
+#         if reading not in humidity_sensors[sensor_id]:
+#             humidity_sensors[sensor_id][reading] = []
 
 
+#         humidity_sensors[sensor_id][reading].append(entity.state.state)
 
-outlets = {}
+# pprint(humidity_sensors)
 
-for entity_id, entity in outlet.entities.items():   #be sure to fix you table to account for 
-    if entity_id.startswith('tzlivingroom'):
-        outlet_id = entity_id.split("_")[0]
-        switch_key = entity_id.split("_")[-1]
 
-        if outlet_id not in outlets:
-            outlets[outlet_id] = {}
 
-        if switch_key == "lock":
-            continue
+# outlets = {}
 
-        elif switch_key == 'switch':
-            switch_id = 1
+# for entity_id, entity in outlet.entities.items():   
+#     if entity_id.startswith('tzlivingroom'):
+#         outlet_id = entity_id.split("_")[0]
+#         switch_key = entity_id.split("_")[-1]
+
+#         if outlet_id not in outlets:
+#             outlets[outlet_id] = {}
+
+#         if switch_key == "lock":
+#             continue
+
+#         elif switch_key == 'switch':
+#             switch_id = 1
         
-        else:
-            switch_id =switch_key
+#         else:
+#             switch_id =switch_key
         
-        if switch_id not in outlets[outlet_id]:
-            outlets[outlet_id][switch_id]= []
+#         if switch_id not in outlets[outlet_id]:
+#             outlets[outlet_id][switch_id]= []
 
-        outlets[outlet_id][switch_id].append(entity.state.state)
+#         outlets[outlet_id][switch_id].append(entity.state.state)
 
 
-pprint(outlets)
+# pprint(outlets)
 
     
 

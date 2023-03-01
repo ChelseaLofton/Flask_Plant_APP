@@ -2,6 +2,19 @@
 
 from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
+
+
+def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=False):
+    flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
+    flask_app.config["SQLALCHEMY_ECHO"] = echo
+    flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.app = flask_app
+    db.init_app(flask_app)
+
+    print("Connected to the db!")
+
 
 class Plantbook(db.Model):
     """Is a database of tolerance values vie pid will back populate plants"""
@@ -50,6 +63,18 @@ class PlantSensor(db.Model):
     __tablename__ = "plant_sensors"
 
     sensor_id = db.Column(db.String, primary_key=True)
+
+
+
+    def __repr__(self):
+        return f"<sensor_id = {self.sensor_id}>"
+
+
+class SensorReading(db.Model):
+    """Each sensors readings"""
+
+    __tablename_ = 'sensor_readings'
+
     battery = db.Column(db.Integer, nullable = True)
     conductivity = db.Column(db.Integer)
     illuminance = db.Column(db.Integer)
@@ -57,9 +82,11 @@ class PlantSensor(db.Model):
     plant_temperature = db.Columb(db.Float)
     labeled_number = db.Columndb.Integer
 
+    sensor_id = db.relationship('PlantSensor', backpopulates='plant_sensors')
 
     def __repr__(self):
-        return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}>"
+        return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}, moisture = {self.moisture}>"
+
 
 
 class Outlets(db.Model):
