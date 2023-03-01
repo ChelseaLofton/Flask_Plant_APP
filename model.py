@@ -42,6 +42,7 @@ class Plantbook(db.Model):
         return f"<pid = {self.pid} and alias = {self.alias}>"
 
 
+
 class Plant(db.Model):
     """This table is for each individual plant, unique plant_id, pid references plantbook"""
     """sensor_id is each plants individual sensor, location_id references the power strip location"""
@@ -57,6 +58,7 @@ class Plant(db.Model):
         return f"<plant_id = {self.plant_id}>"
 
 
+
 class PlantSensor(db.Model):
     """Each plants individual sensor, via sensor id, back populates plants"""
     
@@ -64,10 +66,9 @@ class PlantSensor(db.Model):
 
     sensor_id = db.Column(db.String, primary_key=True)
 
-
-
     def __repr__(self):
         return f"<sensor_id = {self.sensor_id}>"
+
 
 
 class SensorReading(db.Model):
@@ -104,6 +105,8 @@ class Outlets(db.Model):
 
     def __repr__(self):
         return f"<outlet_id={self.outlet_id}>"
+
+
 
 class HumiditySensor(db.Model):
     """This is a table for an individual temp/hum sensor which backpopulates the climate"""
