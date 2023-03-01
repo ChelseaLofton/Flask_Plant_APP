@@ -95,12 +95,10 @@ class Outlets(db.Model):
     __tablename__ = "climate_controls"
 
     outlet_id = db.Column(db.String, primary_key = True)
-    switch_id = db.Column(db.String)
-    switch_id = db.Column(db.String)
-    switch_id = db.Column(db.String)
-    switch_id = db.Column(db.String)
-    switch_id = db.Column(db.String)
-    lock = db.Column(db.String)
+    switch_id = db.Column(db.Integer)
+    switch_id = db.Column(db.Integer)
+    switch_id = db.Column(db.Integer)
+    switch_id = db.Column(db.Integer)
 
 
     def __repr__(self):
