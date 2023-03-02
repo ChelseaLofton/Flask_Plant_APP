@@ -49,8 +49,9 @@ class Plant(db.Model):
     __tablename__ = "plants"
 
     plant_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    pid = db.Column(db.String, db.foreignKey('plantbooks.pid'))
 
-    pid = db.relationship('Plantbook', backpopulates='plants' )
+    pid= db.relationship('Plantbook', backref='plants')
     location_id = db.relationship("ClimateControl", backpopulates='plants')
     sensor_id = db.relationship('PlantSensor', backpopulates='plants')
 
@@ -62,9 +63,10 @@ class Plant(db.Model):
 class PlantSensor(db.Model):
     """Each plants individual sensor, via sensor id, back populates plants"""
     
-    __tablename__ = "plant_sensors"
+    __tablename__ = 'plant_sensors'
 
     sensor_id = db.Column(db.String, primary_key=True)
+    sensor_readings = db.relationships('SensorReading', backref='plant_sensor', lazy= True)
 
     def __repr__(self):
         return f"<sensor_id = {self.sensor_id}>"
@@ -74,14 +76,14 @@ class PlantSensor(db.Model):
 class SensorReading(db.Model):
     """Each sensors readings"""
 
-    __tablename_ = 'sensor_readings'
+    __tablename__ = 'sensor_readings'
 
     battery = db.Column(db.Integer, nullable = True)
     conductivity = db.Column(db.Integer)
     illuminance = db.Column(db.Integer)
     moisture = db.Column(db.Integer)
     plant_temperature = db.Columb(db.Float)
-    labeled_number = db.Columndb.Integer
+    labeled_number = db.Column(db.Integer)
 
     sensor_id = db.relationship('PlantSensor', backpopulates='plant_sensors')
 
@@ -95,10 +97,10 @@ class Outlets(db.Model):
     __tablename__ = "climate_controls"
 
     outlet_id = db.Column(db.String, primary_key = True)
-    switch_id = db.Column(db.Integer)
-    switch_id = db.Column(db.Integer)
-    switch_id = db.Column(db.Integer)
-    switch_id = db.Column(db.Integer)
+    switch_id_2 = db.Column(db.String)
+    switch_id_3 = db.Column(db.String)
+    switch_id_4 = db.Column(db.String)
+    switch_id_5 = db.Column(db.String)
 
 
     def __repr__(self):
@@ -120,3 +122,8 @@ class HumiditySensor(db.Model):
 
     def __repr__(self):
         return f"<location_id = {self.location_id}, humidity={self.humidity}, temperature={self.temperature},  battery={self.battery}>"
+    
+
+if __name__ == "__main__":
+    from server import app
+    connect_to_db(app)

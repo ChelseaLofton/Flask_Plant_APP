@@ -6,3 +6,6 @@ Jinja2==3.1.2
 MarkupSafe==2.1.2
 Werkzeug==2.2.3
 zipp==3.14.0
+Flask-SQLAlchemy==2.5.1
+psycopg2-binary==2.9.3
+SQLAlchemy==1.4.23

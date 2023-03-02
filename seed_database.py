@@ -1,15 +1,20 @@
-from plantbook import search_plantbook 
-from plantbook import get_plantbook_token
+import os
+import json
 
-import os 
+import model
+import hass
 
-client_secret = os.environ.get('PB_SECRET')
-client_id = 'lK0bHixwBIjEtY1IbDunhhQZCUB397zy2bAicja3'
-token = os.environ.get('BEARER_TOKEN')
+os.system("dropdb sensors")
+os.system("createdb sensors")
 
-begonia = search_plantbook("strelitzia reginae", token)
-token = get_plantbook_token
-# begonia = get_plantbook("begonia", token)
+model.connect_to_db(hass.app)
+model.db.create_all()
+
+with open("data/sensors.json") as f:
+    sensor_data = json.loads(f.read())
 
 
-print(begonia)
+
+model.db.session.add_all()
+model.db.session.commit()
+
