@@ -1,11 +1,8 @@
 # import os
 # import json
 
-from app import app
-# from flask import Flask
-# from flask import app
-
 from flask_sqlalchemy import SQLAlchemy
+from app import app
 
 db = SQLAlchemy()
 
@@ -89,5 +86,5 @@ class HumiditySensor(db.Model):
     
 
 if __name__ == "__main__":
-    from sensors import app
+    from app import app
     connect_to_db(app)

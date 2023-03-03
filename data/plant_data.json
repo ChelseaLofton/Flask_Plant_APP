@@ -1,8 +1,6 @@
-[
-
-    {
-        "plant_id": "Euphorbia 20",
-        "pid": "euphorbia tirucalli",
+{
+    
+    "euphorbia tirucalli": {
         "display_pid": "Euphorbia tirucalli",
         "alias": "euphorbia tirucalli",
         "category": "Euphorbiaceae, Euphorbia",
@@ -19,8 +17,7 @@
         "image_url": "https://opb-img.plantbook.io/euphorbia%20tirucalli.jpg"
     },
 
-    {
-        "plant_id": "Heartleaf Philodendron 10",
+    "Heartleaf Philodendron 10": {
         "pid": "philodendron hederaceum",
         "display_pid": "Philodendron hederaceum",
         "alias": "philodendron hederaceum",
@@ -38,8 +35,7 @@
         "image_url": "https://opb-img.plantbook.io/philodendron%20hederaceum.jpg"
     },
 
-    {
-        "plant_id": "Large BOP 01",
+    "Large BOP 01": {
         "pid": "strelitzia reginae",
         "display_pid": "Strelitzia reginae",
         "alias": "strelitzia",
@@ -57,8 +53,7 @@
         "image_url": "https://opb-img.plantbook.io/strelitzia%20reginae.jpg"
     },
 
-    {
-        "plant_id": "Small BOP 31",
+    "Small BOP 31": {
         "pid": "strelitzia reginae",
         "display_pid": "Strelitzia reginae",
         "alias": "strelitzia",
@@ -76,8 +71,7 @@
         "image_url": "https://opb-img.plantbook.io/strelitzia%20reginae.jpg"
     },
 
-    {
-        "plant_id": "Jeweled Orchid 12",
+    "Jeweled Orchid 12": {
         "pid": "ludisia discolor",
         "display_pid": "Ludisia discolor",
         "alias": "ludisia discolor",
@@ -95,8 +89,7 @@
         "image_url": "https://opb-img.plantbook.io/ludisia%20discolor.jpg"
     },
 
-    {
-        "plant_id": "Money Tree 25",
+    "Money Tree 25": {
         "pid": "pachira macrocarpa",
         "display_pid": "Pachira macrocarpa",
         "alias": "pachira aquatica",
@@ -114,8 +107,7 @@
         "image_url": "https://opb-img.plantbook.io/pachira%20macrocarpa.jpg"
     },
 
-    {
-        "plant_id": "Purple Sword 24",
+    "Purple Sword 24": {
         "pid": "alocasia macrorrhizos",
         "display_pid": "Alocasia macrorrhizos",
         "alias": "alocasia calidora",
@@ -133,8 +125,7 @@
         "image_url": "https://opb-img.plantbook.io/alocasia%20macrorrhizos.jpg"
     },
 
-    {
-        "plant_id": "Angel Wing Begonia 22",
+    "Angel Wing Begonia 22": {
         "pid": "begonia maculata",
         "display_pid": "Begonia maculata",
         "alias": "begonia grandis",
@@ -152,8 +143,7 @@
         "image_url": "https://opb-img.plantbook.io/begonia%20maculata.jpg"
     },
 
-    {
-        "plant_id": "Hilo Beauty 07",
+    "Hilo Beauty 07": {
         "pid": "caladium bicolor",
         "display_pid": "Caladium bicolor",
         "alias": "caladium bicolor",
@@ -171,8 +161,7 @@
         "image_url": "https://opb-img.plantbook.io/caladium%20bicolor.jpg"
     },
 
-    {
-        "plant_id": "Entry Pothos 23",
+    "Entry Pothos 23": {
         "pid": "epipremnum aureum 'golden pothos'",
         "display_pid": "Epipremnum aureum 'Golden Pothos'",
         "alias": "epipremnum aureum",
@@ -190,8 +179,7 @@
         "image_url": "https://opb-img.plantbook.io/epipremnum%20aureum%20%27golden%20pothos%27.jpg"
     },
 
-    {
-        "plant_id": "Livingroom Pothos 21",
+    "Livingroom Pothos 21": {
         "pid": "epipremnum aureum 'golden pothos'",
         "display_pid": "Epipremnum aureum 'Golden Pothos'",
         "alias": "epipremnum aureum",
@@ -209,8 +197,7 @@
         "image_url": "https://opb-img.plantbook.io/epipremnum%20aureum%20%27golden%20pothos%27.jpg"
     },
 
-    {
-        "plant_id": "Old Man Cactus 04",
+    "Old Man Cactus 04": {
         "pid": "espostoa melanostele",
         "display_pid": "Espostoa melanostele",
         "alias": "espostoa melanostele",
@@ -228,8 +215,7 @@
         "image_url": "https://opb-img.plantbook.io/espostoa%20melanostele.jpg"
     },
 
-    {
-        "plant_id": "Philodendron Birkin 09",
+    "Philodendron Birkin 09": {
         "pid": "philodendron 'con go'",
         "display_pid": "Philodendron 'con go'",
         "alias": "philodendron con go",
@@ -247,8 +233,7 @@
         "image_url": "https://opb-img.plantbook.io/philodendron%20%27con%20go%27.jpg"
     },
 
-    {
-        "plant_id": "Pink Princess 02",
+    "Pink Princess 02": {   
         "pid": "philodendron erubescens",
         "display_pid": "Philodendron erubescens",
         "alias": "philodendron erubescens",
@@ -266,8 +251,7 @@
         "image_url": "https://opb-img.plantbook.io/philodendron%20erubescens.jpg"
     },
 
-    {
-        "plant_id": "Snake Plant 08",
+    "Snake Plant 08": {
         "pid": "sansevieria trifasciata",
         "display_pid": "Sansevieria trifasciata",
         "alias": "saint georges sword",
@@ -285,8 +269,7 @@
         "image_url": "https://opb-img.plantbook.io/sansevieria%20trifasciata.jpg"
     },
 
-    {
-        "plant_id": "Stromanthe Triostar",
+    "Stromanthe Triostar": {
         "pid": "stromanthe sanguinea",
         "display_pid": "Stromanthe sanguinea",
         "alias": "stromanthe sanguinea",
@@ -304,8 +287,7 @@
         "image_url": "https://opb-img.plantbook.io/stromanthe%20sanguinea.jpg"
     },
 
-    {
-        "plant_id": "Queen Lily 30",
+    "Queen Lily 30": {
         "pid": "spathiphyllum 'bingo cupido'",
         "display_pid": "Spathiphyllum 'Bingo Cupido'",
         "alias": "spathiphyllum bingo cupido",
@@ -323,8 +305,7 @@
         "image_url": "https://opb-img.plantbook.io/spathiphyllum%20%27bingo%20cupido%27.jpg"
     },
 
-    {
-        "plant_id": "Alocasia Black Stem 32",
+    "Alocasia Black Stem 32": {
         "pid": "alocasia macrorrhizos",
         "display_pid": "Alocasia macrorrhizos",
         "alias": "alocasia calidora",
@@ -342,8 +323,7 @@
         "image_url": "https://opb-img.plantbook.io/alocasia%20macrorrhizos.jpg"
     },
 
-    {
-        "plant_id": "Aloe Vera 05",
+    "Aloe Vera 05": {
         "pid": "aloe vera",
         "display_pid": "Aloe vera",
         "alias": "aloe vera",
@@ -361,8 +341,7 @@
         "image_url": "https://opb-img.plantbook.io/aloe%20vera.jpg"
     },
 
-    {
-        "plant_id": "Rubber Tree 06",
+    "Rubber Tree 06": {
         "pid": "ficus elastica",
         "display_pid": "Ficus elastica",
         "alias": "ficus elastica",
@@ -379,4 +358,4 @@
         "min_soil_ec": 350,
         "image_url": "https://opb-img.plantbook.io/ficus%20elastica.jpg"
     }
-]
+}

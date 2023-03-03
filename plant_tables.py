@@ -6,7 +6,7 @@ from app import app
 db = SQLAlchemy()
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///sensor_data", echo=False):
+def connect_to_db(flask_app, db_uri="postgresql:///plant_data", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -61,5 +61,5 @@ class Plant(db.Model):
 
 
 if __name__ == "__main__":
-    from plants import app
+    from app import app
     connect_to_db(app)
