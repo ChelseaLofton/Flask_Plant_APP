@@ -1,0 +1,14 @@
+{
+    "outletprop": {
+        "5": "on",
+        "4": "on",
+        "2": "on",
+        "3": "on"
+    },
+    "outletliving": {
+        "2": "off",
+        "3": "off",
+        "4": "off",
+        "5": "off"
+    }
+}
