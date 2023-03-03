@@ -2,11 +2,12 @@
 
 from flask_sqlalchemy import SQLAlchemy
 from app import app
+from __init__ import app
 
 db = SQLAlchemy()
 
 
-def connect_to_db(flask_app, db_uri="postgresql:///plant_data", echo=False):
+def connect_to_db(flask_app, db_uri="postgresql:///project_data", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -63,3 +64,8 @@ class Plant(db.Model):
 if __name__ == "__main__":
     from app import app
     connect_to_db(app)
+    
+# from server import app
+#     with app.app_context():
+#         connect_to_db(app)
+    
