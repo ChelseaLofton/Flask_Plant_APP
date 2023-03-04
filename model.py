@@ -77,9 +77,9 @@ class SensorReading(db.Model):
 
 
 
-class Outlets(db.Model):
+class Outlet(db.Model):
     """This table is for a ZigBee power strip which has a humdifier & light plugged in"""
-    __tablename__ = "climate_controls"
+    __tablename__ = "outlets"
 
     outlet_id = db.Column(db.String, primary_key = True)
     switch_id_2 = db.Column(db.String)

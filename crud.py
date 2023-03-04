@@ -1,4 +1,4 @@
-from model import db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlets
+from model import db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet
 
 
 def create_plant(plant_id, pid, sensor_id):
@@ -57,7 +57,7 @@ def create_sensor_readings( battery, illuminance, conductivity,
 def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4, 
     switch_id_5):
 
-    outlet_id = Outlets(
+    outlet_id = Outlet(
         outlet_id = outlet_id,
         switch_id_2 = switch_id_2,
         switch_id_3 = switch_id_3,
