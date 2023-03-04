@@ -33,13 +33,9 @@ class Plant(db.Model):
     """sensor_id is each plants individual sensor, location_id references the power strip location"""
     __tablename__ = "plants"
 
-    plant_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    # pid = db.Column(db.String, db.foreignKey('plantbooks.pid'))
-
-    pid= db.relationship('Plantbook', backref='plants')
-    outlet_id = db.relationship("Outlets", backref='plants', nullable=True)
-    humidity_sensor_id = db.relationship("HumiditySensor", backref='plants')
-    sensor_id = db.relationship('PlantSensor', backref='plants')
+    plant_id = db.Column(db.String, primary_key=True)
+    pid = db.Column(db.String, db.ForeignKey('plantbooks.pid'))            
+    sensor_id = db.Column(db.String, db.ForeignKey('plant_sensors.sensor_id'))
 
     def __repr__(self):
         return f"<plant_id = {self.plant_id}>"
@@ -53,7 +49,7 @@ class PlantSensor(db.Model):
 
     sensor_id = db.Column(db.String, primary_key=True)
     
-    id = db.relationship('SensorReading', backref='plant_sensor', lazy= True)
+    readings = db.relationship('SensorReading', backref='plant_sensor', lazy= True)
 
     def __repr__(self):
         return f"<sensor_id = {self.sensor_id}>"
@@ -73,7 +69,8 @@ class SensorReading(db.Model):
     temperature = db.Column(db.Float)
     
 
-    sensor_id = db.relationship('PlantSensor', backref='plant_sensors')
+    sensor_id = db.Column(db.String, db.ForeignKey('plant_sensors.sensor_id'))
+
 
     def __repr__(self):
         return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}, moisture = {self.moisture}>"
@@ -111,9 +108,6 @@ class HumiditySensor(db.Model):
     def __repr__(self):
         return f"<location_id = {self.location_id}, humidity={self.humidity}, temperature={self.temperature},  battery={self.battery}>"
     
-
-
-
 
 
 

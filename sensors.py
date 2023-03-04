@@ -16,6 +16,8 @@ with Client(
     outlet = client.get_entities()["switch"]  
 
 
+
+
 def get_plant_sensors():
     plant_sensors = {}
     
@@ -44,10 +46,10 @@ def get_plant_sensors():
 
     return plant_sensors
 
-plant_sensor_data = get_plant_sensors()
+# plant_sensor_data = get_plant_sensors()
 
-with open('plant_sensors.json', 'w') as f:
-    json.dump(plant_sensor_data, f)
+# with open('plant_sensors.json', 'w') as f:
+#     json.dump(plant_sensor_data, f)
 
 
 
@@ -79,10 +81,10 @@ def get_humidity_sensors():
     
     return humidity_sensors
 
-humidity_sensor_data = get_humidity_sensors()
+# humidity_sensor_data = get_humidity_sensors()
 
-with open('humidity_sensors.json', 'w') as f:
-    json.dump(humidity_sensor_data, f)
+# with open('humidity_sensors.json', 'w') as f:
+#     json.dump(humidity_sensor_data, f)
 
 
 def get_outlets():
@@ -111,7 +113,7 @@ def get_outlets():
 
     return outlets
 
-outlet_data = get_outlets()
+# outlet_data = get_outlets()
 
-with open('outlet_data.json', 'w') as f:
-    json.dump(outlet_data, f)
+# with open('outlet_data.json', 'w') as f:
+#     json.dump(outlet_data, f)
