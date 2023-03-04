@@ -1,0 +1,146 @@
+{
+    "25": {
+        "conductivity": 296,
+        "illuminance": 122,
+        "moisture": 24,
+        "temperature": 21,
+        "battery": 54
+    },
+    "11": {
+        "illuminance": 52,
+        "conductivity": 91,
+        "moisture": 20,
+        "temperature": 20.9,
+        "battery": 100
+    },
+    "02": {
+        "illuminance": 147,
+        "conductivity": 126,
+        "moisture": 17,
+        "temperature": 19.7,
+        "battery": 81
+    },
+    "07": {
+        "illuminance": 110,
+        "conductivity": 135,
+        "moisture": 17,
+        "temperature": 21,
+        "battery": 90
+    },
+    "24": {
+        "conductivity": 187,
+        "illuminance": 754,
+        "moisture": 23,
+        "temperature": 19.9,
+        "battery": 3
+    },
+    "12": {
+        "illuminance": 195,
+        "conductivity": 219,
+        "moisture": 38,
+        "temperature": 20.3,
+        "battery": 72
+    },
+    "03": {
+        "conductivity": 179,
+        "illuminance": 68,
+        "moisture": 24,
+        "temperature": 21.2,
+        "battery": 100
+    },
+    "32": {
+        "conductivity": 137,
+        "illuminance": 460,
+        "moisture": 31,
+        "temperature": 20.6
+    },
+    "22": {
+        "conductivity": 145,
+        "illuminance": 94,
+        "moisture": 23,
+        "temperature": 20.5,
+        "battery": 68
+    },
+    "23": {
+        "conductivity": 105,
+        "illuminance": 75,
+        "moisture": 15,
+        "temperature": 20.3,
+        "battery": 43
+    },
+    "06": {
+        "conductivity": 242,
+        "illuminance": 1293,
+        "moisture": 29,
+        "temperature": 20.5,
+        "battery": 49
+    },
+    "21": {
+        "conductivity": 0,
+        "illuminance": 115,
+        "moisture": 15,
+        "temperature": 21.8,
+        "battery": 90
+    },
+    "08": {
+        "conductivity": 98,
+        "illuminance": 185,
+        "moisture": 8,
+        "temperature": 19.8,
+        "battery": 49
+    },
+    "01": {
+        "conductivity": 225,
+        "illuminance": 95,
+        "moisture": 20,
+        "temperature": 20.5,
+        "battery": 72
+    },
+    "05": {
+        "conductivity": 42,
+        "illuminance": 79,
+        "moisture": 0,
+        "temperature": 21.2,
+        "battery": 50
+    },
+    "10": {
+        "conductivity": 129,
+        "illuminance": 113,
+        "moisture": 10,
+        "temperature": 19.8,
+        "battery": 77
+    },
+    "04": {
+        "conductivity": 8,
+        "illuminance": 58,
+        "moisture": 0,
+        "temperature": 21.2,
+        "battery": 68
+    },
+    "09": {
+        "conductivity": 324,
+        "illuminance": 87,
+        "moisture": 37,
+        "temperature": 20.8,
+        "battery": 100
+    },
+    "20": {
+        "conductivity": 28,
+        "illuminance": 1050,
+        "moisture": 14,
+        "temperature": 18,
+        "battery": 86
+    },
+    "30": {
+        "conductivity": 230,
+        "illuminance": 7,
+        "moisture": 9,
+        "temperature": 20.7
+    },
+    "31": {
+        "illuminance": 1010,
+        "moisture": 26,
+        "temperature": 20.1,
+        "conductivity": 798
+    }
+}
