@@ -20,7 +20,7 @@ class PlantBook(db.Model):
     min_soil_moist = db.Column(db.Integer)  
     max_soil_ec = db.Column(db.Integer)  
     min_soil_ec = db.Column(db.Integer)  
-    image_url = db.Column(db.Integer)  
+    image_url = db.Column(db.String, nullable=True)  
 
     
     def __repr__(self):

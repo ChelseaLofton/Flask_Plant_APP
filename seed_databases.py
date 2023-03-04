@@ -117,10 +117,10 @@ for plant_id, plant_values in plant_data.items():
         min_soil_moist, max_soil_ec, min_soil_ec, image_url)
     plantbooks_data_in_db.append(new_plantbook_data)
 
-    new_plant_data = crud.create_plant(plant_id, pid, sensor_id)
-    plants_data_in_db.append(new_plant_data)
+    # new_plant_data = crud.create_plant(plant_id, pid, sensor_id)
+    # plants_data_in_db.append(new_plant_data)
 
-model.db.session.add_all(plantbooks_data_in_db + plants_data_in_db)
+model.db.session.add_all(plantbooks_data_in_db)
 model.db.session.commit()
 
 
