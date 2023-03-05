@@ -106,7 +106,7 @@ def get_outlets():
                 continue
             
             else:
-                switch_id = int(switch_id)
+                switch_id = switch_id
                 
 
             outlets[outlet_id][switch_id]  = entity.state.state 
