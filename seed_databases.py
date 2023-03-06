@@ -26,7 +26,6 @@ model.db.create_all()
 #     model.db.session.merge(new_sensor)
 #     model.db.session.commit()
 
-
 # for sensor_id, sensor_reading in sensor_data.items():
 #     illuminance, conductivity, moisture, temperature, battery = (
 #         sensor_reading['illuminance'],
@@ -93,8 +92,6 @@ for outlet_id, switch_ids in outlet_data.items():
 #         plant_values['pid'],
 #         plant_values['sensor_id']
 #     )
-
-
     
 #     new_plant = crud.create_plant(plant_id, pid, sensor_id)
 
