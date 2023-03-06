@@ -1,5 +1,25 @@
 {
     
+    "Calathea 11": {
+        "pid": "calathea setosa",
+        "display_pid": "Calathea setosa",
+        "alias": "calathea setosa",
+        "category": "Marantaceae, Calathea",
+        "max_light_mmol": 3500,
+        "min_light_mmol": 1700,
+        "max_light_lux": 20000,
+        "min_light_lux": 800,
+        "max_temp": 32,
+        "min_temp": 12,
+        "max_env_humid": 85,
+        "min_env_humid": 30,
+        "max_soil_moist": 65,
+        "min_soil_moist": 15,
+        "max_soil_ec": 1000,
+        "min_soil_ec": 350,
+        "image_url": "https://opb-img.plantbook.io/calathea%20setosa.jpg"
+    },
+
     "Euphorbia 20": {
         "pid": "euphorbia tirucalli",
         "display_pid": "Euphorbia tirucalli",

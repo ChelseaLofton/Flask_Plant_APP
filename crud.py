@@ -1,4 +1,4 @@
-from model import db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet
+from model import db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet, connect_to_db
 
 
 def create_plant(plant_id, pid, sensor_id):
@@ -9,6 +9,7 @@ def create_plant(plant_id, pid, sensor_id):
     )
 
     return plant_id
+
 
 
 def create_plant_data(pid, display_pid, alias, category, max_light_lux,
@@ -34,12 +35,16 @@ def create_plant_data(pid, display_pid, alias, category, max_light_lux,
         )
     return pid
 
+
+
 def create_plant_sensors(sensor_id,):
 
     sensor_id = PlantSensor(
         sensor_id=sensor_id,
     )
     return sensor_id
+
+
 
 def create_sensor_readings( battery, illuminance, conductivity, 
     moisture, temperature, sensor_id):
@@ -54,6 +59,8 @@ def create_sensor_readings( battery, illuminance, conductivity,
     )
     return id
 
+
+
 def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4, 
     switch_id_5):
 
@@ -65,6 +72,8 @@ def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4,
         switch_id_5 = switch_id_5
     )
     return outlet_id
+
+
 
 def create_humidity_sensor(humidity_sensor_id, battery, humidity, pressure, 
     temperature):
@@ -79,6 +88,6 @@ def create_humidity_sensor(humidity_sensor_id, battery, humidity, pressure,
     return humidity_sensor_id
 
     
-# if __name__ == "main":
-#     from server import app
-#     connect_to_db(app, echo=False)
+if __name__ == "main":
+    from server import app
+    connect_to_db(app, echo=False)

@@ -43,25 +43,24 @@ model.db.create_all()
 
 
 
-outlet_data = get_outlets()       # from sensors.py queires the HomeAssist API for the sensor data
+# outlet_data = get_outlets()       # from sensors.py queires the HomeAssist API for the sensor data
 
-for outlet_id, switch_ids in outlet_data.items():
-    switch_ids = (
-        switch_ids['2'],
-        switch_ids['3'],
-        switch_ids['4'],
-        switch_ids['5']
-    )
+# for outlet_id, switch_ids in outlet_data.items():
+#     switch_ids = (
+#         switch_ids['2'],
+#         switch_ids['3'],
+#         switch_ids['4'],
+#         switch_ids['5']
+#     )
 
-    new_outlet = crud.create_outlets(outlet_id, switch_ids[0], switch_ids[1], switch_ids[2], switch_ids[3])
+#     new_outlet = crud.create_outlets(outlet_id, switch_ids[0], switch_ids[1], switch_ids[2], switch_ids[3])
     
-    model.db.session.merge(new_outlet)
-    model.db.session.commit()
+#     model.db.session.merge(new_outlet)
+#     model.db.session.commit()
 
 
 
 # humidity_data = get_humidity_sensors()       # from sensors.py queires the HomeAssist API for the sensor data
-# # sensors = sensor_data.keys()
 
 # for humidity_sensor_id, humidity_sensor_values in humidity_data.items():
 #     humidity, pressure, temperature, battery = (
@@ -78,25 +77,22 @@ for outlet_id, switch_ids in outlet_data.items():
 
 
 
-# with open("data/plant_data.json") as f:
-#     plant_data = json.loads(f.read())
+with open("data/plant_data.json") as f:
+    plant_data = json.loads(f.read())
 
-# plants = plant_data.keys()
-
-
-# for plant_id, plant_values in plant_data.items():
-#     plant_values['sensor_id'] = plant_id.split(" ")[-1]
+for plant_id, plant_values in plant_data.items():               #must be run after plant book is seeded
+    plant_values['sensor_id'] = plant_id.split(" ")[-1]
     
 
-#     pid, sensor_id = (
-#         plant_values['pid'],
-#         plant_values['sensor_id']
-#     )
+    pid, sensor_id = (
+        plant_values['pid'],
+        plant_values['sensor_id']
+    )
     
-#     new_plant = crud.create_plant(plant_id, pid, sensor_id)
+    new_plant = crud.create_plant(plant_id, pid, sensor_id)
 
-#     model.db.session.merge(new_plant)
-#     model.db.session.commit()
+    model.db.session.merge(new_plant)
+    model.db.session.commit()
 
 # for plant_id, plant_values in plant_data.items():
 #     pid, display_pid, alias, category, max_light_lux, min_light_lux, \
