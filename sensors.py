@@ -38,6 +38,9 @@ def get_plant_sensors():
             
                 if value.is_integer():
                     value = int(value)
+
+                if reading == "temperature":
+                    value = value * 9/5 + 32
         
             except ValueError:
                 value = entity.state.state
