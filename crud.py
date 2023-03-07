@@ -1,5 +1,6 @@
-from model import db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet, connect_to_db
 
+# from model import db, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet, connect_to_db
+from model import Plant
 
 def create_plant(plant_id, pid, sensor_id):
     plant_id = Plant(
@@ -12,80 +13,80 @@ def create_plant(plant_id, pid, sensor_id):
 
 
 
-def create_plant_data(pid, display_pid, alias, category, max_light_lux,
-    min_light_lux, max_temp, min_temp, max_env_humid, min_env_humid,
-    max_soil_moist, min_soil_moist, max_soil_ec, min_soil_ec, image_url):
+# def create_plant_data(pid, display_pid, alias, category, max_light_lux,
+#     min_light_lux, max_temp, min_temp, max_env_humid, min_env_humid,
+#     max_soil_moist, min_soil_moist, max_soil_ec, min_soil_ec, image_url):
 
-    pid = PlantBook( 
-        pid=pid,
-        display_pid=display_pid,
-        alias=alias,
-        category=category,
-        max_light_lux=max_light_lux,
-        min_light_lux=min_light_lux,
-        max_temp=max_temp,
-        min_temp=min_temp,
-        max_env_humid=max_env_humid,
-        min_env_humid=min_env_humid,
-        max_soil_moist=max_soil_moist,
-        min_soil_moist=min_soil_moist,
-        max_soil_ec=max_soil_ec,
-        min_soil_ec=min_soil_ec,
-        image_url=image_url
-        )
-    return pid
-
-
-
-def create_plant_sensors(sensor_id,):
-
-    sensor_id = PlantSensor(
-        sensor_id=sensor_id,
-    )
-    return sensor_id
+#     pid = PlantBook( 
+#         pid=pid,
+#         display_pid=display_pid,
+#         alias=alias,
+#         category=category,
+#         max_light_lux=max_light_lux,
+#         min_light_lux=min_light_lux,
+#         max_temp=max_temp,
+#         min_temp=min_temp,
+#         max_env_humid=max_env_humid,
+#         min_env_humid=min_env_humid,
+#         max_soil_moist=max_soil_moist,
+#         min_soil_moist=min_soil_moist,
+#         max_soil_ec=max_soil_ec,
+#         min_soil_ec=min_soil_ec,
+#         image_url=image_url
+#         )
+#     return pid
 
 
 
-def create_sensor_readings( battery, illuminance, conductivity, 
-    moisture, temperature, sensor_id):
+# def create_plant_sensors(sensor_id,):
 
-    id = SensorReading(
-        battery = battery,
-        illuminance = illuminance,
-        conductivity = conductivity,
-        moisture = moisture,
-        temperature = temperature,
-        sensor_id = sensor_id
-    )
-    return id
+#     sensor_id = PlantSensor(
+#         sensor_id=sensor_id,
+#     )
+#     return sensor_id
 
 
 
-def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4, 
-    switch_id_5):
+# def create_sensor_readings( battery, illuminance, conductivity, 
+#     moisture, temperature, sensor_id):
 
-    outlet_id = Outlet(
-        outlet_id = outlet_id,
-        switch_id_2 = switch_id_2,
-        switch_id_3 = switch_id_3,
-        switch_id_4 = switch_id_4,
-        switch_id_5 = switch_id_5
-    )
-    return outlet_id
+#     id = SensorReading(
+#         battery = battery,
+#         illuminance = illuminance,
+#         conductivity = conductivity,
+#         moisture = moisture,
+#         temperature = temperature,
+#         sensor_id = sensor_id
+#     )
+#     return id
 
 
 
-def create_humidity_sensor(humidity_sensor_id, battery, humidity, pressure, 
-    temperature):
+# def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4, 
+#     switch_id_5):
 
-    humidity_sensor_id = HumiditySensor(
-        humidity_sensor_id =humidity_sensor_id,
-        battery = battery,
-        humidity = humidity,
-        pressure = pressure,
-        temperature = temperature
-    )
-    return humidity_sensor_id
+#     outlet_id = Outlet(
+#         outlet_id = outlet_id,
+#         switch_id_2 = switch_id_2,
+#         switch_id_3 = switch_id_3,
+#         switch_id_4 = switch_id_4,
+#         switch_id_5 = switch_id_5
+#     )
+#     return outlet_id
+
+
+
+# def create_humidity_sensor(humidity_sensor_id, battery, humidity, pressure, 
+#     temperature):
+
+#     humidity_sensor_id = HumiditySensor(
+#         humidity_sensor_id =humidity_sensor_id,
+#         battery = battery,
+#         humidity = humidity,
+#         pressure = pressure,
+#         temperature = temperature
+#     )
+#     return humidity_sensor_id
 
     
 if __name__ == "main":

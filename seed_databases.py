@@ -1,13 +1,16 @@
-# import os
+import os
 import json
 
 from flask_sqlalchemy import SQLAlchemy
 
-import crud
 import model
+import crud
 import server
 from sensors import get_plant_sensors, get_humidity_sensors, get_outlets
 
+
+
+"""Don't forget to comment out before seeding plants"""
 # os.system("dropdb project_data")
 # os.system("createdb project_data")
 
@@ -93,6 +96,7 @@ for plant_id, plant_values in plant_data.items():               #must be run aft
 
     model.db.session.merge(new_plant)
     model.db.session.commit()
+
 
 for plant_id, plant_values in plant_data.items():
     pid, display_pid, alias, category, max_light_lux, min_light_lux, \

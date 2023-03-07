@@ -48,7 +48,8 @@ class PlantSensor(db.Model):
     __tablename__ = 'plant_sensors'
 
     sensor_id = db.Column(db.String, primary_key=True)
-    
+
+    plant_id = db.relationship('Plant', backref='plant_sensor', lazy= True)
     readings = db.relationship('SensorReading', backref='plant_sensor', lazy= True)
 
     def __repr__(self):

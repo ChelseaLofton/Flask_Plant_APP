@@ -1,9 +1,10 @@
 from flask import (Flask, render_template, request, flash, session,
                     redirect)
-from model import connect_to_db, db, Plant, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet
-import crud
+
 from jinja2 import StrictUndefined
 from sensors import get_plant_sensors, get_humidity_sensors, get_outlets
+from model import db, connect_to_db, Plant, PlantBook, PlantSensor, SensorReading
+
 
 
 app = Flask(__name__)
@@ -35,13 +36,13 @@ def view_plant_data(plant_id):
 
     plant = Plant.query.filter_by(plant_id=plant_id).first()
     
-    plant_name = plant.plant_id[:-3]
-    sensor_id = plant.plant_id[-2:]     
+    sensor_id = PlantSensor.query.filter_by(sensor_id = plant.sensor_id).first()
 
-    plant_data = PlantBook.query.filter_by(pid = plant_id).all()
+    plant_data = PlantBook.query.filter_by(pid = plant.pid).all()
 
 
-    return render_template('view_plant_data.html',sensor_id = sensor_id, plant_name = plant_name, plant_data=plant_data)
+    return render_template('view_plant_data.html', sensor_id=sensor_id, 
+    plant=plant, plant_data=plant_data)
 
 
 
@@ -51,7 +52,7 @@ def view_all_sensors():
     
     sensors = PlantSensor.query.all()
 
-    return render_template('view_all_sensors.html', sensors = sensors)
+    return render_template('view_all_sensors.html', sensors=sensors)
 
 
 
