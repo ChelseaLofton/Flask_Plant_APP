@@ -3,7 +3,8 @@ from flask import (Flask, render_template, request, flash, session,
 
 from jinja2 import StrictUndefined
 from sensors import get_plant_sensors, get_humidity_sensors, get_outlets
-from model import db, connect_to_db, Plant, PlantBook, PlantSensor, SensorReading
+from model import db, connect_to_db, Plant, PlantBook, PlantSensor, \
+SensorReading, Outlet, HumiditySensor
 
 
 
@@ -26,6 +27,7 @@ def view_all_plants():
 
     plants = Plant.query.all()
 
+
     return render_template('view_all_plants.html', plants = plants)
 
 
@@ -35,14 +37,15 @@ def view_plant_data(plant_id):
     """View a specific plant."""
 
     plant = Plant.query.filter_by(plant_id=plant_id).first()
-    
     sensor_id = PlantSensor.query.filter_by(sensor_id = plant.sensor_id).first()
-
     plant_data = PlantBook.query.filter_by(pid = plant.pid).all()
+    sensor_readings = SensorReading.query.filter_by(sensor_id = plant.sensor_id).all()
+
+
 
 
     return render_template('view_plant_data.html', sensor_id=sensor_id, 
-    plant=plant, plant_data=plant_data)
+    plant=plant, plant_data=plant_data, sensor_readings=sensor_readings)
 
 
 
@@ -51,12 +54,13 @@ def view_all_sensors():
     """View all sensors."""
     
     sensors = PlantSensor.query.all()
+    
 
     return render_template('view_all_sensors.html', sensors=sensors)
 
 
 
-@app.route('/sensors/<sensor_id>')
+@app.route('/sensor/<sensor_id>')
 def view_sensors_data(sensor_id):
     """View all sensor readings for a specific sensor."""
     # Update with most recent sensor readings
@@ -70,6 +74,14 @@ def view_sensors_data(sensor_id):
 
 
 
+@app.route('/climate_controls')
+def view_climate_controls():
+    """View all climate controls."""
+
+    outlets = Outlet.query.all()
+    humidity_sensors = HumiditySensor.query.all()
+
+    return render_template('view_climate_controls.html', outlets=outlets, humidity_sensors=humidity_sensors)
 
 
 
