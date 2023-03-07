@@ -116,6 +116,11 @@ def get_outlets():
 
     return outlets
 
+# def get_outlet_state(outlet_id):
+#     state = {}
+
+#     for 
+
 # outlet_data = get_outlets()
 
 # with open('outlet_data.json', 'w') as f:
