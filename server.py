@@ -83,7 +83,17 @@ def view_climate_controls():
 
     return render_template('view_climate_controls.html', outlets=outlets, humidity_sensors=humidity_sensors)
 
+def toggleSwitch(switchId, switchState, setSwitchState):
+    """Toggle switch on/off."""
+    # Update with most recent sensor readings
 
+    if switchState == 0:
+        setSwitchState = 1
+    else:
+        setSwitchState = 0
+
+    return setSwitchState
+    
 
 
 if __name__ == "__main__":
