@@ -13,7 +13,7 @@ with Client(
     api_Key
 ) as client:
     sensors = client.get_entities()["sensor"]
-    outlet = client.get_entities()["switch"]  
+    outlets = client.get_entities()["switch"]  
 
 
 
@@ -93,7 +93,7 @@ def get_humidity_sensors():
 def get_outlets():
     outlets = {}
 
-    for entity_id, entity in outlet.entities.items():   
+    for entity_id, entity in outlets.entities.items():   
         if entity_id.startswith('outlet'):
             outlet_id = entity_id.split("_")[0]
             
@@ -116,41 +116,40 @@ def get_outlets():
 
     return outlets
 
-"""below i am trying to get the current state of outlet and update it with a new state."""
-
-# def get_outlet_state(outlet_id):
-
-
-#     for entity_id, entity in outlet.entities.items():
-#         if entity_id.startswith(outlet_id):
-#             switch_id = entity_id.split("_")[-1]
-
-#             if switch_id == "lock":
-#                 continue
-
-#             if switch_id == 'switch':
-#                 continue
-            
-#             else:
-#                 switch_id = switch_id
-                
-
-#     return entity.state.state
-
-
-
-# def set_outlet_state(outlet_id, switch_id, new_state):
-
-#     entity_id = f"{outlet_id}_{switch_id}"
-#     switch_entity = switches.get(entity_id)
-#     if switch_entity:
-#         switch_entity.turn_on() if new_state else switch_entity.turn_off()
-
-
-
-
-
 # outlet_data = get_outlets()
 
 # with open('outlet_data.json', 'w') as f:
 #     json.dump(outlet_data, f)
+
+
+
+
+
+
+"""below i am trying to get the current state of outlet and update it with a new state."""
+
+def get_outlet_state(outlet_id, switch_id):     #call get outlet state with outlet_id and switch_id
+
+
+    for entity_id, entity in outlets.entities.items():
+        if entity_id.startswith(f"{outlet_id}_{switch_id}"):
+    
+            return entity.state.state
+
+
+
+def set_outlet_state(outlet_id, switch_id, new_state):      #new_state is a boolean True or False
+
+    entity_id = f"{outlet_id}_{switch_id}"
+    switch_entity = outlets.get(entity_id)
+    if new_state:
+        switch_entity.turn_on() 
+    else:
+        switch_entity.turn_off()
+
+
+
+
+
+
+

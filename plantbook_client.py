@@ -110,9 +110,7 @@ client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
 
 
-# calathea_11: client.get("/plant/details", pid="calathea setosa", limit=5).json()
+calathea_11: client.get("/plant/details", pid="calathea setosa", limit=5).json()
 
-# print(calathea_11)
+print(calathea_11)
 
-
-print(plant_data["alocasia_black_stem_32"])

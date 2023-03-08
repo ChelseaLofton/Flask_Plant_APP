@@ -2,7 +2,7 @@ from flask import (Flask, render_template, request, flash, session,
                     redirect)
 
 from jinja2 import StrictUndefined
-from sensors import get_plant_sensors, get_humidity_sensors, get_outlets
+from sensors import get_plant_sensors, get_humidity_sensors, get_outlets, get_outlet_state, set_outlet_state
 from model import db, connect_to_db, Plant, PlantBook, PlantSensor, \
 SensorReading, Outlet, HumiditySensor
 
@@ -83,21 +83,27 @@ def view_climate_controls():
 
     return render_template('view_climate_controls.html', outlets=outlets, humidity_sensors=humidity_sensors)
 
-def toggleSwitch(switchId, switchState, setSwitchState):
+
+
+def set_outlet_switch(outlet_id, switch_id):
     """Toggle switch on/off."""
     # Update with most recent sensor readings
-
-    if switchState == 0:
-        setSwitchState = 1
+    state = get_outlet_state(outlet_id, switch_id)
+    
+    if state == 0:
+        state = 1
+    
     else:
-        setSwitchState = 0
+        state = 0
 
-    return setSwitchState
+    return state
+
+    return render_template('view_climate_controls.html', outlets=outlets, humidity_sensors=humidity_sensors)
     
 
 
 if __name__ == "__main__":
     connect_to_db(app)
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port=3000, debug=True)
 
 
