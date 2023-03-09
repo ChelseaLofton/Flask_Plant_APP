@@ -1,6 +1,7 @@
 
-# from model import db, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet, connect_to_db
+from model import db, PlantBook, PlantSensor, SensorReading, HumiditySensor, Outlet, connect_to_db
 from model import Plant
+
 
 def create_plant(plant_id, pid, sensor_id):
     plant_id = Plant(
@@ -10,6 +11,10 @@ def create_plant(plant_id, pid, sensor_id):
     )
 
     return plant_id
+
+def get_all_sensors():
+    sensors = PlantSensor.query.all()
+    return sensors
 
 
 

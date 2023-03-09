@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-
+import urllib.parse
 
 class PlantBookAPI(object):
     # All PlantBook API URLs begin with this. You only need to
@@ -20,8 +20,12 @@ class PlantBookAPI(object):
             --form 'grant_type="client_credentials"' \
             --form "client_id=\"${CLIENT_ID}\"" \
             --form "client_secret=\"${CLIENT_SECRET}\"" -s | jq -r .access_token)
+        
+        curl 'https://open.plantbook.io/api/v1/plant/detail/platanus%20acerifolia/' \
+            -H "Authorization: Bearer ${PLANTBOOK_ACCESS_TOKEN}" \
+            -H "Accept: application/json" | jq
 
-        Just echo $PLANTBOOK_ACCESS_TOKEN to get the value and write it to secrets.sh. 
+        Optional: Just echo $PLANTBOOK_ACCESS_TOKEN to get the value and write it to secrets.sh. 
         """
         self.client_id = client_id
         self.client_secret = client_secret
@@ -71,7 +75,8 @@ class PlantBookAPI(object):
     # See API docs for all endpoints and arguments:
     # https://documenter.getpostman.com/view/12627470/TVsxBRjD#intro
     def get(self, endpoint, **kwargs):
-        return self.session.get(f"{PlantBookAPI.BASE_URL}{endpoint}", params=kwargs)
+        url = f"{PlantBookAPI.BASE_URL}{endpoint}"
+        return self.session.get(url, params=kwargs)
 
 # Uncomment to test.    
 client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
@@ -109,8 +114,8 @@ client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 # }
 
 
+pid="platanus acerifolia"
 
-calathea_11: client.get("/plant/details", pid="calathea setosa", limit=5).json()
-
+calathea_11= client.get(f"/plant/detail/{urllib.parse.quote(pid)}/").json()
 print(calathea_11)
 

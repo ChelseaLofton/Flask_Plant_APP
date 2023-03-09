@@ -13,7 +13,7 @@ with Client(
     api_Key
 ) as client:
     sensors = client.get_entities()["sensor"]
-    outlets = client.get_entities()["switch"]  
+    switches = client.get_entities()["switch"]  
 
 
 
@@ -93,7 +93,7 @@ def get_humidity_sensors():
 def get_outlets():
     outlets = {}
 
-    for entity_id, entity in outlets.entities.items():   
+    for entity_id, entity in switches.entities.items():   
         if entity_id.startswith('outlet'):
             outlet_id = entity_id.split("_")[0]
             
@@ -128,13 +128,13 @@ def get_outlets():
 
 """below i am trying to get the current state of outlet and update it with a new state."""
 
-def get_outlet_state(outlet_id, switch_id):     #call get outlet state with outlet_id and switch_id
+# def get_outlet_state(outlet_id, switch_id):     #call get outlet state with outlet_id and switch_id
 
 
-    for entity_id, entity in outlets.entities.items():
-        if entity_id.startswith(f"{outlet_id}_{switch_id}"):
+#     for entity_id, entity in outlets.entities.items():
+#         if entity_id.startswith(f"{outlet_id}_{switch_id}"):
     
-            return entity.state.state
+#             return entity.state.state
 
 
 
