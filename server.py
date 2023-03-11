@@ -5,7 +5,9 @@ from jinja2 import StrictUndefined
 from sensors import get_plant_sensors, get_humidity_sensors, get_outlets, set_outlet_state
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
     SensorReading, Outlet, HumiditySensor)
-from homeassistant_api import client
+
+from sensors import client
+from homeassistant_api import State
 
 app = Flask(__name__)
 app.secret_key = "ILovePlants"
@@ -78,22 +80,27 @@ def switch_outlet_state(outlet_id, switch_id):
     print(f"Switching outlet {outlet_id} {switch_id}...")
 
     new_state = request.json.get('state')
-    entity_id = f"{outlet_id}_{switch_id}"
-    outlet = get_outlets().get(outlet_id)
+    print(f"new_state = {new_state}")
+    entity_id = f"switch.{outlet_id}_switch_{switch_id}"
+    print(f"entity_id = {entity_id}")
+    # state = client.set_state(State(state=new_state, entity_id=entity_id))
+    # outlet = get_outlets().get(outlet_id)
+    switch = client.get_domain("switch")
+    r = switch.services["toggle"](entity_id=entity_id)
+    print(r)
+    # if outlet:
+    #     state = outlet.get(switch_id)
 
-    if outlet:
-        state = outlet.get(switch_id)
+    #     if new_state == "on":
+    #         state = 'on'
+    #         print(f"{entity_id} turned on")
+    #     elif new_state == "off":
+    #         state = 'off'
+    #         print(f"{entity_id} turned off")
+    #     else:
+    #         print(f"Invalid state. Please specify 'on' or 'off'. new_state={new_state}")
 
-        if new_state == "on":
-            state = 'on'
-            print(f"{entity_id} turned on")
-        elif new_state == "off":
-            state = 'off'
-            print(f"{entity_id} turned off")
-        else:
-            print(f"Invalid state. Please specify 'on' or 'off'. new_state={new_state}")
-
-    return jsonify({"state": state})
+    return jsonify({"state": r[0].state})
 
 
 

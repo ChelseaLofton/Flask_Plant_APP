@@ -1,7 +1,8 @@
-from homeassistant_api import Client
+from homeassistant_api import Client, Entity, State
+
 import asyncio
 from pprint import pprint
-
+import requests
 import json
 import os
 
@@ -117,20 +118,57 @@ def get_outlets():
     return outlets
 
 
+class MySwitch(Entity):
+
+    def __init__(self, outlet_id, switch_id, state):
+        self._outlet_id = outlet_id
+        self._switch_id = switch_id
+        self._state = state
+
+    
+    @property
+    def name(self):
+        return f"{self._outlet_id}_{self._switch_id}"
+    
+    @property
+    def is_on(self):
+        return self._state == "on"
+    
+    def turn_on(self, **kwargs):
+        set_outlet_state(self._outlet_id, self._switch_id, "on")
+        self._state = "on"
+
+    def turn_off(self, **kwargs):
+        set_outlet_state(self._outlet_id, self._switch_id, "off")
+        self._state = "off"
+
+
+
 def set_outlet_state(outlet_id, switch_id, new_state):
 
     entity_id = f"{outlet_id}_{switch_id}"
-    entity_state = states.get(entity_id)
-
-    if new_state == "on":
-        client.turn_on(entity_id)
-        entity_state = 'on'
-        print(f"{entity_id} turned on")
-    elif new_state == "off":
-        client.turn_off(entity_id)
-        entity_state = 'off'
-        print(f"{entity_id} turned off")
+    data = {'state': new_state}
+    response = client.post(f"states/{entity_id}", data=data)
+    
+    if response.status_code == 200:
+        print(f"{entity_id} turned {new_state}")
     else:
-        print("Invalid state. Please specify 'on' or 'off'.")
+        print(f"Error: {response.status_code} {response.reason}")
+    
+    
+    
+    # entity_state = states.get(entity_id)
 
-    return {"state": entity_state}
+
+    # if new_state == "on":
+    #     client.turn_on(entity_id)
+    #     entity_state = 'on'
+    #     print(f"{entity_id} turned on")
+    # elif new_state == "off":
+    #     client.turn_off(entity_id)
+    #     entity_state = 'off'
+    #     print(f"{entity_id} turned off")
+    # else:
+    #     print("Invalid state. Please specify 'on' or 'off'.")
+
+    # return {"state": entity_state}
