@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}{{ plant.plant_id }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ plant.plant_id }}</h1>
+
+{% block content %}
+<p> Sensor Id: <a href="/sensor/{{plant.sensor_id}}">{{ plant.sensor_id }}</a> </p>
+{% endblock %}
+
+{% if sensor_readings %}
+    <ul>
+        <p>This is a list of all the sensor readings!</p>
+        {% for reading in sensor_readings %}            
+            <li>Soil Conductivity: {{ reading.conductivity }}</li>
+            <li>Illuminance: {{ reading.illuminance }}</li>
+            <li>Soil Moisture: {{ reading.moisture }}</li>
+            <li>Temperature: {{ reading.temperature }}</li>
+            <li>Battery: {{ reading.battery }}</li>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No sensor readings found!.</p>
+{% endif %}
+
+    
+
+
+{% if plant_data %}
+    <ul>
+        <p>This is a list of all the plant tolerances!</p>
+        {% for data in plant_data %}
+            <li> PlantBook Identifier : {{ data.pid }} </li>
+            <li>Common Name: {{ data.alias }}</li>
+            <li>Category: {{ data.category }}</li>
+            <li>Max Light Lux: {{ data.max_light_lux }}</li>
+            <li>Min Light Lux: {{ data.min_light_lux }}</li>
+            <li>Max Temperature: {{ data.max_temp }}</li>
+            <li>Min Temperature: {{ data.min_temp }}</li>
+            <li>Max Environmental Humidity: {{ data.max_env_humid }}</li>
+            <li>Min Environmental Humidity: {{ data.min_env_humid }}</li>
+            <li>Max Soil Moisture: {{ data.max_soil_moist }}</li>
+            <li>Min Soil Moisture: {{ data.min_soil_moist }}</li>
+            <li>Max Soil EC: {{ data.max_soil_ec }}</li>
+            <li>Min Soil EC: {{ data.min_soil_ec }}</li>
+            <li>Image URL: {{ data.image_url }}</li>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No plant data found!.</p>
+{% endif %}
+
+{% endblock body %}
+

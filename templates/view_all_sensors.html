@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>All Sensors</h1>
+
+<ul>
+    {% for sensor in sensors %}
+    <li>
+        <a href="/sensor/{{ sensor.sensor_id }}">
+            {{ sensor.sensor_id }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock body %}
