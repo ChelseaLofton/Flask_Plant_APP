@@ -195,7 +195,7 @@ const getPlantData = (plantID) => {
             document.querySelector('#plantbook-data').innerHTML = `Plant Library Information: PlantData: PID:${pid}, Alias:${alias}, Category:${category}, Max Light:${max_light_lux}lux, Min Light:${min_light_lux}lux, 
                 Max Temp:${max_temp}°F, Min Temp:${min_temp}°F, Max Env Humidity:${max_env_humid}%, Min Env Humidity:${min_env_humid}%, 
                 Max Soil Moisture:${max_soil_moist}%, Min Soil Moisture:${min_soil_moist}%, Max Soil EC:${max_soil_ec}, 
-                Min Soil EC:${min_soil_ec}, Image URL:${image_url}`;
+                Min Soil EC:${min_soil_ec}, <img src="${image_url}" alt="plant image">`;
         });
 };
 
