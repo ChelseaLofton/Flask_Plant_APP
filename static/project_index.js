@@ -21,6 +21,8 @@ const generateSensorButtons = () => {
         });
 };
 
+
+
 const getSensorData = (sensorID) => {
     const url = `/sensors/${sensorID}.json`;
     fetch(url)
@@ -37,6 +39,7 @@ const getSensorData = (sensorID) => {
                 Moisture: ${sensor_moisture}%, Temperature: ${sensor_temperature}°F`;
         });
 };
+
 
 
 const displayOutletStates = () => {
@@ -95,6 +98,8 @@ const displayOutletStates = () => {
         });
 };
 
+
+
 const toggleOutletState = (outletID, switchID) => {
     const url = `/outlets/${outletID}/${switchID}.json`;
     const switchButton = document.querySelector(`#${outletID}_${switchID}`);
@@ -141,7 +146,7 @@ const generatePlantButtons = () => {
                 button.id = `plant=${plantID}-button`;
                 button.addEventListener('click', (evt) => {
                     evt.preventDefault();
-                    // getSensorData(sensorID);
+                    getPlantData(plantID);
                 });
                 plantContainer.appendChild(button);
             }
@@ -149,56 +154,95 @@ const generatePlantButtons = () => {
 };
 
 
-generatePlantButtons();
-generateSensorButtons();
-displayOutletStates();
 
-    // function ShowSensorReadings(evt) {
-    //     evt.preventDefault();
+const getPlantData = (plantID) => {
+    const url = `/plants/${plantID}.json`;
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+    
+            const sensor_readings = data.sensor_readings;
+            // const SensorReadings = Object.keys(sensor_readings)
+            
+            const sensor_battery = sensor_readings.battery;
+            const sensor_conductivity = sensor_readings.conductivity;
+            const sensor_illuminance = sensor_readings.illuminance;
+            const sensor_moisture = sensor_readings.moisture;
+            const sensor_temperature = sensor_readings.temperature;
 
-    //     const sensorID = document.querySelector('#sensor-field').value;
-    //     const url = `/sensors/${sensorID}.json`;
+            const plant_data = data.plant_data;
+            console.log(plant_data)
 
-    //     console.log(sensorID);
+            const pid = plant_data.pid;
+            const alias = plant_data.alias;
+            const category = plant_data.category;  
+            const max_light_lux = plant_data.max_light_lux;
+            const min_light_lux = plant_data.min_light_lux;
+            const max_temp = plant_data.max_temp;
+            const min_temp = plant_data.min_temp;
+            const max_env_humid = plant_data.max_env_humid;
+            const min_env_humid = plant_data.min_env_humid;
+            const max_soil_moist = plant_data.max_soil_moist;
+            const min_soil_moist = plant_data.min_soil_moist;
+            const max_soil_ec = plant_data.max_soil_ec;
+            const min_soil_ec = plant_data.min_soil_ec;
+            const image_url = plant_data.image_url;
 
-    //     fetch(url)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             const sensor_battery = data.battery;
-    //             const sensor_conductivity = data.conductivity;
-    //             const sensor_illuminance = data.illuminance;
-    //             const sensor_moisture = data.moisture;
-    //             const sensor_temperature = data.temperature;
-    //             // console.log(data)
-    //             document.querySelector('#sensor-data').innerHTML = `Battery: ${sensor_battery}%, Conductivity: ${sensor_conductivity}, Illuminance: ${sensor_illuminance}lux, Moisture: ${sensor_moisture}%, Temperture: ${sensor_temperature}°F`;
-    //         });
-    // }
-
-    // document.querySelector('#sensor-form').addEventListener('submit', ShowSensorReadings);
+            console.log(data)
+            document.querySelector('#plant-sensor-data').innerHTML = `Current Sensor Readings: Battery:${sensor_battery}%, Conductivity:${sensor_conductivity}, 
+                Illuminance:${sensor_illuminance}lux, Soil Moisture:${sensor_moisture}%, Temperature:${sensor_temperature}°F`;
+            document.querySelector('#plantbook-data').innerHTML = `Plant Library Information: PlantData: PID:${pid}, Alias:${alias}, Category:${category}, Max Light:${max_light_lux}lux, Min Light:${min_light_lux}lux, 
+                Max Temp:${max_temp}°F, Min Temp:${min_temp}°F, Max Env Humidity:${max_env_humid}%, Min Env Humidity:${min_env_humid}%, 
+                Max Soil Moisture:${max_soil_moist}%, Min Soil Moisture:${min_soil_moist}%, Max Soil EC:${max_soil_ec}, 
+                Min Soil EC:${min_soil_ec}, Image URL:${image_url}`;
+        });
+};
 
 
 
+const generateHumidityButtons = () => {
+    console.log('generateHumidityButtons() called');
+
+    const sensorContainer = document.querySelector('#humidity-ids');
+    const url = '/humidity.json';
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            const humidityIds = data;
+            for (const humidityID of humidityIds) {
+                const button = document.createElement('button');
+                button.innerHTML = `${humidityID}`;
+                button.id = `sensor=${humidityID}-button`;
+                button.addEventListener('click', (evt) => {
+                    evt.preventDefault();
+                    getHumidityData(humidityID);
+                });
+                sensorContainer.appendChild(button);
+            }
+        });
+};
+
+const getHumidityData = (humidityID) => {
+    const url = `/humidity/${humidityID}.json`;
+
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            const sensor_id = data.humidity_sensor_id;
+            const sensor_humidity = data.humidity;
+            const sensor_pressure = data.pressure;
+            const sensor_temperature = data.temperature;
+            const sensor_battery = data.battery;
+
+            document.querySelector('#humidity-data').innerHTML = `Sensor_id: ${sensor_id}, Humidity: ${sensor_humidity}%, 
+                Pressure: ${sensor_pressure}, Temperature: ${sensor_temperature}°F, Battery: ${sensor_battery}%`;
+        });
+};
 
 
 
 
 
-    // function ShowPlantData(evt) {
-    //     evt.preventDefault();
 
-    //     const plantID = document.querySelector('#plant-field').value;
-    //     const url = `/plants/${plantID}.json`;
 
-    //     console.log(plantID);
-
-    //     fetch(url)
-    //         .then((response) => response.json())
-    //         .then((data) => {
-    //             const plant_name = data.plant;
-    //             const plant_sensor = data.sensor_id;
-    //             const plant_data = data.location;
-    //             const plant_sensor = data.sensor;
-    //             // console.log(data)
-    //             document.querySelector('#plant-data').innerHTML = `Name: ${plant_name}, Type: ${plant_type}, Location: ${plant_location}, Sensor: ${plant_sensor}`;
-    //         });
-    // }

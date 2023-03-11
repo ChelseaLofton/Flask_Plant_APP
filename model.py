@@ -26,6 +26,27 @@ class PlantBook(db.Model):
     def __repr__(self):
         return f"<pid = {self.pid} and alias = {self.alias}>"
 
+    def to_dict(self):
+        return {
+            "pid": self.pid,
+            "display_pid": self.display_pid,
+            "alias": self.alias,
+            "category": self.category,
+            "max_light_lux": self.max_light_lux,
+            "min_light_lux": self.min_light_lux,
+            "max_temp": self.max_temp,
+            "min_temp": self.min_temp,
+            "max_env_humid": self.max_env_humid,
+            "min_env_humid": self.min_env_humid,
+            "max_soil_moist": self.max_soil_moist,
+            "min_soil_moist": self.min_soil_moist,
+            "max_soil_ec": self.max_soil_ec,
+            "min_soil_ec": self.min_soil_ec,
+            "image_url": self.image_url
+        }
+    def __repr__(self):
+        return f"<pid = {self.pid} and alias = {self.alias}>"
+
 
 
 class Plant(db.Model):
@@ -39,6 +60,13 @@ class Plant(db.Model):
 
     def __repr__(self):
         return f"<plant_id = {self.plant_id}>"
+    
+    def to_dict(obj):
+        return {
+            "plant_id": self.plant_id,
+            "pid": self.pid,
+            "sensor_id": self.sensor_id
+        }
 
 
 

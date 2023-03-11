@@ -6,15 +6,25 @@
     </head>
 
     <body>
-        <h1>Current Sensor Data</h1>
+        <h2>Current Sensor Data</h2>
         <div id="sensor-ids"></div>
         <div id="sensor-data"></div>
 
         <h2>Current Outlet States</h2>
         <div id="outlet_ids"></div>
 
-        <h3>Current Plant Data</h3>
+        <h2>Current Plant Data</h2>
         <div id="plant-ids"></div>
+        
+        <h2>Current Sensor Readings via Plant Query</h2>
+        <div id="plant-sensor-data"></div>
+        
+        <h2>PlantBook Data via Plant Query</h2>
+        <div id="plantbook-data"></div>
+
+        <h2>Current Humidity Sensor Data</h2>
+        <div id="humidity-ids"></div>
+        <div id="humidity-data"></div>
 
 
 
@@ -22,6 +32,7 @@
         <script>
             generateSensorButtons();
             generatePlantButtons();
+            generateHumidityButtons();
             displayOutletStates();
         </script>
     </body>
