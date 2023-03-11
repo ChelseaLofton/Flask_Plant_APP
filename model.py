@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class PlantBook(db.Model):
-    """Is a database of tolerance values vie pid will back populate plants"""
+    """Is a database of tolerance values via pid will back populate plants"""
     __tablename__ = "plantbooks"
 
     pid = db.Column(db.String, primary_key=True)

@@ -3,9 +3,9 @@ from flask import (Flask, render_template, request, flash, session,
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
 from sensors import get_plant_sensors, get_humidity_sensors, get_outlets, set_outlet_state
-from model import (db, connect_to_db, Plant, PlantBook, PlantSensor, \
+from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
     SensorReading, Outlet, HumiditySensor)
-
+from homeassistant_api import client
 
 app = Flask(__name__)
 app.secret_key = "ILovePlants"
@@ -32,14 +32,11 @@ def view_plant_data(plant_id):
     """View a specific plant."""
 
     plant = Plant.query.filter_by(plant_id=plant_id).first()
-    # sensor_id = PlantSensor.query.filter_by(sensor_id=plant.sensor_id).first()
-    # plant_data = PlantBook.query.filter_by(pid=plant.pid).all()
-    # sensor_readings = get_plant_sensors().get(sensor_id)
+    sensor_id = PlantSensor.query.filter_by(sensor_id=plant.sensor_id).first()
+    plant_data = PlantBook.query.filter_by(pid=plant.pid).all()
+    sensor_readings = get_plant_sensors().get(sensor_id)
 
     return jsonify(plant=plant)
-# , plant_data=plant_data, sensor_readings=sensor_readings)
-    # return render_template('view_plant_data.html', sensor_id=sensor_id,
-    #     plant=plant, plant_data=plant_data, sensor_readings=sensor_readings)
 
 
 @app.route('/sensors.json')
@@ -47,18 +44,15 @@ def view_all_sensors():
     """View all sensors."""
 
     sensors = PlantSensor.query.all()
+    sensor_ids = [sensor.sensor_id for sensor in sensors]
 
-
-    return sensors
-
+    return jsonify(sensor_ids)
 
 
 @app.route('/sensors/<sensor_id>.json')
 def get_sensor_data(sensor_id):
     """View all sensor readings for a specific sensor."""
-    # Update with most recent sensor readings
 
-    # sensor = PlantSensor.query.filter_by(sensor_id=sensor_id).first()
     sensor_data = get_plant_sensors().get(sensor_id)
 
     if sensor_data:
@@ -67,27 +61,41 @@ def get_sensor_data(sensor_id):
         return jsonify({"error": "Sensor not found."})
 
 
-@app.route('/climate_controls')
-def view_climate_controls():
+@app.route('/outlets.json')
+def view_outlets():
     """View all climate controls."""
 
     outlets = get_outlets()
-    humidity_sensors = get_humidity_sensors()
+    # humidity_sensors = get_humidity_sensors()
 
-    return render_template('view_climate_controls.html', outlets=outlets, humidity_sensors=humidity_sensors)
+    return jsonify(outlets)
 
 
-@app.route("/change_state.json", methods=['POST'])  # incomplete
-def set_outlet_state():
+@app.route("/outlets/<outlet_id>/<switch_id>.json", methods=['POST'])
+def switch_outlet_state(outlet_id, switch_id):
     """Toggle switch on/off."""
 
-    outlet_id = request.json.get('outlet_id')
-    switch_id = request.json.get('switch_id')
-    state = request.json.get('state')
+    print(f"Switching outlet {outlet_id} {switch_id}...")
 
-    set_outlet_state(outlet_id, switch_id, state)
+    new_state = request.json.get('state')
+    entity_id = f"{outlet_id}_{switch_id}"
+    outlet = get_outlets().get(outlet_id)
 
-    return jsonify({"success": True})
+    if outlet:
+        state = outlet.get(switch_id)
+
+        if new_state == "on":
+            state = 'on'
+            print(f"{entity_id} turned on")
+        elif new_state == "off":
+            state = 'off'
+            print(f"{entity_id} turned off")
+        else:
+            print(f"Invalid state. Please specify 'on' or 'off'. new_state={new_state}")
+
+    return jsonify({"state": state})
+
+
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from homeassistant_api import Client
+import asyncio
 from pprint import pprint
 
 import json
@@ -12,39 +13,40 @@ with Client(
     'http://plants.home.stu.mp:8123/api',  # created a dns entry
     api_Key
 ) as client:
+
     sensors = client.get_entities()["sensor"]
-    switches = client.get_entities()["switch"]  
-
-
+    switches = client.get_entities()["switch"]
+    states = client.get_states()
 
 
 def get_plant_sensors():
     plant_sensors = {}
-    
+
     for entity_id, entity in sensors.entities.items():  # class sensors to object entity class entities sensors.entities is a dict, with entity_id as a key, value will be an instance of the Entity class given for that id
-    
+
         if entity_id.startswith("plant_sensor_"):
             sensor_id = entity_id.split("_")[2]
             reading = entity_id.split("_")[-1]
-    
-            if len(sensor_id) != 2:                    #ignores all sensors that are not plant_sensors
-                continue    
-    
-            if sensor_id not in plant_sensors:          
-                plant_sensors[sensor_id] = {}          #adds our sliced id as a key in our dictionary and set the value to an empty dictionary
 
-            try:                                        #type coercion
+            if len(sensor_id) != 2:  # ignores all sensors that are not plant_sensors
+                continue
+
+            if sensor_id not in plant_sensors:
+                # adds our sliced id as a key in our dictionary and set the value to an empty dictionary
+                plant_sensors[sensor_id] = {}
+
+            try:  # type coercion
                 value = float(entity.state.state)
-            
+
                 if value.is_integer():
                     value = int(value)
 
                 if reading == "temperature":
                     value = value * 9/5 + 32
-        
+
             except ValueError:
                 value = entity.state.state
-    
+
             plant_sensors[sensor_id][reading] = value
 
     return plant_sensors
@@ -55,16 +57,15 @@ def get_plant_sensors():
 #     json.dump(plant_sensor_data, f)
 
 
-
 def get_humidity_sensors():
     humidity_sensors = {}
 
     for entity_id, entity in sensors.entities.items():
-        
+
         if entity_id.startswith("lumi_lumi_"):
             sensor_id = entity_id.split("_")[2]
             reading = entity_id.split("_")[-1]
-            
+
             if sensor_id == "vibration":
                 continue
 
@@ -73,15 +74,15 @@ def get_humidity_sensors():
 
             try:
                 value = float(entity.state.state)
-                
+
                 if value.is_integer():
                     value = int(value)
-            
+
             except ValueError:
                 value = entity.state.state
-        
+
             humidity_sensors[sensor_id][reading] = value
-    
+
     return humidity_sensors
 
 # humidity_sensor_data = get_humidity_sensors()
@@ -93,10 +94,10 @@ def get_humidity_sensors():
 def get_outlets():
     outlets = {}
 
-    for entity_id, entity in switches.entities.items():   
+    for entity_id, entity in switches.entities.items():
         if entity_id.startswith('outlet'):
             outlet_id = entity_id.split("_")[0]
-            
+
             switch_id = entity_id.split("_")[-1]
 
             if outlet_id not in outlets:
@@ -107,49 +108,29 @@ def get_outlets():
 
             if switch_id == 'switch':
                 continue
-            
+
             else:
                 switch_id = switch_id
-                
 
-            outlets[outlet_id][switch_id]  = entity.state.state 
+            outlets[outlet_id][switch_id] = entity.state.state
 
     return outlets
 
-# outlet_data = get_outlets()
 
-# with open('outlet_data.json', 'w') as f:
-#     json.dump(outlet_data, f)
-
-
-
-
-
-
-"""below i am trying to get the current state of outlet and update it with a new state."""
-
-# def get_outlet_state(outlet_id, switch_id):     #call get outlet state with outlet_id and switch_id
-
-
-#     for entity_id, entity in outlets.entities.items():
-#         if entity_id.startswith(f"{outlet_id}_{switch_id}"):
-    
-#             return entity.state.state
-
-
-
-def set_outlet_state(outlet_id, switch_id, new_state):      #new_state is a boolean True or False
+def set_outlet_state(outlet_id, switch_id, new_state):
 
     entity_id = f"{outlet_id}_{switch_id}"
-    switch_entity = outlets.get(entity_id)
-    if new_state:
-        switch_entity.turn_on() 
+    entity_state = states.get(entity_id)
+
+    if new_state == "on":
+        client.turn_on(entity_id)
+        entity_state = 'on'
+        print(f"{entity_id} turned on")
+    elif new_state == "off":
+        client.turn_off(entity_id)
+        entity_state = 'off'
+        print(f"{entity_id} turned off")
     else:
-        switch_entity.turn_off()
+        print("Invalid state. Please specify 'on' or 'off'.")
 
-
-
-
-
-
-
+    return {"state": entity_state}
