@@ -52,18 +52,23 @@ def get_all_sensors():
 
 
 
-# def create_sensor_readings( battery, illuminance, conductivity, 
-#     moisture, temperature, sensor_id):
+def create_sensor_readings( battery, illuminance, conductivity, 
+    moisture, temperature, sensor_id):
 
-#     id = SensorReading(
-#         battery = battery,
-#         illuminance = illuminance,
-#         conductivity = conductivity,
-#         moisture = moisture,
-#         temperature = temperature,
-#         sensor_id = sensor_id
-#     )
-#     return id
+    try:
+        battery = int(battery)
+    except ValueError:
+        battery = None
+
+    id = SensorReading(
+        battery = battery,
+        illuminance = illuminance,
+        conductivity = conductivity,
+        moisture = moisture,
+        temperature = temperature,
+        sensor_id = sensor_id
+    )
+    return id
 
 
 
