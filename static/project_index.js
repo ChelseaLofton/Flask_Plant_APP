@@ -126,6 +126,30 @@ const toggleOutletState = (outletID, switchID) => {
 
 
 
+const generatePlantButtons = () => {
+    console.log('generatePlantButtons() called');
+
+    const plantContainer = document.querySelector('#plant-ids');
+    const url = '/plants.json';
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+            const plantIds = data;
+            for (const plantID of plantIds) {
+                const button = document.createElement('button');
+                button.innerHTML = `${plantID}`;
+                button.id = `plant=${plantID}-button`;
+                button.addEventListener('click', (evt) => {
+                    evt.preventDefault();
+                    // getSensorData(sensorID);
+                });
+                plantContainer.appendChild(button);
+            }
+        });
+};
+
+
+generatePlantButtons();
 generateSensorButtons();
 displayOutletStates();
 

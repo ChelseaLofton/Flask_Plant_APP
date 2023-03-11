@@ -20,14 +20,14 @@ def homepage():
     return render_template('index.html')
 
 
-@app.route('/plants')
+@app.route('/plants.json')
 def view_all_plants():
     """View all plants."""
 
     plants = Plant.query.all()
+    plant_ids = [plant.plant_id for plant in plants]
 
-    return render_template('view_all_plants.html', plants=plants)
-
+    return jsonify(plant_ids)
 
 @app.route('/plants/<plant_id>')
 def view_plant_data(plant_id):
@@ -83,11 +83,14 @@ def switch_outlet_state(outlet_id, switch_id):
     print(f"new_state = {new_state}")
     entity_id = f"switch.{outlet_id}_switch_{switch_id}"
     print(f"entity_id = {entity_id}")
-    # state = client.set_state(State(state=new_state, entity_id=entity_id))
-    # outlet = get_outlets().get(outlet_id)
+
     switch = client.get_domain("switch")
     r = switch.services["toggle"](entity_id=entity_id)
     print(r)
+
+    # state = client.set_state(State(state=new_state, entity_id=entity_id))
+    # outlet = get_outlets().get(outlet_id)
+
     # if outlet:
     #     state = outlet.get(switch_id)
 

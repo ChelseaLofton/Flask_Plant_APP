@@ -118,31 +118,6 @@ def get_outlets():
     return outlets
 
 
-class MySwitch(Entity):
-
-    def __init__(self, outlet_id, switch_id, state):
-        self._outlet_id = outlet_id
-        self._switch_id = switch_id
-        self._state = state
-
-    
-    @property
-    def name(self):
-        return f"{self._outlet_id}_{self._switch_id}"
-    
-    @property
-    def is_on(self):
-        return self._state == "on"
-    
-    def turn_on(self, **kwargs):
-        set_outlet_state(self._outlet_id, self._switch_id, "on")
-        self._state = "on"
-
-    def turn_off(self, **kwargs):
-        set_outlet_state(self._outlet_id, self._switch_id, "off")
-        self._state = "off"
-
-
 
 def set_outlet_state(outlet_id, switch_id, new_state):
 
