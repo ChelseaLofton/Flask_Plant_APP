@@ -22,7 +22,6 @@ const generateSensorButtons = () => {
 };
 
 
-
 const getSensorData = (sensorID) => {
     const url = `/sensors/${sensorID}.json`;
     fetch(url)
@@ -39,7 +38,6 @@ const getSensorData = (sensorID) => {
                 Moisture: ${sensor_moisture}%, Temperature: ${sensor_temperature}°F`;
         });
 };
-
 
 
 const displayOutletStates = () => {
@@ -99,7 +97,6 @@ const displayOutletStates = () => {
 };
 
 
-
 const toggleOutletState = (outletID, switchID) => {
     const url = `/outlets/${outletID}/${switchID}.json`;
     const switchButton = document.querySelector(`#${outletID}_${switchID}`);
@@ -130,7 +127,6 @@ const toggleOutletState = (outletID, switchID) => {
 };
 
 
-
 const generatePlantButtons = () => {
     console.log('generatePlantButtons() called');
 
@@ -152,7 +148,6 @@ const generatePlantButtons = () => {
             }
         });
 };
-
 
 
 const getPlantData = (plantID) => {
@@ -200,7 +195,6 @@ const getPlantData = (plantID) => {
 };
 
 
-
 const generateHumidityButtons = () => {
     console.log('generateHumidityButtons() called');
 
@@ -222,6 +216,7 @@ const generateHumidityButtons = () => {
             }
         });
 };
+
 
 const getHumidityData = (humidityID) => {
     const url = `/humidity/${humidityID}.json`;
