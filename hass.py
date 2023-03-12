@@ -1,4 +1,4 @@
-from homeassistant_api import Client, Entity, State
+from homeassistant_api import Client
 
 import asyncio
 from pprint import pprint
@@ -130,20 +130,3 @@ def set_outlet_state(outlet_id, switch_id, new_state):
     else:
         print(f"Error: {response.status_code} {response.reason}")
     
-    
-    
-    # entity_state = states.get(entity_id)
-
-
-    # if new_state == "on":
-    #     client.turn_on(entity_id)
-    #     entity_state = 'on'
-    #     print(f"{entity_id} turned on")
-    # elif new_state == "off":
-    #     client.turn_off(entity_id)
-    #     entity_state = 'off'
-    #     print(f"{entity_id} turned off")
-    # else:
-    #     print("Invalid state. Please specify 'on' or 'off'.")
-
-    # return {"state": entity_state}

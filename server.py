@@ -1,5 +1,4 @@
-from flask import (Flask, render_template, request, flash, session,
-        redirect, jsonify)
+from flask import (Flask, render_template, request, jsonify)
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets, set_outlet_state
@@ -119,6 +118,23 @@ def get_humidity_data(humidity_id):
         return jsonify(humidity_data)
     else:
         return jsonify({"error": "Sensor not found."})
+
+
+
+######NOT WORKING YET########
+
+# @app.route('/readings_this_week.json')
+# def get_readings_for_chart():
+#     """Get the daily total # of melons sold for the past 7 days."""
+
+#     weekly_readings = SensorReading.query.all()
+
+#     readings_for_the_week = []
+#     for date, total in weekly_readings:
+#         readings_for_the_week.append({'date': date.isoformat(),
+#                                 '': total})
+
+#     return jsonify({'data': readings_for_the_week})
 
 
 if __name__ == "__main__":
