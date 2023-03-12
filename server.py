@@ -2,11 +2,11 @@ from flask import (Flask, render_template, request, flash, session,
         redirect, jsonify)
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
-from sensors import get_plant_sensors, get_humidity_sensors, get_outlets, set_outlet_state
+from hass import get_plant_sensors, get_humidity_sensors, get_outlets, set_outlet_state
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
     SensorReading, Outlet, HumiditySensor)
 
-from sensors import client
+from hass import client
 from homeassistant_api import State
 
 app = Flask(__name__)

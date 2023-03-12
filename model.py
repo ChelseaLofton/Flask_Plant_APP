@@ -1,4 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
+
 
 db = SQLAlchemy()
 
@@ -96,6 +99,8 @@ class SensorReading(db.Model):
     illuminance = db.Column(db.Integer)
     moisture = db.Column(db.Integer)
     temperature = db.Column(db.Float)
+    created_at = db.Column(db.DateTime, default=db.func.utcnow())
+
     
 
     sensor_id = db.Column(db.String, db.ForeignKey('plant_sensors.sensor_id'))

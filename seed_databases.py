@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 import model
 import crud
 import server
-from sensors import get_plant_sensors, get_humidity_sensors, get_outlets
+from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 
 
 
