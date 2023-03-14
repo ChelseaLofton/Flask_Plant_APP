@@ -97,7 +97,7 @@ def get_outlets():
 
     for entity_id, entity in switches.entities.items():
         if entity_id.startswith('outlet'):
-            outlet_id = entity_id.split("_")[0]
+            outlet_id = entity_id.split("_")[1]
 
             switch_id = entity_id.split("_")[-1]
 
@@ -107,11 +107,12 @@ def get_outlets():
             if switch_id == "lock":
                 continue
 
-            if switch_id == 'switch':
+            if switch_id == 'usb':
                 continue
 
             else:
-                switch_id = switch_id
+                switch_id == switch_id
+                
 
             outlets[outlet_id][switch_id] = entity.state.state
 

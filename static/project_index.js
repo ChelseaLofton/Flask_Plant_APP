@@ -47,17 +47,12 @@ const displayOutletStates = () => {
         .then((response) => response.json())
         .then((data) => {
 
-            outletContainer.innerHTML = '';
 
             const outlets = data;
             const outletIDS = Object.keys(outlets);
 
             for (const outletID of outletIDS) {
-                const existingOutletDiv = document.querySelector(`#outlet_${outletID}`);
-                if (existingOutletDiv) {
-                    outletContainer.removeChild(existingOutletDiv);
-                }
-
+        
                 const outletDiv = document.createElement('div');
                 outletDiv.innerHTML = `Outlet ${outletID}:`;
 
@@ -77,9 +72,11 @@ const displayOutletStates = () => {
                     switchButton.id = `${outletID}_${switchID}`;
                     switchButton.classList.add('switch');
                     switchButton.addEventListener('click', (evt) => {
-                    
+                        console.log(`${outletID}_${switchID}`);
+
                         toggleOutletState(outletID, switchID);
                     });
+
 
                     if (switches[switchID] === true) {
                         switchButton.classList.add('on');
@@ -158,7 +155,6 @@ const getPlantData = (plantID) => {
             console.log(data)
     
             const sensor_readings = data.sensor_readings;
-            // const SensorReadings = Object.keys(sensor_readings)
             
             const sensor_battery = sensor_readings.battery;
             const sensor_conductivity = sensor_readings.conductivity;
@@ -230,7 +226,7 @@ const getHumidityData = (humidityID) => {
             const sensor_temperature = data.temperature;
             const sensor_battery = data.battery;
 
-            document.querySelector('#humidity-data').innerHTML = `Sensor_id: ${sensor_id}, Humidity: ${sensor_humidity}%, 
+            document.querySelector('#humidity-data').innerHTML = `Humidity: ${sensor_humidity}%, 
                 Pressure: ${sensor_pressure}, Temperature: ${sensor_temperature}°F, Battery: ${sensor_battery}%`;
         });
 };
