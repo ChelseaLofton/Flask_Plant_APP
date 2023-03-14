@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
-                   SensorReading, Outlet, HumiditySensor)
+    SensorReading, Outlet, HumiditySensor)
 
 from hass import client
 from homeassistant_api import State
@@ -16,7 +16,7 @@ app.jinja_env.undefined = StrictUndefined
 @app.route('/')
 def homepage():
 
-    return render_template('index.html')
+    return render_template('index_react.html')
 
 
 @app.route('/plants.json')
