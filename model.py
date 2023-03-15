@@ -133,15 +133,27 @@ class HumiditySensor(db.Model):
     __tablename__ = 'humidity_sensors'
 
     humidity_sensor_id = db.Column(db.String, primary_key = True)
-    humidity = db.Column(db.Float)
-    pressure = db.Column(db.Float)
-    temperature = db.Column(db.Float)
-    battery = db.Column(db.Integer)
+
+    readings = db.relationship('HumidityReading', backref='humidity_sensor', lazy= True)
+    
 
 
     def __repr__(self):
         return f"<location_id = {self.location_id}, humidity={self.humidity}, temperature={self.temperature},  battery={self.battery}>"
     
+
+class HumidityReading(db.Model):
+
+    __tablename__ = 'humidity_readings'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    humidity = db.Column(db.Float)
+    pressure = db.Column(db.Float)
+    temperature = db.Column(db.Float)
+    battery = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=db.func.utcnow())
+
+    humidity_sensor_id = db.Column(db.String, db.ForeignKey('humidity_sensors.humidity_sensor_id'))
 
 
 

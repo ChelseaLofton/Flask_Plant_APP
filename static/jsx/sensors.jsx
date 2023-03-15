@@ -46,7 +46,6 @@ function GenerateSensorButtons() {
 
 
 
-ReactDOM.render(React.createElement(GenerateSensorButtons), document.getElementById('sensor-ids'))
 
 
 

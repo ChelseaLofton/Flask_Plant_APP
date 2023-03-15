@@ -49,7 +49,7 @@ const PlantButtons = () => {
                     key: `sensor-${plantID}`,
                     id: `sensors=${plantID}-button`,
                     onClick: () => handleButtonClick(plantID)
-                }, `Sensor ${plantID}`)
+                }, `${plantID}`)
             )
         )
     );

@@ -30,9 +30,6 @@
     <div id="plantbook-data"></div>
 
 
-    <h2>PlantBook Data via Plant Query</h2>
-    <div id="plantbook-data"></div>
-
     <h2>Current Humidity Sensor Data</h2>
     <div id="humidity-ids"></div>
     <div id="humidity-data"></div>
@@ -41,23 +38,28 @@
 
 
     <script src="/static/jsx/sensors.jsx"></script>
+    <script src="/static/jsx/outlets.jsx"></script>
     <script src="/static/jsx/plants.jsx"></script>
+    <script src="/static/jsx/humidity.jsx"></script>
     <script>
         ReactDOM.render(React.createElement(GenerateSensorButtons), document.getElementById('sensor-ids'));
     </script>
     <script>
         ReactDOM.render(React.createElement(PlantButtons), document.getElementById('plant-ids'));
     </script>
-
+    <script>
+        ReactDOM.render(React.createElement(GenerateHumidityButtons), document.getElementById('humidity-ids'));
+    </script>
 
 
 </body>
+
 </html>
 
 
 
 
 
-</body >
+</body>
 
-</html >
+</html>
