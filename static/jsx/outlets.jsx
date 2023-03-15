@@ -17,7 +17,7 @@ const DisplayOutletStates = () => {
         const url = `/outlets/${outletID}/${switchID}/.json`;
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
-
+        
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({ state: newState }),
@@ -66,3 +66,7 @@ const DisplayOutletStates = () => {
         )
     );
 };
+
+
+
+

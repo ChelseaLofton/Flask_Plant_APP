@@ -74,7 +74,7 @@ def view_outlets():
     """View all climate controls."""
 
     outlets = get_outlets()
-    # humidity_sensors = get_humidity_sensors()
+
 
     return jsonify(outlets)
 
@@ -99,27 +99,6 @@ def switch_outlet_state(outlet_id, switch_id):
 
     return jsonify({"state": r[0].state})
 
-
-
-
-
-
-
-
-    # print(f"Switching outlet {outlet_id} {switch_id}...")
-
-    # new_state=request.json.get('state')
-    # print(f"new_state = {new_state}")
-
-    # entity_id=f"switch.{outlet_id}_switch_{switch_id}"
-    # print(f"entity_id = {entity_id}")
-
-    # switch=client.get_domain("switch")
-    # r=switch.services["toggle"](entity_id=entity_id)
-
-    # print(r)
-
-    # return jsonify({"state": r[0].state})
 
 
 
