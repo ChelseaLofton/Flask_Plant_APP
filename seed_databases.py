@@ -66,19 +66,27 @@ for outlet_id, switch_ids in outlet_data.items():
 
 # from sensors.py queires the HomeAssist API for the sensor data
 humidity_data = get_humidity_sensors()
+humidity_sensors = humidity_data.keys()
 
-for humidity_sensor_id, humidity_sensor_values in humidity_data.items():
-    humidity, pressure, temperature, battery = (
-        humidity_sensor_values['humidity'],
-        humidity_sensor_values['pressure'],
-        humidity_sensor_values['temperature'],
-        humidity_sensor_values['battery'],
-    )
-
-    new_humidity_sensor = crud.create_humidity_sensor(
-        humidity_sensor_id, humidity, pressure, temperature,  battery)
+for id in humidity_sensors:
+    new_humidity_sensor = crud.create_humidity_sensor(id)
 
     model.db.session.merge(new_humidity_sensor)
+    model.db.session.commit()
+
+for humidity_sensor_id, humidity_sensor_reading in humidity_data.items():
+    humidity, pressure, temperature, battery = (
+        humidity_sensor_reading['humidity'],
+        humidity_sensor_reading['pressure'],
+        humidity_sensor_reading['temperature'],
+        humidity_sensor_reading['battery'],
+    )
+
+    new_humidity_sensor_data = crud.create_humidity_readings(
+        humidity, pressure, temperature,  battery, 
+        datetime.now(), humidity_sensor_id=humidity_sensor_id)
+
+    model.db.session.merge(new_humidity_sensor_data)
     model.db.session.commit()
 
 

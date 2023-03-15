@@ -52,8 +52,8 @@ def seed_humidity_readings():
 
 
 
-# schedule.every().hour.do(seed_readings)
+schedule.every().hour.do(seed_readings)
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)

@@ -63,8 +63,8 @@ def get_humidity_sensors():
 
     for entity_id, entity in sensors.entities.items():
 
-        if entity_id.startswith("lumi_lumi_"):
-            sensor_id = entity_id.split("_")[2]
+        if entity_id.startswith("humidity"):
+            sensor_id = entity_id.split("_")[1]
             reading = entity_id.split("_")[-1]
 
             if sensor_id == "vibration":

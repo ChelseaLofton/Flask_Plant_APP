@@ -54,7 +54,7 @@ def create_sensor_readings(battery, illuminance, conductivity,
     except ValueError:
         battery = None
 
-    id = SensorReading(
+    sensor_reading = SensorReading(
         battery=battery,
         illuminance=illuminance,
         conductivity=conductivity,
@@ -65,7 +65,7 @@ def create_sensor_readings(battery, illuminance, conductivity,
 
 
     )
-    return id
+    return sensor_reading
 
 
 def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4,
@@ -81,34 +81,35 @@ def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4,
     return outlet_id
 
 
-def create_humidity_sensor(humidity_sensor_id, battery, humidity, pressure,
-        temperature):
 
+def create_humidity_sensor(humidity_sensor_id):
     humidity_sensor_id = HumiditySensor(
         humidity_sensor_id=humidity_sensor_id,
     )
+
     return humidity_sensor_id
 
 
-def create_humidity_readings(humidity, pressure, temperature,
-        battery, created_at, sensor_id):
-
-    try:
-        if battery is not None:
-            battery = int(battery)
-    except ValueError:
-        battery = None
-
-    id = HumidityReading(
-        battery=battery,
+def create_humidity_readings(humidity, pressure, temperature, battery, created_at, humidity_sensor_id):
+    humidity_reading = HumidityReading(
         humidity=humidity,
         pressure=pressure,
         temperature=temperature,
+        battery=battery,
         created_at=created_at,
-        sensor_id=sensor_id,
+        humidity_sensor_id=humidity_sensor_id,
+
     )
 
-    return id
+    return humidity_reading
+
+
+
+
+
+
+
+
 
 
 if __name__ == "main":
