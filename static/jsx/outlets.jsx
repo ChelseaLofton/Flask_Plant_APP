@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+
 
 const DisplayOutletStates = () => {
     const [outlets, setOutlets] = React.useState([]);
@@ -39,42 +38,31 @@ const DisplayOutletStates = () => {
             });
     };
 
+
+
     return (
-        <div id="outlet-ids">
-            {Object.keys(outlets).map((outletID) => {
+        React.createElement("div", { id: "outlet-ids" },
+            Object.keys(outlets).map((outletID) => {
                 const switches = outlets[outletID];
                 return (
-                    <div key={outletID}>
-                        <p>Outlet {outletID}:</p>
-                        {Object.keys(switches).map((switchID) => {
+                    React.createElement("div", { key: outletID },
+                        React.createElement("p", null, `Outlet ${outletID}:`),
+                        Object.keys(switches).map((switchID) => {
                             const switchState = switches[switchID] ? 'on' : 'off';
                             return (
-                                <div key={switchID}>
-                                    <label htmlFor={`outlet_${outletID}_${switchID}`}>
-                                        Switch {switchID}:
-                                    </label>
-                                    <button
-                                        id={`${outletID}_${switchID}`}
-                                        className={`switch ${switchState}`}
-                                        onClick={(evt) =>
-                                            toggleOutletState(outletID, switchID, evt.target)
-                                        }
-                                    >
-                                        {switchState}
-                                    </button>
-                                </div>
+                                React.createElement("div", { key: switchID },
+                                    React.createElement("label", { htmlFor: `outlet_${outletID}_${switchID}` }, `Switch ${switchID}:`),
+                                    React.createElement("button", {
+                                        id: `${outletID}_${switchID}`,
+                                        className: `switch ${switchState}`,
+                                        onClick: (evt) => toggleOutletState(outletID, switchID, evt.target)
+                                    }, switchState)
+                                )
                             );
-                        })}
-                    </div>
+                        })
+                    )
                 );
-            })}
-        </div>
+            })
+        )
     );
 };
-
-export default DisplayOutletStates;
-
-ReactDOM.render(
-    <DisplayOutletStates />,
-    document.getElementById('outlet-ids')
-);
