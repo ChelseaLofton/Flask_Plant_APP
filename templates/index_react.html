@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>All Data</title>
+
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
@@ -17,7 +18,7 @@
 
 
     <h2>Current Outlet States</h2>
-    <div id="outlet_ids"></div>
+    <div id="outlet-ids"></div>
 
     <h2>Current Plant Data</h2>
     <div id="plant-ids"></div>
@@ -28,17 +29,35 @@
     <h2>PlantBook Data via Plant Query</h2>
     <div id="plantbook-data"></div>
 
+
+    <h2>PlantBook Data via Plant Query</h2>
+    <div id="plantbook-data"></div>
+
     <h2>Current Humidity Sensor Data</h2>
     <div id="humidity-ids"></div>
     <div id="humidity-data"></div>
 
 
 
-    
-    <script src="/static/jsx/project_react.jsx"></script>
+
+    <script src="/static/jsx/sensors.jsx"></script>
+    <script src="/static/jsx/plants.jsx"></script>
     <script>
         ReactDOM.render(React.createElement(GenerateSensorButtons), document.getElementById('sensor-ids'));
     </script>
-</body>
+    <script>
+        ReactDOM.render(React.createElement(PlantButtons), document.getElementById('plant-ids'));
+    </script>
 
+
+
+</body>
 </html>
+
+
+
+
+
+</body >
+
+</html >
