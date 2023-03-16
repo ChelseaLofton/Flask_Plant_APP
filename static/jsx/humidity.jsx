@@ -44,4 +44,6 @@ const GenerateHumidityButtons = () => {
     );
 };
 
+
+
 ReactDOM.render(<GenerateHumidityButtons />, document.getElementById('humidity-ids'));
