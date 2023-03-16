@@ -120,8 +120,6 @@ def get_outlets():
 
 
 
-def set_outlet_state(outlet_id, switch_id, new_state):
-
     entity_id = f"{outlet_id}_{switch_id}"
     data = {'state': new_state}
     response = client.post(f"states/{entity_id}", data=data)

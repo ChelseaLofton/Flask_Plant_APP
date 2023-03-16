@@ -14,10 +14,10 @@ const DisplayOutletStates = () => {
     }, []);
 
     const toggleOutletState = (outletID, switchID, switchButton) => {
-        const url = `/outlets/${outletID}/${switchID}/.json`;
+        const url = `/outlets/${outletID}/${switchID}.json`;
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
-
+        console.log(url)
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({ state: newState }),
@@ -35,10 +35,14 @@ const DisplayOutletStates = () => {
                     switchButton.classList.remove('on');
                     switchButton.classList.add('off');
                 }
+            })
+            .catch((error) => {
+                console.error(error);
+                error.response.json().then((responseData) => {
+                    console.log('Error Response:', responseData);
+                });
             });
     };
-
-
 
     return (
         <div id="outlet-ids">
