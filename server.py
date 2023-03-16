@@ -26,7 +26,7 @@ def view_all_plants():
     plants = Plant.query.all()
     plant_ids = [plant.plant_id for plant in plants]
 
-    return jsonify(plant_ids)
+    return jsonify(plant_ids) 
 
 
 @app.route('/plants/<plant_id>.json')

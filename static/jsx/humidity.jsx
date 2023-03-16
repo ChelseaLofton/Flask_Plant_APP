@@ -1,3 +1,4 @@
+
 const GenerateHumidityButtons = () => {
     const [humidityIds, setHumidityIds] = React.useState([]);
 
@@ -27,15 +28,20 @@ const GenerateHumidityButtons = () => {
             });
     };
 
+
     return (
-        React.createElement("div", { id: "humidity-ids" },
-            humidityIds.map((humidityID) =>
-                React.createElement("button", {
-                    key: `humidity-${humidityID}`,
-                    id: `sensor=${humidityID}-button`,
-                    onClick: () => handleHumidityClick(humidityID)
-                }, humidityID)
-            )
-        )
+        <div id="humidity-ids">
+            {humidityIds.map((humidityID) => (
+                <button
+                    key={`humidity-${humidityID}`}
+                    id={`sensor=${humidityID}-button`}
+                    onClick={() => handleHumidityClick(humidityID)}
+                >
+                    {humidityID}
+                </button>
+            ))}
+        </div>
     );
 };
+
+ReactDOM.render(<GenerateHumidityButtons />, document.getElementById('humidity-ids'));

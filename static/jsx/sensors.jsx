@@ -1,8 +1,9 @@
+
 function GenerateSensorButtons() {
     const [sensorIds, setSensorIds] = React.useState([]);
 
     React.useEffect(() => {
-        const url = '/sensors.json'
+        const url = '/sensors.json';
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
@@ -22,27 +23,39 @@ function GenerateSensorButtons() {
                 const sensor_illuminance = data.illuminance;
                 const sensor_moisture = data.moisture;
                 const sensor_temperature = data.temperature;
-                const sensorDataElement = document.getElementById('sensor-data')
-                if(sensorDataElement) {
+                const sensorDataElement = document.getElementById('sensor-data');
+                if (sensorDataElement) {
                     sensorDataElement.innerHTML = `Battery: ${sensor_battery}%, 
-                    Conductivity: ${sensor_conductivity}, Illuminance: ${sensor_illuminance} lux, 
-                    Moisture: ${sensor_moisture}%, Temperature: ${sensor_temperature} °F`;
+            Conductivity: ${sensor_conductivity}, Illuminance: ${sensor_illuminance} lux, 
+            Moisture: ${sensor_moisture}%, Temperature: ${sensor_temperature} °F`;
                 }
-                });
+            });
     };
 
+    const sensorButtons = sensorIds.map((sensorID) => (
+        <button
+            key={`sensor-${sensorID}`}
+            id={`sensors=${sensorID}-button`}
+            onClick={() => handleSensorClick(sensorID)}
+        >
+            Sensor {sensorID}
+        </button>
+    ));
+
     return (
-        React.createElement("div", {id: "sensor-ids"},
-            sensorIds.map((sensorID) =>
-            React.createElement("button", {
-                key: `sensor-${sensorID}`,
-                id: `sensors=${sensorID}-button`,
-                onClick: () => handleSensorClick(sensorID)
-            }, `Sensor ${sensorID}`)
-        )
-        )
+        <div id="sensor-ids">
+            {sensorButtons}
+        </div>
     );
 }
+
+
+ReactDOM.render(<GenerateSensorButtons />, document.getElementById('sensor-ids'));
+
+
+
+
+
 
 
 

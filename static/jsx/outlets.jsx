@@ -17,7 +17,7 @@ const DisplayOutletStates = () => {
         const url = `/outlets/${outletID}/${switchID}/.json`;
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
-        
+
         fetch(url, {
             method: 'POST',
             body: JSON.stringify({ state: newState }),
@@ -41,32 +41,32 @@ const DisplayOutletStates = () => {
 
 
     return (
-        React.createElement("div", { id: "outlet-ids" },
-            Object.keys(outlets).map((outletID) => {
+        <div id="outlet-ids">
+            {Object.keys(outlets).map(outletID => {
                 const switches = outlets[outletID];
                 return (
-                    React.createElement("div", { key: outletID },
-                        React.createElement("p", null, `Outlet ${outletID}:`),
-                        Object.keys(switches).map((switchID) => {
+                    <div key={outletID}>
+                        <p>Outlet {outletID}:</p>
+                        {Object.keys(switches).map(switchID => {
                             const switchState = switches[switchID] ? 'on' : 'off';
                             return (
-                                React.createElement("div", { key: switchID },
-                                    React.createElement("label", { htmlFor: `outlet_${outletID}_${switchID}` }, `Switch ${switchID}:`),
-                                    React.createElement("button", {
-                                        id: `${outletID}_${switchID}`,
-                                        className: `switch ${switchState}`,
-                                        onClick: (evt) => toggleOutletState(outletID, switchID, evt.target)
-                                    }, switchState)
-                                )
+                                <div key={switchID}>
+                                    <label htmlFor={`outlet_${outletID}_${switchID}`}>Switch {switchID}:</label>
+                                    <button
+                                        id={`${outletID}_${switchID}`}
+                                        className={`switch ${switchState}`}
+                                        onClick={evt => toggleOutletState(outletID, switchID, evt.target)}
+                                    >
+                                        {switchState}
+                                    </button>
+                                </div>
                             );
-                        })
-                    )
+                        })}
+                    </div>
                 );
-            })
-        )
+            })}
+        </div>
     );
 };
 
-
-
-
+ReactDOM.render(<DisplayOutletStates />, document.getElementById('outlet-ids'));

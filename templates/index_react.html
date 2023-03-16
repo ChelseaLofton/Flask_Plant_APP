@@ -8,20 +8,21 @@
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
-    <script src="https://cdn.cool-js-lib.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"
-        integrity="sha512-v3ygConQmvH0QehvQa6gSvTE2VdBZ6wkLOlmK7Mcy2mZ0ZF9saNbbk19QeaoTHdWIEiTlWmrwAL4hS8ElnGFbA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body>
     <h2>Current Sensor Data</h2>
     <div id="sensor-ids"></div>
     <div id="sensor-data"></div>
+    <script type="text/babel" src="/static/jsx/sensors.jsx"></script>
+
 
 
     <h2>Current Outlet States</h2>
     <div id="outlet-ids"></div>
+    <script type="text/babel" src="/static/jsx/outlets.jsx"></script>
+
 
     <h2>Current Plant Data</h2>
     <div id="plant-ids"></div>
@@ -31,58 +32,21 @@
 
     <h2>PlantBook Data via Plant Query</h2>
     <div id="plantbook-data"></div>
+    <script type="text/babel" src="/static/jsx/plants.jsx"></script>
+
 
 
     <h2>Current Humidity Sensor Data</h2>
     <div id="humidity-ids"></div>
     <div id="humidity-data"></div>
+    <script type="text/babel" src="/static/jsx/humidity.jsx"></script>
 
 
     <h2>Data Charts</h2>
     <div>
-        <canvas id="test-chart"></canvas>
+    
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        const testChart = new Chart(
-            document.querySelector('#test-chart'),
-            {
-                type: 'line',
-                datasets: [
-                    {
-                        label: 'Today',
-                        data: [10, 36, 27],
-                    },
-                    {
-                        label: 'Yesterday',
-                        data: [5, 0, 7],
-                    },
-                ],
-            },
-        );
-                    
-
-    </script>
-
-
-    <script src="/static/jsx/sensors.jsx"></script>
-    <script src="/static/jsx/outlets.jsx"></script>
-    <script src="/static/jsx/plants.jsx"></script>
-    <script src="/static/jsx/humidity.jsx"></script>
-    <script>
-        ReactDOM.render(React.createElement(GenerateSensorButtons), document.getElementById('sensor-ids'));
-    </script>
-    <script>
-        ReactDOM.render(React.createElement(DisplayOutletStates), document.getElementById('outlet-ids')); 
-    </script>
-    <script>
-        ReactDOM.render(React.createElement(PlantButtons), document.getElementById('plant-ids'));
-    </script>
-    <script>
-        ReactDOM.render(React.createElement(GenerateHumidityButtons), document.getElementById('humidity-ids'));
-    </script>
 
 
 </body>

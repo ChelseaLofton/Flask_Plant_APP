@@ -43,14 +43,19 @@ const PlantButtons = () => {
     };
 
     return (
-        React.createElement("div", { id: "plant-ids" },
-            plantIds.map((plantID) =>
-                React.createElement("button", {
-                    key: `sensor-${plantID}`,
-                    id: `sensors=${plantID}-button`,
-                    onClick: () => handleButtonClick(plantID)
-                }, `${plantID}`)
-            )
-        )
+        <div id="plant-ids">
+            {plantIds.map((plantID) => (
+                <button
+                    key={`sensor-${plantID}`}
+                    id={`sensors=${plantID}-button`}
+                    onClick={() => handleButtonClick(plantID)}
+                >
+                    {plantID}
+                </button>
+            ))}
+        </div>
     );
 };
+
+
+ReactDOM.render(<PlantButtons />, document.getElementById('plant-ids'));
