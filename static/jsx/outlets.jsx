@@ -1,4 +1,4 @@
-
+// import App from './app.jsx';
 
 const DisplayOutletStates = () => {
     const [outlets, setOutlets] = React.useState([]);
@@ -73,5 +73,6 @@ const DisplayOutletStates = () => {
     );
 };
 
+// export default DisplayOutletStates;
 
 ReactDOM.render(<DisplayOutletStates />, document.getElementById('outlet-ids'));

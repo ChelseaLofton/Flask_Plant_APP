@@ -1,3 +1,4 @@
+// import App from './app.jsx';
 
 function GenerateSensorButtons() {
     const [sensorIds, setSensorIds] = React.useState([]);
@@ -50,7 +51,10 @@ function GenerateSensorButtons() {
 }
 
 
+// export default GenerateSensorButtons;
+
 ReactDOM.render(<GenerateSensorButtons />, document.getElementById('sensor-ids'));
+
 
 
 

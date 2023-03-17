@@ -1,3 +1,5 @@
+// import App from './app.jsx';
+
 const PlantButtons = () => {
     const [plantIds, setPlantIds] = React.useState([]);
 
@@ -57,5 +59,7 @@ const PlantButtons = () => {
     );
 };
 
+
+// export default PlantButtons;
 
 ReactDOM.render(<PlantButtons />, document.getElementById('plant-ids'));

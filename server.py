@@ -126,37 +126,29 @@ def get_humidity_data(humidity_id):
 
 
 
+@app.route('/humidity/<humidity_id>/readings.json')
+def view_humidity_readings(humidity_id):
+    """View all sensor readings for a specific sensor."""
+
+    humidity_readings = HumidityReading.query.filter_by(humidity_sensor_id=humidity_id).all()
+
+    if humidity_readings:
+        data = [reading.to_dict() for reading in humidity_readings]
+        return jsonify(data)
+    else:
+        return jsonify({"error": "Readings not found."})
+
+
 
 # @app.route('/humidity-readings.json')
 # def view_humidity_readings():
+#     for chart-humidity.js
 #     all_data = db.session.query(HumidityReading).all()
 #     all_data_dicts = [reading.to_dict() for reading in all_data]
 
 #     print(all_data_dicts)
 
 #     return jsonify(all_data_dicts)
-
-#   all_readings = db.session.query(HumidityReading).filter(HumidityReading.humidity_sensor_id == humidity_id).all()
-#     all_humidity_values = [reading.to_dict() for reading in all_readings]
-
-
-
-
-
-@app.route('/moisture-readings.json')
-def view_moisture_readings():
-    all_data = db.session.query(SensorReading).filter_by(moisture=True).all()
-    all_data_dicts = [reading.to_dict() for reading in all_data]
-
-    print(all_data_dicts)
-
-    return jsonify(all_data_dicts)
-
-
-
-
-
-
 
 
 
