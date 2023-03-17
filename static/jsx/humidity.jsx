@@ -4,7 +4,7 @@ const GenerateHumidityButtons = () => {
     const [humidityIds, setHumidityIds] = React.useState([]);
 
     React.useEffect(() => {
-        const url = '/humidity/<humidity_id>.json';
+        const url = '/humidity.json';
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
@@ -26,6 +26,7 @@ const GenerateHumidityButtons = () => {
                 if (humidityDataElement) {
                     humidityDataElement.innerHTML = `Humidity: ${sensor_humidity}%, Pressure: ${sensor_pressure}, Temperature: ${sensor_temperature}°F, Battery: ${sensor_battery}%`;
                 }
+                
             });
     };
 
