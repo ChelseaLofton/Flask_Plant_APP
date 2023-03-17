@@ -1,66 +1,10 @@
-const HumidityChart = ({ sensorData }) => { 
-    const chartRef = React.useRef(null);
-
-    React.useEffect(() => {
-        if (!sensorData || !chartRef.current) return;
-
-        const ctx = chartRef.current.getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: sensorData.created_at,
-                datasets: [
-                    {
-                        label: 'Humidity',
-                        data: sensorData.humidity,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                scales: {
-                    x: {
-                        type: 'time',
-                        time: {
-                            unit: 'hour',
-                            displayFormats: {
-                                hour: 'HH:mm',
-                            },
-                            tooltipFormat: 'HH:mm',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Time',
-                        },
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Humidity (%)',
-                        },
-                    },
-                },
-            },
-        });
-
-        return () => {
-            chart.destroy();
-        };
-    }, [sensorData, chartRef]);
-
-    return <canvas ref={chartRef}></canvas>;
-};
-
 
 
 const GenerateHumidityButtons = () => {
     const [humidityIds, setHumidityIds] = React.useState([]);
 
     React.useEffect(() => {
-        const url = '/humidity.json';
+        const url = '/humidity/<humidity_id>.json';
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
