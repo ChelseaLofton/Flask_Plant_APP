@@ -1,61 +1,76 @@
+// get the data from the server
 fetch('/moisture-readings.json')
-    .then((response) => response.json())
-    .then((responseJson) => {
-        console.log(responseJson);
-        const sensorData = responseJson.data;
-        
-        // Group the sensor data by day and hour
-        const groupedData = sensorData.reduce((accumulator, current) => {
-            const timestamp = new Date(current.created_at);
-            const day = timestamp.toLocaleDateString();
-            const hour = timestamp.getHours();
-            if (!accumulator[day]) {
-                accumulator[day] = {};
-            }
-            if (!accumulator[day][hour]) {
-                accumulator[day][hour] = [];
-            }
-            accumulator[day][hour].push(current.moisture);
-            return accumulator;
-        }, {});
-
-        // Create an array of labels for the x-axis
-        const labels = [];
-        for (let i = 0; i < 24; i++) {
-            labels.push(`${i}:00`);
-        }
-
-        // Create an array of datasets for the chart
-        const datasets = [];
-        for (const day in groupedData) {
-            const data = [];
-            for (let i = 0; i < 24; i++) {
-                const hourData = groupedData[day][i] || [];
-                const average = hourData.reduce((accumulator, current) => accumulator + current, 0) / hourData.length;
-                data.push(average);
-            }
-            datasets.push({
-                label: day,
-                data: data,
-                borderColor: 'blue',
-                fill: false,
-            });
-        }
-
-        // Render the chart
-        new Chart(document.querySelector('#line-time2'), {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: datasets,
-            },
-            options: {
-                scales: {
-                    y: {
-                        min: 0,
-                        max: 100,
-                    },
-                },
-            },
+    .then(response => response.json())
+    .then(data => {
+        // group the data by sensor ID
+        const groupedData = groupDataBySensorId(data);
+        // create a chart for each sensor
+        Object.entries(groupedData).forEach(([sensorId, readings]) => {
+            createChart(sensorId, readings);
         });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
     });
+
+// function to group the data by sensor ID
+function groupDataBySensorId(data) {
+    const groupedData = {};
+    data.forEach(reading => {
+        const sensorId = reading.sensor_id;
+        if (!groupedData[sensorId]) {
+            groupedData[sensorId] = [];
+        }
+        groupedData[sensorId].push(reading);
+    });
+    return groupedData;
+}
+
+// function to create a chart for a given sensor
+function createChart(sensorId, data) {
+    const labels = [];
+    const values = [];
+    data.forEach(reading => {
+        const date = new Date(reading.created_at);
+        const label = `${date.getDate()}/${date.getMonth() + 1}`;
+        const value = reading.moisture;
+        labels.push(label);
+        values.push(value);
+    });
+    const chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: `Sensor ${sensorId}`,
+                data: values,
+                borderColor: randomColor(),
+                fill: false
+            }
+        ]
+    };
+    const chartOptions = {
+        title: {
+            display: true,
+            text: `Moisture Readings for Sensor ${sensorId}`
+        },
+        scales: {
+            xAxes: [{
+                type: 'category',
+                labels: labels
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+    const chartConfig = {
+        type: 'line',
+        data: chartData,
+        options: chartOptions
+    };
+    const chartCanvas = document.createElement('canvas');
+    document.body.appendChild(chartCanvas);
+    new Chart(chartCanvas, chartConfig);
+}

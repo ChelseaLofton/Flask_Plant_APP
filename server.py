@@ -132,6 +132,8 @@ def view_humidity_readings():
     all_data = db.session.query(HumidityReading).all()
     all_data_dicts = [reading.to_dict() for reading in all_data]
 
+    print(all_data_dicts)
+
     return jsonify(all_data_dicts)
 
 
@@ -140,11 +142,13 @@ def view_humidity_readings():
 
 @app.route('/moisture-readings.json')
 def view_moisture_readings():
+    all_data = db.session.query(SensorReading).filter_by(moisture=True).all()
+    all_data_dicts = [reading.to_dict() for reading in all_data]
 
-    moisture_readings = SensorReading.query.filter_by(moisture != None).all()
-    moisture_data = [r.to_dict() for r in moisture_readings]
+    print(all_data_dicts)
 
-    return jsonify(moisture_data)
+    return jsonify(all_data_dicts)
+
 
 
 

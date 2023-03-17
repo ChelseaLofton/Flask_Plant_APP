@@ -100,6 +100,18 @@ class SensorReading(db.Model):
 
     sensor_id = db.Column(db.String, db.ForeignKey('plant_sensors.sensor_id'))
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'battery': self.battery,
+            'conductivity': self.conductivity,
+            'illuminance': self.illuminance,
+            'moisture': self.moisture,
+            'temperature': self.temperature,
+            'created_at': self.created_at.isoformat(),
+            'sensor_id': self.sensor_id,
+        }
+
     def __repr__(self):
         return f"<sensor_id = {self.sensor_id}, conductivity = {self.conductivity}, illuminance = {self.illuminance}, moisture = {self.moisture}>"
 

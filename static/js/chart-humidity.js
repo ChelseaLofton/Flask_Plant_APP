@@ -4,43 +4,38 @@ fetch('/humidity-readings.json')
 
         console.log(responseJson);
 
-        const livingroomReadings = responseJson.livingroom.map((reading) => ({
-            x: reading.date,
+        const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom');
+        const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation');
+
+        const livingroomReadings = livingroomData.map((reading) => ({
+            x: reading.created_at,
             y: reading.humidity,
         }));
 
-        const propagationReadings = responseJson.propagation.map((reading) => ({
-            x: reading.date,
+        const propagationReadings = propagationData.map((reading) => ({
+            x: reading.created_at,
             y: reading.humidity,
         }));
 
         console.log('Living Room Readings:', livingroomReadings);
         console.log('Propagation Readings:', propagationReadings);
 
-
         const data = {
             datasets: [
                 {
                     label: 'Living Room',
-                    data: [
-                        { x: '2023-03-16T12:00:00', y: 50 },
-                        { x: '2023-03-16T13:00:00', y: 55 },
-                    ],
+                    data: livingroomReadings,
                     borderColor: 'yellow',
                     backgroundColor: 'rgba(255, 255, 0, 0.2)',
                 },
                 {
                     label: 'Propagation',
-                    data: [
-                        { x: '2023-03-16T12:00:00', y: 60 },
-                        { x: '2023-03-16T13:00:00', y: 65 },
-                    ],
+                    data: propagationReadings,
                     borderColor: 'green',
                     backgroundColor: 'rgba(0, 255, 0, 0.2)',
                 },
             ],
         };
-
 
         new Chart(document.querySelector('#line-time'), {
             type: 'line',
@@ -52,7 +47,8 @@ fetch('/humidity-readings.json')
                         time: {
                             unit: 'hour',
                             displayFormats: {
-                                hour: 'HH:mm'
+                                hour: 'HH:mm',
+                                day: 'MMM D'
                             }
                         }
                     }
