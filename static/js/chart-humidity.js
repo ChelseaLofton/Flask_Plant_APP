@@ -1,3 +1,5 @@
+
+
 fetch('/humidity-readings.json')
     .then((response) => response.json())
     .then((responseJson) => {

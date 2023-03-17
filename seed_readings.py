@@ -1,4 +1,3 @@
-
 from hass import Client, get_plant_sensors, get_humidity_sensors
 import model 
 import crud
@@ -7,20 +6,16 @@ from datetime import datetime
 import time
 import schedule 
 
-
-
-
-
 model.connect_to_db(server.app)
 
-def run_seeding():
+def run_seed():
+    print("Running seed functions")
     seed_readings()
     seed_humidity_readings()
 
-
 def seed_readings():
-    sensor_data = get_plant_sensors()       # from sensors.py queires the HomeAssist API for the sensor data
-
+    print("Seeding readings")
+    sensor_data = get_plant_sensors()
 
     for sensor_id, sensor_reading in sensor_data.items():
         illuminance, conductivity, moisture, temperature, battery = (
@@ -37,8 +32,8 @@ def seed_readings():
         model.db.session.merge(new_sensor_data)
         model.db.session.commit()
 
-
 def seed_humidity_readings():
+    print("Seeding humidity readings")
     humidity_data = get_humidity_sensors()  
     
     for humidity_sensor_id, sensor_reading in humidity_data.items():
@@ -56,8 +51,12 @@ def seed_humidity_readings():
         model.db.session.commit()
 
 
-schedule.every().hour.do(run_seeding)
+
+run_seed()
+
+schedule.every().hour.do(run_seed)
 
 while True:
+    print("Running schedule")
     schedule.run_pending()
     time.sleep(1)

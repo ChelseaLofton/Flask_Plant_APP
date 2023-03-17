@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title>All Data</title>
-
-
 </head>
 
 <body>
@@ -13,13 +11,9 @@
     <div id="sensor-ids"></div>
     <div id="sensor-data"></div>
     
-
-
     <h2>Current Outlet States</h2>
     <div id="outlet-ids"></div>
     
-
-
     <h2>Current Plant Data</h2>
     <div id="plant-ids"></div>
 
@@ -29,46 +23,26 @@
     <h2>PlantBook Data via Plant Query</h2>
     <div id="plantbook-data"></div>
 
-
-
-
     <h2>Current Humidity Sensor Data</h2>
     <div id="humidity-ids"></div>
     <div id="humidity-data"></div>
     
-
-
-    <h2>Data Charts</h2>
-    <div>
-        <canvas id="line-time"></canvas>
-        <canvas id="line-time2"></canvas>
-    </div>
-
+    <h2>Humidity Chart</h2>
+    <div id="humidity-chart"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.1.0/dist/chartjs-adapter-luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/randomcolor@0.6.2/randomColor.js"></script>
 
-
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
     <script type="text/babel" src="/static/jsx/sensors.jsx"></script>
     <script type="text/babel" src="/static/jsx/outlets.jsx"></script>
     <script type="text/babel" src="/static/jsx/plants.jsx"></script>
     <script type="text/babel" src="/static/jsx/humidity.jsx"></script>
-
-    <script type="text/javascript" src="/static/js/chart-humidity.js"></script>
-    <script type="text/javascript" src="/static/js/chart-sensors.js"></script>
-
-
-
-
 </body>
-
-
-
 
 </html>
