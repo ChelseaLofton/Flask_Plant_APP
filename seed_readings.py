@@ -41,7 +41,7 @@ def seed_readings():
 def seed_humidity_readings():
     humidity_data = get_humidity_sensors()  
     
-    for sensor_id, sensor_reading in humidity_data.items():
+    for humidity_sensor_id, sensor_reading in humidity_data.items():
         humidity, pressure, temperature, battery = (
             sensor_reading['humidity'],
             sensor_reading['pressure'],
@@ -50,7 +50,7 @@ def seed_humidity_readings():
         )
 
         new_humidity_data = crud.create_humidity_readings(battery=battery, pressure=pressure, humidity=humidity, temperature=temperature, 
-                created_at=datetime.utcnow(), sensor_id=sensor_id)
+                created_at=datetime.utcnow(), humidity_sensor_id=humidity_sensor_id)
 
         model.db.session.merge(new_humidity_data)
         model.db.session.commit()

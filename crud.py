@@ -91,6 +91,13 @@ def create_humidity_sensor(humidity_sensor_id):
 
 
 def create_humidity_readings(humidity, pressure, temperature, battery, created_at, humidity_sensor_id):
+    
+    try:
+        if battery is not None:
+            battery = int(battery)
+    except ValueError:
+        battery = None
+    
     humidity_reading = HumidityReading(
         humidity=humidity,
         pressure=pressure,
