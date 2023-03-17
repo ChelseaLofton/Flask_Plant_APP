@@ -147,6 +147,16 @@ class HumidityReading(db.Model):
     def __repr__(self):
         return f"<humidity_sensor_id = {self.humidity_sensor_id}, humidity={self.humidity}, pressure={self.pressure} temperature={self.temperature},  battery={self.battery}>"
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'humidity': self.humidity,
+            'pressure': self.pressure,
+            'temperature': self.temperature,
+            'battery': self.battery,
+            'created_at': self.created_at.isoformat(),
+            'humidity_sensor_id': self.humidity_sensor_id,
+        }
 
 def connect_to_db(flask_app, db_uri="postgresql:///project_data", echo=True):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri

@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
-    SensorReading, Outlet, HumiditySensor)
+    SensorReading, HumidityReading, HumiditySensor)
 
 from hass import client
 from homeassistant_api import State
@@ -123,6 +123,34 @@ def get_humidity_data(humidity_id):
         return jsonify(humidity_data)
     else:
         return jsonify({"error": "Sensor not found."})
+    
+
+
+
+@app.route('/humidity-readings.json')
+def view_humidity_readings():
+    all_data = db.session.query(HumidityReading).all()
+    all_data_dicts = [reading.to_dict() for reading in all_data]
+
+    return jsonify(all_data_dicts)
+
+
+
+
+
+@app.route('/moisture-readings.json')
+def view_moisture_readings():
+
+    moisture_readings = SensorReading.query.filter_by(moisture != None).all()
+    moisture_data = [r.to_dict() for r in moisture_readings]
+
+    return jsonify(moisture_data)
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

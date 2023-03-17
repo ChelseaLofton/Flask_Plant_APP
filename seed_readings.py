@@ -45,7 +45,8 @@ def seed_humidity_readings():
             sensor_reading['battery'] if 'battery' in sensor_reading else None,
         )
 
-        new_humidity_data = crud.create_humidity_readings(battery=battery, pressure=pressure, humidity=humidity, temperature=temperature, created_at=datetime.utcnow(), sensor_id=sensor_id)
+        new_humidity_data = crud.create_humidity_readings(battery=battery, pressure=pressure, humidity=humidity, temperature=temperature, 
+                created_at=datetime.utcnow(), sensor_id=sensor_id)
 
         model.db.session.merge(new_humidity_data)
         model.db.session.commit()
@@ -53,6 +54,7 @@ def seed_humidity_readings():
 
 
 schedule.every().hour.do(seed_readings)
+schedule.every().hour.do(seed_humidity_readings)
 
 while True:
     schedule.run_pending()

@@ -119,13 +119,3 @@ def get_outlets():
     return outlets
 
 
-
-    entity_id = f"{outlet_id}_{switch_id}"
-    data = {'state': new_state}
-    response = client.post(f"states/{entity_id}", data=data)
-    
-    if response.status_code == 200:
-        print(f"{entity_id} turned {new_state}")
-    else:
-        print(f"Error: {response.status_code} {response.reason}")
-    
