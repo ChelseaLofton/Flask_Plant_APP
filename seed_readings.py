@@ -13,6 +13,10 @@ import schedule
 
 model.connect_to_db(server.app)
 
+def run_seeding():
+    seed_readings()
+    seed_humidity_readings()
+
 
 def seed_readings():
     sensor_data = get_plant_sensors()       # from sensors.py queires the HomeAssist API for the sensor data
@@ -52,9 +56,7 @@ def seed_humidity_readings():
         model.db.session.commit()
 
 
-
-schedule.every().hour.do(seed_readings)
-schedule.every().hour.do(seed_humidity_readings)
+schedule.every().hour.do(run_seeding)
 
 while True:
     schedule.run_pending()
