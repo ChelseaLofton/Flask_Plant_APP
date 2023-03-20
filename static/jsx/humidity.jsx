@@ -1,8 +1,6 @@
-
 const GenerateHumidityButtons = () => {
     const [humidityIds, setHumidityIds] = React.useState([]);
     const [humidityData, setHumidityData] = React.useState(null);
-
 
     React.useEffect(() => {
         const url = '/humidity.json';
@@ -40,20 +38,16 @@ const GenerateHumidityButtons = () => {
                         </button>
                     </div>
                 ))}
-                {humidityData && <div id="humidity-data">               
+            </div>
+            <div>
+                <h2>Current Humidity Sensor Readings</h2>
+                {humidityData && <div id="humidity-data">
                     Humidity: {humidityData.humidity}
                     Pressure: {humidityData.pressure}
                     Temperature: {humidityData.temperature}
                     Battery: {humidityData.battery}
                 </div>}
-
             </div>
-
         </React.Fragment>
     );
 };
-
-
-
-
-// line 52 is a condition to only render with data
