@@ -8,14 +8,13 @@
 
 <body>
     <div id="root">
-        <h2>Current Sensor Data</h2>
+
+
         <div id="sensor-ids"></div>
         <div id="sensor-data"></div>
 
-        <h2>Current Outlet States</h2>
         <div id="outlet-ids"></div>
 
-        <h2>Current Plant Data</h2>
         <div id="plant-ids"></div>
 
         <h2>Current Sensor Readings via Plant Query</h2>
@@ -24,10 +23,11 @@
         <h2>PlantBook Data via Plant Query</h2>
         <div id="plantbook-data"></div>
 
-        <h2>Current Humidity Sensor Data</h2>
+
         <div id="humidity-ids"></div>
         <div id="humidity-data"></div>
-        <canvas id="humidity-chart" width="400" height="400"></canvas>
+        <!-- <canvas id="humidity-chart" width="400" height="400"></canvas> -->
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
@@ -47,6 +47,8 @@
     <script type="text/babel" src="/static/jsx/outlets.jsx"></script>
     <script type="text/babel" src="/static/jsx/plants.jsx"></script>
     <script type="text/babel" src="/static/jsx/humidity.jsx"></script>
+
+
 </body>
 
 </html>

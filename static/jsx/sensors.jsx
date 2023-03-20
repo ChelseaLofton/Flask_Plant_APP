@@ -44,9 +44,12 @@ function GenerateSensorButtons() {
     ));
 
     return (
-        <div id="sensor-ids">
-            {sensorButtons}
-        </div>
+        <React.Fragment>
+            <h2> Sensor Data</h2>
+            <div id="sensor-ids">
+                {sensorButtons}
+            </div>
+        </React.Fragment>
     );
 }
 

@@ -45,6 +45,8 @@ const DisplayOutletStates = () => {
     };
 
     return (
+        <React.Fragment>
+        <h2> Outlet States</h2>
         <div id="outlet-ids">
             {Object.keys(outlets).map(outletID => {
                 const switches = outlets[outletID];
@@ -70,6 +72,7 @@ const DisplayOutletStates = () => {
                 );
             })}
         </div>
+        </React.Fragment>
     );
 };
 

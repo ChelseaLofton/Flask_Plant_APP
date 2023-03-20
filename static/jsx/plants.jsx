@@ -45,6 +45,8 @@ const PlantButtons = () => {
     };
 
     return (
+        <React.Fragment>
+            <h2>All Plant Data</h2>
         <div id="plant-ids">
             {plantIds.map((plantID) => (
                 <button
@@ -54,8 +56,10 @@ const PlantButtons = () => {
                 >
                     {plantID}
                 </button>
+                
             ))}
         </div>
+        </React.Fragment>
     );
 };
 
