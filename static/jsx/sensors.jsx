@@ -56,7 +56,7 @@ function GenerateSensorButtons() {
 
 // export default GenerateSensorButtons;
 
-ReactDOM.render(<GenerateSensorButtons />, document.getElementById('sensor-ids'));
+// ReactDOM.render(<GenerateSensorButtons />, document.getElementById('sensor-ids'));
 
 
 

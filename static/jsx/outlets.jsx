@@ -78,4 +78,4 @@ const DisplayOutletStates = () => {
 
 // export default DisplayOutletStates;
 
-ReactDOM.render(<DisplayOutletStates />, document.getElementById('outlet-ids'));
+// ReactDOM.render(<DisplayOutletStates />, document.getElementById('outlet-ids'));

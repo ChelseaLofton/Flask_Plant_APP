@@ -66,4 +66,4 @@ const PlantButtons = () => {
 
 // export default PlantButtons;
 
-ReactDOM.render(<PlantButtons />, document.getElementById('plant-ids'));
+// ReactDOM.render(<PlantButtons />, document.getElementById('plant-ids'));
