@@ -142,7 +142,7 @@ def view_humidity_readings(humidity_id):
 
 # @app.route('/humidity-readings.json')
 # def view_humidity_readings():
-#     for chart-humidity.js
+
 #     all_data = db.session.query(HumidityReading).all()
 #     all_data_dicts = [reading.to_dict() for reading in all_data]
 

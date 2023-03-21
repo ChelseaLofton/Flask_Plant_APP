@@ -1,12 +1,10 @@
-// import App from './app.jsx';
-
 const DisplayOutletStates = () => {
     const [outlets, setOutlets] = React.useState([]);
 
-    React.useEffect(() => {
-        const url = '/outlets.json';
+    const [outletState, setOutletState] = React.useState([]);     
 
-        fetch(url)
+    React.useEffect(() => {
+        fetch('/outlets.json')
             .then((response) => response.json())
             .then((data) => {
                 setOutlets(data);
@@ -14,27 +12,20 @@ const DisplayOutletStates = () => {
     }, []);
 
     const toggleOutletState = (outletID, switchID, switchButton) => {
-        const url = `/outlets/${outletID}/${switchID}.json`;
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
-        console.log(url)
-        fetch(url, {
+        fetch((`/outlets/${outletID}/${switchID}.json`), {
             method: 'POST',
             body: JSON.stringify({ state: newState }),
             headers: { 'Content-Type': 'application/json' },
         })
             .then((response) => response.json())
             .then((data) => {
-                const { state: newState } = data;
-                switchButton.innerText = newState;
-
-                if (newState === 'on') {
-                    switchButton.classList.remove('off');
-                    switchButton.classList.add('on');
-                } else {
-                    switchButton.classList.remove('on');
-                    switchButton.classList.add('off');
-                }
+                console.log(outlets);
+                const copy = JSON.parse(JSON.stringify(outlets)); // Make a copy without linking
+                copy[outletID][switchID] = data.state;
+                console.log(copy);
+                setOutlets(copy)
             })
             .catch((error) => {
                 console.error(error);
@@ -54,7 +45,7 @@ const DisplayOutletStates = () => {
                     <div key={outletID}>
                         <p>Outlet {outletID}:</p>
                         {Object.keys(switches).map(switchID => {
-                            const switchState = switches[switchID] ? 'on' : 'off';
+                            const switchState = switches[switchID]
                             return (
                                 <div key={switchID}>
                                     <label htmlFor={`outlet_${outletID}_${switchID}`}>Switch {switchID}:</label>
@@ -62,8 +53,10 @@ const DisplayOutletStates = () => {
                                         id={`${outletID}_${switchID}`}
                                         className={`switch ${switchState}`}
                                         onClick={evt => toggleOutletState(outletID, switchID, evt.target)}
+
+                                        
                                     >
-                                        {switchState}
+                                    {switchState}
                                     </button>
                                 </div>
                             );
@@ -75,7 +68,3 @@ const DisplayOutletStates = () => {
         </React.Fragment>
     );
 };
-
-// export default DisplayOutletStates;
-
-// ReactDOM.render(<DisplayOutletStates />, document.getElementById('outlet-ids'));

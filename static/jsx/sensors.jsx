@@ -27,7 +27,6 @@ function GenerateSensorButtons() {
             <h2> Sensor Data</h2>
             <div id="sensor-ids">
                 {sensorIds.map((sensorID) => (
-                    <div>
                         <button
                             key={`sensor-${sensorID}`}
                             id={`sensors=${sensorID}-button`}
@@ -35,11 +34,10 @@ function GenerateSensorButtons() {
                         >
                             Sensor {sensorID}
                         </button>
-                    </div>
                 ))}
             </div>
             <div>
-                <h2>Current Sensor Readings</h2>
+                <h4>Current Sensor Readings</h4>
                 {sensorData && <div id="sensor-data">
                     Battery: {sensorData.battery}%;
                     Conductivity: {sensorData.conductivity};

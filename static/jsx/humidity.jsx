@@ -28,19 +28,18 @@ const GenerateHumidityButtons = () => {
             <h2> Humidity Sensor Data</h2>
             <div id="humidity-ids">
                 {humidityIds.map((humidityID) => (
-                    <div>
-                        <button
-                            key={`humidity-${humidityID}`}
-                            id={`sensor=${humidityID}-button`}
-                            onClick={() => handleHumidityClick(humidityID)}
-                        >
-                            {humidityID}
-                        </button>
-                    </div>
+                    
+                    <button
+                        key={`humidity-${humidityID}`}
+                        id={`sensor=${humidityID}-button`}
+                        onClick={() => handleHumidityClick(humidityID)}
+                    >
+                        {humidityID}
+                    </button>
                 ))}
             </div>
             <div>
-                <h2>Current Humidity Sensor Readings</h2>
+                <h4>Current Humidity Sensor Readings</h4>
                 {humidityData && <div id="humidity-data">
                     Humidity: {humidityData.humidity}
                     Pressure: {humidityData.pressure}

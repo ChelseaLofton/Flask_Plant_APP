@@ -6,6 +6,8 @@ function App () {
             <GenerateHumidityButtons />
             <PlantButtons />
             <GenerateSensorButtons  />
+            <DisplayOutletStates />
+
         </div>
     );
 };
