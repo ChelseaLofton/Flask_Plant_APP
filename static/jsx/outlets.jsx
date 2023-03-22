@@ -1,4 +1,4 @@
-const DisplayOutletStates = () => {
+function DisplayOutletStates() {
     const [outlets, setOutlets] = React.useState([]);
 
     const [outletState, setOutletState] = React.useState([]);     

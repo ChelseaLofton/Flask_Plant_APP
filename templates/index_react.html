@@ -9,41 +9,27 @@
 <body>
     <div id="root">
 
-<!-- 
-        <div id="sensor-ids"></div>
-        <div id="sensor-data"></div>
-
-        <div id="outlet-ids"></div>
-
-        <div id="plant-ids"></div>
-
-        <h2>Current Sensor Readings via Plant Query</h2>
-        <div id="plant-sensor-data"></div>
-
-        <h2>PlantBook Data via Plant Query</h2>
-        <div id="plantbook-data"></div>
-
-
-        <div id="humidity-ids"></div> -->
-        <!-- <div id="humidity-data"></div> 
-        <canvas id="humidity-chart" width="400" height="400"></canvas> -->
-
+    </div>
+    
+    <div>
+        <canvas id="humidity-chart" width="400" height="400"></canvas> 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.1.0/dist/chartjs-adapter-luxon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/randomcolor@0.6.2/randomColor.js"></script>
+  
+
 
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
-    <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> -->
-
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
- 
+    <script type="text/javascript" src="/static/js/chart-humidity.js"></script>
+
     <script type="text/jsx" src="/static/jsx/sensors.jsx"></script>
     <script type="text/jsx" src="/static/jsx/outlets.jsx"></script>
     <script type="text/jsx" src="/static/jsx/plants.jsx"></script>

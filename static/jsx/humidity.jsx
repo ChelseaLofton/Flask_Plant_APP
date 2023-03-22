@@ -1,4 +1,4 @@
-const GenerateHumidityButtons = () => {
+function GenerateHumidityButtons() {
     const [humidityIds, setHumidityIds] = React.useState([]);
     const [humidityData, setHumidityData] = React.useState(null);
 
@@ -8,12 +8,12 @@ const GenerateHumidityButtons = () => {
             .then((response) => response.json())
             .then((data) => {
                 setHumidityIds(data);
-                console.log(data);
+                // console.log(data);
             });
     }, []);
 
     const handleHumidityClick = (humidityId) => {
-        console.log(humidityId);
+        // console.log(humidityId);
         const url = `/humidity/${humidityId}.json`;
         fetch(url)
             .then((response) => response.json())

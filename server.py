@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
-    SensorReading, HumidityReading, HumiditySensor)
+            SensorReading, HumidityReading, HumiditySensor,)
+
 
 from hass import client
 from homeassistant_api import State
@@ -26,7 +27,7 @@ def view_all_plants():
     plants = Plant.query.all()
     plant_ids = [plant.plant_id for plant in plants]
 
-    return jsonify(plant_ids) 
+    return jsonify(plant_ids)
 
 
 @app.route('/plants/<plant_id>.json')
@@ -62,9 +63,20 @@ def get_sensor_data(sensor_id):
     """View all sensor readings for a specific sensor."""
 
     sensor_data = get_plant_sensors().get(sensor_id)
+    sensor_readings = SensorReading.query.filter_by(sensor_id=sensor_id).all()
+
+
+    moisture_readings = [
+        {
+            'moisture': reading.moisture,
+            'created_at': reading.created_at
+        } for reading in sensor_readings
+    ]
+
+    # print(moisture_readings)
 
     if sensor_data:
-        return jsonify(sensor_data)
+        return jsonify({"sensor_data": sensor_data, "moisture_readings": moisture_readings})
     else:
         return jsonify({"error": "Sensor not found."})
 
@@ -75,7 +87,6 @@ def view_outlets():
 
     outlets = get_outlets()
 
-
     return jsonify(outlets)
 
 
@@ -83,23 +94,20 @@ def view_outlets():
 def switch_outlet_state(outlet_id, switch_id):
     """Toggle switch on/off."""
 
-
     print(f"Switching outlet {outlet_id} {switch_id}...")
 
-    new_state=request.json.get('state')
+    new_state = request.json.get('state')
     print(f"new_state = {new_state}")
 
-    entity_id=f"switch.outlet_{outlet_id}_switch_{switch_id}"
+    entity_id = f"switch.outlet_{outlet_id}_switch_{switch_id}"
     print(f"entity_id = {entity_id}")
 
-    switch=client.get_domain("switch")
-    r=switch.services["toggle"](entity_id=entity_id)
+    switch = client.get_domain("switch")
+    r = switch.services["toggle"](entity_id=entity_id)
 
     print(r)
 
     return jsonify({"state": r[0].state})
-
-
 
 
 @app.route("/humidity.json")
@@ -125,31 +133,28 @@ def get_humidity_data(humidity_id):
         return jsonify({"error": "Sensor not found."})
 
 
+# @app.route('/humidity/<humidity_id>/readings.json')
+# def view_humidity_readings(humidity_id):
+#     """View all sensor readings for a specific sensor."""
 
-@app.route('/humidity/<humidity_id>/readings.json')
-def view_humidity_readings(humidity_id):
-    """View all sensor readings for a specific sensor."""
+#     humidity_readings = HumidityReading.query.filter_by(humidity_sensor_id=humidity_id).all()
 
-    humidity_readings = HumidityReading.query.filter_by(humidity_sensor_id=humidity_id).all()
-
-    if humidity_readings:
-        data = [reading.to_dict() for reading in humidity_readings]
-        return jsonify(data)
-    else:
-        return jsonify({"error": "Readings not found."})
-
+#     if humidity_readings:
+#         data = [reading.to_dict() for reading in humidity_readings]
+#         return jsonify(data)
+#     else:
+#         return jsonify({"error": "Readings not found."})
 
 
-# @app.route('/humidity-readings.json')
-# def view_humidity_readings():
+@app.route('/humidity-readings.json')
+def view_humidity_readings():
 
-#     all_data = db.session.query(HumidityReading).all()
-#     all_data_dicts = [reading.to_dict() for reading in all_data]
+    all_data = db.session.query(HumidityReading).all()
+    all_data_dicts = [reading.to_dict() for reading in all_data]
 
-#     print(all_data_dicts)
+    print(all_data_dicts)
 
-#     return jsonify(all_data_dicts)
-
+    return jsonify(all_data_dicts)
 
 
 if __name__ == "__main__":

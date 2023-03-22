@@ -1,13 +1,16 @@
-
-
 fetch('/humidity-readings.json')
     .then((response) => response.json())
     .then((responseJson) => {
 
         console.log(responseJson);
 
-        const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom');
-        const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation');
+        const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom' && new Date(reading.created_at) >= last24Hours);
+        const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation' && new Date(reading.created_at) >= last24Hours);
+
+        console.log(last24Hours);
+        console.log('Living Room:', livingroomData);
+        console.log('Propagation:', propagationData);
 
         const livingroomReadings = livingroomData.map((reading) => ({
             x: reading.created_at,
@@ -39,7 +42,7 @@ fetch('/humidity-readings.json')
             ],
         };
 
-        new Chart(document.querySelector('#line-time'), {
+        new Chart(document.querySelector('#humidity-chart'), {
             type: 'line',
             data: data,
             options: {
@@ -47,7 +50,7 @@ fetch('/humidity-readings.json')
                     x: {
                         type: 'time',
                         time: {
-                            unit: 'hour',
+                            unit: 'day',
                             displayFormats: {
                                 hour: 'HH:mm',
                                 day: 'MMM D'

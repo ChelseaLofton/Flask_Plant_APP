@@ -54,7 +54,7 @@ def seed_humidity_readings():
 
 run_seed()
 
-schedule.every().hour.do(run_seed)
+schedule.every(2).hours.do(run_seed)
 
 while True:
     print("Running schedule")

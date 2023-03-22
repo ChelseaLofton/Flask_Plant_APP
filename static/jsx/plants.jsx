@@ -1,4 +1,4 @@
-const PlantButtons = () => {
+function PlantButtons() {
     const [plantIds, setPlantIds] = React.useState([]);
     const [sensorData, setSensorData] = React.useState(null);
     const [plantBookData, setPlantBookData] = React.useState(null);
