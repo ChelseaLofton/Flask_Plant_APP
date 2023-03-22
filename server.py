@@ -127,7 +127,7 @@ def get_humidity_data(humidity_id):
 @app.route('/humidity-readings.json')
 def view_humidity_readings():
 
-    all_data = db.session.query(HumidityReading).all()
+    all_data = db.session.query(HumidityReading).order_by(HumidityReading.created_at.asc()).all()
     all_data_dicts = [reading.to_dict() for reading in all_data]
 
     # print(all_data_dicts)

@@ -52,11 +52,12 @@ def seed_humidity_readings():
 
 
 
-run_seed()
+readings1= run_seed()
 
-schedule.every(2).hours.do(run_seed)
 
-while True:
-    print("Running schedule")
-    schedule.run_pending()
-    time.sleep(1)
+# schedule.every(2).hours.do(run_seed)
+
+# while True:
+#     print("Running schedule")
+#     schedule.run_pending()
+#     time.sleep(1)

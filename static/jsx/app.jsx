@@ -4,8 +4,8 @@ function App () {
         <div>
 
             <GenerateHumidityButtons />
-            <PlantButtons />
-            <GenerateSensorButtons  />
+            <Plant />
+            <Sensor  />
             <DisplayOutletStates />
 
         </div>

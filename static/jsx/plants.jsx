@@ -1,6 +1,7 @@
-const Plant = (props) => {
+const PlantButton = (props) => {
     return (
         <React.Fragment>
+            <div>
             <button
                 key={`sensor-${props.id}`}
                 id={`sensors=${props.id}-button`}
@@ -8,11 +9,29 @@ const Plant = (props) => {
             >
                 {props.id}
             </button>
+            <img src={`/static/images/project photos/${props.id}.png`} width="300" /></div>
         </React.Fragment>
     );
 }
 
-function PlantButtons() {
+const SensorData = (props) => {
+    return (
+        <div>
+        <h4> Current Sensor Readings</h4>
+        {props.sensorData && <div id="plant-sensor-data">
+            Battery: {props.sensorData.battery}%;
+            Conductivity: {props.sensorData.conductivity};
+            Illuminance: {props.sensorData.illuminance}lux;
+            Moisture: {props.sensorData.moisture}%;
+            Temperature: {props.sensorData.temperature}°F;
+        </div>}
+
+    </div>
+    )};
+
+
+
+function Plant() {
     const [plantIds, setPlantIds] = React.useState([]);
     const [sensorData, setSensorData] = React.useState(null);
     const [plantBookData, setPlantBookData] = React.useState(null);
@@ -45,20 +64,10 @@ function PlantButtons() {
             <h2>All Plant Data</h2>
             <div id="plant-ids">
                 {plantIds.map((plantID) => (
-                        <Plant id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
+                        <PlantButton id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
                 ))}
             </div>
-            <div>
-                <h4> Current Sensor Readings</h4>
-                {sensorData && <div id="plant-sensor-data">
-                    {plantBookData && <div><img src={plantBookData.image_url} width="300" /></div>}
-                    Battery: {sensorData.battery}%;
-                    Conductivity: {sensorData.conductivity};
-                    Illuminance: {sensorData.illuminance}lux;
-                    Moisture: {sensorData.moisture}%;
-                    Temperature: {sensorData.temperature}°F;
-                </div>}
-            </div>
+            <SensorData sensorData={sensorData} />
             <div>
                 <h4>Plant Book Data</h4>
                 {plantBookData && <div id="plantbook-data">
