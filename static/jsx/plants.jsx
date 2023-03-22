@@ -18,6 +18,9 @@ function PlantButtons() {
                 const sensor_readings = data.sensor_readings;
                 const plant_data = data.plant_data;
 
+                console.log(sensor_readings);
+                // console.log(plant_data);
+
                 setSensorData(sensor_readings)
                 setPlantBookData(plant_data)
             });

@@ -2,15 +2,15 @@ fetch('/humidity-readings.json')
     .then((response) => response.json())
     .then((responseJson) => {
 
-        console.log(responseJson);
+        // console.log(responseJson);
 
         const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
         const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom' && new Date(reading.created_at) >= last24Hours);
         const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation' && new Date(reading.created_at) >= last24Hours);
 
-        console.log(last24Hours);
-        console.log('Living Room:', livingroomData);
-        console.log('Propagation:', propagationData);
+        // console.log(last24Hours);
+        // console.log('Living Room:', livingroomData);
+        // console.log('Propagation:', propagationData);
 
         const livingroomReadings = livingroomData.map((reading) => ({
             x: reading.created_at,
@@ -22,8 +22,8 @@ fetch('/humidity-readings.json')
             y: reading.humidity,
         }));
 
-        console.log('Living Room Readings:', livingroomReadings);
-        console.log('Propagation Readings:', propagationReadings);
+        // console.log('Living Room Readings:', livingroomReadings);
+        // console.log('Propagation Readings:', propagationReadings);
 
         const data = {
             datasets: [

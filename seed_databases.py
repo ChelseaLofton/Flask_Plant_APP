@@ -12,8 +12,8 @@ from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 
 """Don't forget to comment out before seeding plants"""
 
-os.system("dropdb project_data")
-os.system("createdb project_data")
+# os.system("dropdb project_data")
+# os.system("createdb project_data")
 
 model.connect_to_db(server.app)
 model.db.create_all()

@@ -42,6 +42,8 @@ def view_plant_data(plant_id):
     pid = plant.pid
     sensor_id = plant.sensor_id
     sensor_readings = get_plant_sensors().get(sensor_id)
+    
+    print(sensor_readings)
 
     plant_data = PlantBook.query.filter_by(pid=pid).first()
 
@@ -62,23 +64,11 @@ def view_all_sensors():
 def get_sensor_data(sensor_id):
     """View all sensor readings for a specific sensor."""
 
-    sensor_data = get_plant_sensors().get(sensor_id)
-    sensor_readings = SensorReading.query.filter_by(sensor_id=sensor_id).all()
+    sensor_readings = get_plant_sensors().get(sensor_id)
+    
+    print(sensor_readings)
 
-
-    moisture_readings = [
-        {
-            'moisture': reading.moisture,
-            'created_at': reading.created_at
-        } for reading in sensor_readings
-    ]
-
-    # print(moisture_readings)
-
-    if sensor_data:
-        return jsonify({"sensor_data": sensor_data, "moisture_readings": moisture_readings})
-    else:
-        return jsonify({"error": "Sensor not found."})
+    return jsonify(sensor_readings)
 
 
 @ app.route('/outlets.json')
@@ -152,7 +142,7 @@ def view_humidity_readings():
     all_data = db.session.query(HumidityReading).all()
     all_data_dicts = [reading.to_dict() for reading in all_data]
 
-    print(all_data_dicts)
+    # print(all_data_dicts)
 
     return jsonify(all_data_dicts)
 
