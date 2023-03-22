@@ -46,7 +46,7 @@ const HumidityButton = (props) => {
                 <h2> Humidity Sensor Data</h2>
                 <div id="humidity-ids">
                     {humidityIds.map((humidityID) => (
-                        <HumidityButton id={humidityID} onClick={handleHumidityClick} />
+                        <HumidityButton key={humidityID} id={humidityID} onClick={handleHumidityClick} />
                 ))}
                 </div>
                     <div>

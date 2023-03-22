@@ -64,7 +64,7 @@ function Plant() {
             <h2>All Plant Data</h2>
             <div id="plant-ids">
                 {plantIds.map((plantID) => (
-                        <PlantButton id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
+                        <PlantButton key={plantID} id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
                 ))}
             </div>
             <div>

@@ -44,7 +44,7 @@ function Sensor() {
                 <h2> Sensor Data</h2>
                 <div id="sensor-ids">
                     {sensorIds.map((sensorID) => (
-                        <SensorButton id={sensorID} onClick={handleSensorClick} />
+                        <SensorButton key={sensorID} id={sensorID} onClick={handleSensorClick} />
                     ))}
                 </div>
                         <div>
