@@ -1,7 +1,6 @@
-function DisplayOutletStates() {
-    const [outlets, setOutlets] = React.useState([]);
 
-    const [outletState, setOutletState] = React.useState([]);     
+function Outlets() {
+    const [outlets, setOutlets] = React.useState([]); 
 
     React.useEffect(() => {
         fetch('/outlets.json')

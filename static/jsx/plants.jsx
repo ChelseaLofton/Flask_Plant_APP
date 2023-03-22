@@ -67,7 +67,16 @@ function Plant() {
                         <PlantButton id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
                 ))}
             </div>
-            <SensorData sensorData={sensorData} />
+            <div>
+                <h4> Current Sensor Readings</h4>
+                {sensorData && <div id="plant-sensor-data">
+                    Moisture: {sensorData.moisture}%;
+                    Temperature: {sensorData.temperature}°F;
+                    Illuminance: {sensorData.illuminance}lux;
+                    Conductivity: {sensorData.conductivity};
+                    Battery: {sensorData.battery}%;
+                </div>}
+            </div>
             <div>
                 <h4>Plant Book Data</h4>
                 {plantBookData && <div id="plantbook-data">
@@ -83,7 +92,6 @@ function Plant() {
                     Min Soil Moisture = {plantBookData.min_soil_moist}%;
                     Max Soil EC: {plantBookData.max_soil_ec};
                     Min Soil EC: {plantBookData.min_soil_ec};
-                    Image: {plantBookData.image_url};
                 </div>}
             </div>
         </React.Fragment>

@@ -3,10 +3,10 @@ function App () {
     return (
         <div>
 
-            <GenerateHumidityButtons />
+            <Humidity />
             <Plant />
             <Sensor  />
-            <DisplayOutletStates />
+            <Outlets />
 
         </div>
     );

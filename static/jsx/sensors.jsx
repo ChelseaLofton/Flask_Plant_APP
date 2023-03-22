@@ -1,5 +1,5 @@
 const SensorButton = (props) => {
-    console.log(props);
+    // console.log(props);
     return (
         <React.Fragment>
             <div>
@@ -29,7 +29,7 @@ function Sensor() {
     }, []);
 
     const handleSensorClick = (sensorId) => {
-                console.log(sensorId);
+                // console.log(sensorId);
             const url = `/sensors/${sensorId}.json`;
             fetch(url)
             .then((response) => response.json())
@@ -50,10 +50,10 @@ function Sensor() {
                         <div>
                             <h4>Current Sensor Readings</h4>
                             {sensorData && <div id="sensor-data">
-                                Conductivity: {sensorData.conductivity};
-                                Illuminance: {sensorData.illuminance} lux;
                                 Moisture: {sensorData.moisture}%;
                                 Temperature: {sensorData.temperature} °F;
+                                Illuminance: {sensorData.illuminance} lux;
+                                Conductivity: {sensorData.conductivity};
                                 Battery: {sensorData.battery}%;
                             </div>}
                         </div>
