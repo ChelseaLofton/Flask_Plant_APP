@@ -5,8 +5,8 @@ fetch('/humidity-readings.json')
         // console.log(responseJson);
 
         const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
-        const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom' && new Date(reading.created_at) >= last24Hours);
-        const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation' && new Date(reading.created_at) >= last24Hours);
+        const livingroomData = responseJson.filter((reading) => reading.humidity_sensor_id === 'livingroom'  && new Date(reading.created_at) >= last24Hours);
+        const propagationData = responseJson.filter((reading) => reading.humidity_sensor_id === 'propagation'  && new Date(reading.created_at) >= last24Hours);
 
         // console.log(last24Hours);
         // console.log('Living Room:', livingroomData);

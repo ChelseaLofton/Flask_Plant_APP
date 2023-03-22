@@ -123,18 +123,6 @@ def get_humidity_data(humidity_id):
         return jsonify({"error": "Sensor not found."})
 
 
-# @app.route('/humidity/<humidity_id>/readings.json')
-# def view_humidity_readings(humidity_id):
-#     """View all sensor readings for a specific sensor."""
-
-#     humidity_readings = HumidityReading.query.filter_by(humidity_sensor_id=humidity_id).all()
-
-#     if humidity_readings:
-#         data = [reading.to_dict() for reading in humidity_readings]
-#         return jsonify(data)
-#     else:
-#         return jsonify({"error": "Readings not found."})
-
 
 @app.route('/humidity-readings.json')
 def view_humidity_readings():

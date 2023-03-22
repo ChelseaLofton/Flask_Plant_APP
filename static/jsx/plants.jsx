@@ -1,3 +1,17 @@
+const Plant = (props) => {
+    return (
+        <React.Fragment>
+            <button
+                key={`sensor-${props.id}`}
+                id={`sensors=${props.id}-button`}
+                onClick={() => props.onClick(props.id)}
+            >
+                {props.id}
+            </button>
+        </React.Fragment>
+    );
+}
+
 function PlantButtons() {
     const [plantIds, setPlantIds] = React.useState([]);
     const [sensorData, setSensorData] = React.useState(null);
@@ -19,7 +33,7 @@ function PlantButtons() {
                 const plant_data = data.plant_data;
 
                 console.log(sensor_readings);
-                // console.log(plant_data);
+                console.log(plant_data);
 
                 setSensorData(sensor_readings)
                 setPlantBookData(plant_data)
@@ -31,18 +45,13 @@ function PlantButtons() {
             <h2>All Plant Data</h2>
             <div id="plant-ids">
                 {plantIds.map((plantID) => (
-                        <button
-                            key={`sensor-${plantID}`}
-                            id={`sensors=${plantID}-button`}
-                            onClick={() => handleButtonClick(plantID)}
-                        >
-                            {plantID}
-                        </button>
+                        <Plant id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} />
                 ))}
             </div>
             <div>
                 <h4> Current Sensor Readings</h4>
                 {sensorData && <div id="plant-sensor-data">
+                    {plantBookData && <div><img src={plantBookData.image_url} width="300" /></div>}
                     Battery: {sensorData.battery}%;
                     Conductivity: {sensorData.conductivity};
                     Illuminance: {sensorData.illuminance}lux;
