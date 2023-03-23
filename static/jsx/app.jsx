@@ -3,8 +3,8 @@ function App () {
     return (
         <div>
 
-            <Humidity />
             <Plant />
+            <Humidity />
             <Sensor  />
             <Outlets />
 
