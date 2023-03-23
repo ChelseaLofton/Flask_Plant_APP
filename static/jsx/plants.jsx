@@ -35,66 +35,6 @@ const PlantModal = (props) => {
     );
 };
 
-const PlantCarousel = (props) => {
-    const { plantIds, onClick } = props;
-
-    React.useEffect(() => {
-        const carouselElement = document.getElementById('plantCarousel');
-        const carousel = new bootstrap.Carousel(carouselElement, {
-            interval: false,
-            wrap: false,
-        });
-    }, []);
-
-    console.log(plantIds);
-    return (
-        <div
-            id="plantCarousel"
-            className="carousel slide"
-            data-bs-ride="carousel"
-            data-bs-interval="false"
-            data-bs-wrap="false"
-        >
-
-            <div className="carousel-inner">
-                {plantIds.map((plantID, index) => (
-                    <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={plantID}>
-                        <PlantButton id={plantID} onClick={onClick} />
-                        <div className="carousel-caption d-none d-md-block">
-                            <h5>Plant ID: {plantID}</h5>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <button
-                className="carousel-control-prev"
-                type="button"
-                data-bs-target="#plantCarousel"
-                data-bs-slide="prev"
-            >
-                <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-                className="carousel-control-next"
-                type="button"
-                data-bs-target="#plantCarousel"
-                data-bs-slide="next"
-            >
-                <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Next</span>
-            </button>
-        </div>
-    );
-};
-
-
 
 
 const PlantButton = (props) => {
@@ -164,7 +104,6 @@ function Plant() {
                 <div className="row">
                     <div className="col">
                         <div>
-                            <PlantCarousel plantIds={plantIds} onClick={handleButtonClick} />
                             <PlantModal
                                 plantBookData={plantBookData}
                                 sensorData={sensorData}

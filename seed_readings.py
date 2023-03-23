@@ -1,10 +1,10 @@
-from hass import Client, get_plant_sensors, get_humidity_sensors
+from hass import get_plant_sensors, get_humidity_sensors
 import model 
 import crud
 import server
 from datetime import datetime
-import time
-import schedule 
+# import time
+# import schedule 
 
 model.connect_to_db(server.app)
 
@@ -12,6 +12,7 @@ def run_seed():
     print("Running seed functions")
     seed_readings()
     seed_humidity_readings()
+    print("Finished seeding")
 
 def seed_readings():
     print("Seeding readings")
@@ -52,7 +53,7 @@ def seed_humidity_readings():
 
 
 
-
+run_seed()
 
 # schedule.every(2).hours.do(run_seed)
 

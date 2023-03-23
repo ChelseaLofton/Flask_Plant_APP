@@ -7,6 +7,7 @@ function App () {
             <Humidity />
             <Sensor  />
             <Outlets />
+            <HumidityData />
 
         </div>
     );

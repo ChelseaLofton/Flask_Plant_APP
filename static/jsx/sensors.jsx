@@ -17,7 +17,7 @@ const SensorButton = (props) => {
 
 function Sensor() {
     const [sensorIds, setSensorIds] = React.useState([]);
-            const [sensorData, setSensorData] = React.useState(null);
+    const [sensorData, setSensorData] = React.useState(null);
 
     React.useEffect(() => {
         const url = '/sensors.json';
