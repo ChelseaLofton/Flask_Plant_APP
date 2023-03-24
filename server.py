@@ -4,17 +4,17 @@ from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
             SensorReading, HumidityReading, HumiditySensor,)
-from hass import client
-from homeassistant_api import State
-
-
-from datetime import datetime, timedelta
-
+from PlantBookAPI import PlantBookAPI
+import os 
+import urllib.parse
 
 
 app = Flask(__name__)
 app.secret_key = "ILovePlants"
 app.jinja_env.undefined = StrictUndefined
+
+
+client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
 
 @app.route('/')
@@ -155,7 +155,6 @@ def view_humidity_readings():
             'created_at': reading.created_at
         })
 
-    # Return the humidity readings as a JSON response
     return jsonify(humidity_readings_dict)
 
 
@@ -186,6 +185,55 @@ def view_soil_moisture_readings():
 
 
     return jsonify(moisture_readings_dict)
+
+@app.route('/light-readings.json')
+def view_light_readings():
+
+    # Query the moisture readings for the last 24 hours
+    light_readings = db.session.query(
+        SensorReading.sensor_id,
+        SensorReading.illuminance,
+        SensorReading.created_at
+    ).filter(
+        SensorReading.created_at >= last_24_hours,
+        SensorReading.illuminance.isnot(None)
+    ).order_by(SensorReading.created_at.desc()).all()
+
+    # Grouping by sensor ID
+    light_readings_dict = {}
+    for reading in light_readings:
+        sensor_id = reading.sensor_id
+
+        if sensor_id not in light_readings_dict:
+
+            light_readings_dict[sensor_id] = []
+        light_readings_dict[sensor_id].append({
+            'illuminance': reading.illuminance,
+            'created_at': reading.created_at
+        })
+
+
+    return jsonify(light_readings_dict)
+
+
+
+
+@app.route('/plantbook-query', methods=['POST'])
+def plantbook_query():
+    data = request.get_json()
+    pid = data.get('pid')
+    print(data)
+    print(pid)
+
+    if not pid:
+        return jsonify({'error': 'Missing "pid" in the request'}), 400
+
+    # Create an instance of the PlantBookAPI class
+    plantbook_api = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
+
+    # Call the get() method to fetch plant data
+    plant_data = plantbook_api.get(f"/plant/detail/{urllib.parse.quote(pid)}/").json()
+    return jsonify(plant_data)
 
 
 if __name__ == "__main__":

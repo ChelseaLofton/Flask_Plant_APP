@@ -11,7 +11,10 @@
 </head>
 
 <body>
+
+
     <div id="root">
+        <PlantData />
         <Plant />
         <Outlet />
         <Humidity />
@@ -19,6 +22,7 @@
 
         <HumidityChart />
         <MoistureChart />
+        <LightChart />
 
     </div>
 
@@ -34,6 +38,8 @@
     <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 
+
+
     <!-- Babel/JSX -->
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
@@ -47,6 +53,8 @@
 
     <!-- My Apps -->
 
+    <script type="text/jsx" src="/static/jsx/plantquery.jsx"></script>
+    <script type="text/jsx" src="/static/jsx/LightChart.jsx"></script>
     <script type="text/jsx" src="/static/jsx/MoistureChart.jsx"></script>
     <script type="text/jsx" src="/static/jsx/HumidityChart.jsx"></script>
     <script type="text/jsx" src="/static/jsx/sensors.jsx"></script>
