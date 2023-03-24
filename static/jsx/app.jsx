@@ -1,14 +1,12 @@
-
 function App () {
     return (
         <div>
-
             <Plant />
             <Humidity />
-            <Sensor  />
+            <Sensor />
             <Outlets />
-            <HumidityData />
-
+            <MoistureChart />
+            <HumidityChart />
         </div>
     );
 };

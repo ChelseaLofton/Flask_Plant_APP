@@ -6,6 +6,8 @@
     <title>All Data</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
 </head>
 
 <body>
@@ -15,10 +17,12 @@
         <Humidity />
         <Sensor />
 
-        <HumidityData />
+        <HumidityChart />
+        <MoistureChart />
 
-        <canvas id="humidity-chart" width="400" height="400"></canvas>
     </div>
+
+
 
     <!-- Charts JS -->
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
@@ -42,7 +46,9 @@
         crossorigin="anonymous"></script>
 
     <!-- My Apps -->
-    <script type="text/jsx" src="/static/jsx/humidity-chart.jsx"></script>
+
+    <script type="text/jsx" src="/static/jsx/MoistureChart.jsx"></script>
+    <script type="text/jsx" src="/static/jsx/HumidityChart.jsx"></script>
     <script type="text/jsx" src="/static/jsx/sensors.jsx"></script>
     <script type="text/jsx" src="/static/jsx/outlets.jsx"></script>
     <script type="text/jsx" src="/static/jsx/plants.jsx"></script>

@@ -4,10 +4,13 @@ from jinja2 import StrictUndefined
 from hass import get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
             SensorReading, HumidityReading, HumiditySensor,)
-
-
 from hass import client
 from homeassistant_api import State
+
+
+from datetime import datetime, timedelta
+
+
 
 app = Flask(__name__)
 app.secret_key = "ILovePlants"
@@ -124,15 +127,65 @@ def get_humidity_data(humidity_id):
 
 
 
+from datetime import datetime, timedelta
+
+now = datetime.utcnow()
+last_24_hours = now - timedelta(hours=24)
+
 @app.route('/humidity-readings.json')
 def view_humidity_readings():
+    # Query the humidity readings for the last 24 hours
+    humidity_readings = db.session.query(
+        HumidityReading.humidity_sensor_id,
+        HumidityReading.humidity,
+        HumidityReading.created_at
+    ).filter(
+        HumidityReading.created_at >= last_24_hours,
+        HumidityReading.humidity.isnot(None)
+    ).order_by(HumidityReading.created_at.desc()).all()
 
-    all_data = db.session.query(HumidityReading).order_by(HumidityReading.created_at.asc()).all()
-    all_data_dicts = [reading.to_dict() for reading in all_data]
+    # Grouping by sensor ID
+    humidity_readings_dict = {}
+    for reading in humidity_readings:
+        sensor_id = reading.humidity_sensor_id
+        if sensor_id not in humidity_readings_dict:
+            humidity_readings_dict[sensor_id] = []
+        humidity_readings_dict[sensor_id].append({
+            'humidity': reading.humidity,
+            'created_at': reading.created_at
+        })
 
-    # print(all_data_dicts)
+    # Return the humidity readings as a JSON response
+    return jsonify(humidity_readings_dict)
 
-    return jsonify(all_data_dicts)
+
+
+@app.route('/soil-moisture-readings.json')
+def view_soil_moisture_readings():
+
+    # Query the moisture readings for the last 24 hours
+    moisture_readings = db.session.query(
+        SensorReading.sensor_id,
+        SensorReading.moisture,
+        SensorReading.created_at
+    ).filter(
+        SensorReading.created_at >= last_24_hours,
+        SensorReading.moisture.isnot(None)
+    ).order_by(SensorReading.created_at.desc()).all()
+
+    # Grouping by sensor ID
+    moisture_readings_dict = {}
+    for reading in moisture_readings:
+        sensor_id = reading.sensor_id
+        if sensor_id not in moisture_readings_dict:
+            moisture_readings_dict[sensor_id] = []
+        moisture_readings_dict[sensor_id].append({
+            'moisture': reading.moisture,
+            'created_at': reading.created_at
+        })
+
+
+    return jsonify(moisture_readings_dict)
 
 
 if __name__ == "__main__":
