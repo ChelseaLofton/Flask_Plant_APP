@@ -33,7 +33,6 @@ const SensorModal = (props) => {
 const SensorButton = (props) => {
     // console.log(props);
     return (
-        <React.Fragment>
             <div>
                 <button
                     key={`sensor-${props.id}`}
@@ -43,7 +42,6 @@ const SensorButton = (props) => {
                     Sensor {props.id}
                 </button>
             </div>
-        </React.Fragment>
     );
 };
 
