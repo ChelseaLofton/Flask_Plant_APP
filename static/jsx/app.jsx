@@ -3,14 +3,20 @@
 function App () {
     return (
         <div>
-            <PlantData />
-            <Plant />
-            <Humidity />
-            <Sensor />
             <Outlets />
+
+            <PlantData />
+            <Humidity />
+            
+            
+            <Plant />
+            
+            <Sensor />
+            
             <MoistureChart />
             <HumidityChart />
             <LightChart />
+            {/* <ChartCarousel /> */}
             
         </div>
     );

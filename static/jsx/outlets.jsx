@@ -1,6 +1,29 @@
+const OutletButtons = ({ outletID, switches, toggleOutletState }) => {
+    return (
+        <React.Fragment>
+            {Object.keys(switches).map(switchID => {
+                const switchState = switches[switchID];
+                return (
+                    <div key={switchID}>
+                        <label htmlFor={`outlet_${outletID}_${switchID}`}>Switch {switchID}:</label>
+                        <button
+                            id={`${outletID}_${switchID}`}
+                            className={`switch ${switchState}`}
+                            onClick={evt => toggleOutletState(outletID, switchID, evt.target)}
+                        >
+                            {switchState}
+                        </button>
+                    </div>
+                );
+            })}
+        </React.Fragment>
+    );
+};
+
+
 
 function Outlets() {
-    const [outlets, setOutlets] = React.useState([]); 
+    const [outlets, setOutlets] = React.useState([]);
 
     React.useEffect(() => {
         fetch('/outlets.json')
@@ -36,34 +59,20 @@ function Outlets() {
 
     return (
         <React.Fragment>
-        <h2> Outlet States</h2>
-        <div id="outlet-ids">
-            {Object.keys(outlets).map(outletID => {
-                const switches = outlets[outletID];
-                return (
-                    <div key={outletID}>
-                        <p>Outlet {outletID}:</p>
-                        {Object.keys(switches).map(switchID => {
-                            const switchState = switches[switchID]
-                            return (
-                                <div key={switchID}>
-                                    <label htmlFor={`outlet_${outletID}_${switchID}`}>Switch {switchID}:</label>
-                                    <button
-                                        id={`${outletID}_${switchID}`}
-                                        className={`switch ${switchState}`}
-                                        onClick={evt => toggleOutletState(outletID, switchID, evt.target)}
-
-                                        
-                                    >
-                                    {switchState}
-                                    </button>
-                                </div>
-                            );
-                        })}
-                    </div>
-                );
-            })}
-        </div>
+            <h2> Outlet States</h2>
+            <div id="outlet-ids">
+                {Object.keys(outlets).map(outletID => {
+                    const switches = outlets[outletID];
+                    return (
+                        <div key={outletID}>
+                            <p>Outlet {outletID}:</p>
+                            <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
+                        </div>
+                    );
+                })}
+            </div>
         </React.Fragment>
     );
 };
+
+window.Outlets = Outlets;
