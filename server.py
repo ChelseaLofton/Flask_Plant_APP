@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, request, jsonify)
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
-from hass import get_plant_sensors, get_humidity_sensors, get_outlets
+from hass import client, get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
             SensorReading, HumidityReading, HumiditySensor,)
 from PlantBookAPI import PlantBookAPI
@@ -14,7 +14,7 @@ app.secret_key = "ILovePlants"
 app.jinja_env.undefined = StrictUndefined
 
 
-client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
+# client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
 
 @app.route('/')
@@ -220,18 +220,19 @@ def view_light_readings():
 
 @app.route('/plantbook-query', methods=['POST'])
 def plantbook_query():
+    
     data = request.get_json()
     pid = data.get('pid')
+    
     print(data)
     print(pid)
 
     if not pid:
         return jsonify({'error': 'Missing "pid" in the request'}), 400
 
-    # Create an instance of the PlantBookAPI class
     plantbook_api = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
-    # Call the get() method to fetch plant data
+
     plant_data = plantbook_api.get(f"/plant/detail/{urllib.parse.quote(pid)}/").json()
     return jsonify(plant_data)
 

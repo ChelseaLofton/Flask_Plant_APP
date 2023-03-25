@@ -34,6 +34,7 @@ const PlantDataModal = (props) => {
 
 const PlantForm = (props) => {
     const { onSubmit, pid, handleChange } = props;
+    console.log(pid)
 
     return (
         <form onSubmit={onSubmit}>
