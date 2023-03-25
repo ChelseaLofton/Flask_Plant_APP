@@ -51,8 +51,8 @@ const PlantButton = (props) => {
     const { id, onClick } = props;
     return (
         <div>
-            <button type="button" onClick={() => onClick(id)}>
-                <img key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} width="300" />
+            <button className="plant-button" type="button" onClick={() => onClick(id)}>
+                <img className="round-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
             </button>
         </div>
     );
@@ -105,8 +105,13 @@ function Plant() {
                 <div className="row">
                     <div className="col">
                         <div id="plant-ids">
-                            {plantIds.map((plantID) => (
-                                <PlantButton key={plantID} id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} sensorData={sensorData} />
+                            {plantIds.map((plantID, index) => (
+                                <React.Fragment key={plantID}>
+                                    <div className="col-md-4">
+                                        <PlantButton id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} sensorData={sensorData} />
+                                    </div>
+                                    {(index + 1) % 3 === 0 && <div className="w-100"></div>}
+                                </React.Fragment>
                             ))}
                         </div>
                     </div>
