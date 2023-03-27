@@ -14,9 +14,9 @@ const PlantModal = (props) => {
                         {sensorData && (
                             <div id="plant-sensor-data">
                                 <h3>Live Sensor Readings</h3>
-                                Moisture: {sensorData.moisture}%; 
+                                Moisture: {sensorData.moisture}%;
                                 Temperature: {sensorData.temperature}°F;
-                                Illuminance: {sensorData.illuminance}lux; 
+                                Illuminance: {sensorData.illuminance}lux;
                                 Conductivity: {sensorData.conductivity};
                                 Battery: {sensorData.battery}%;
                             </div>
@@ -24,17 +24,17 @@ const PlantModal = (props) => {
                         {plantBookData && (
                             <div id="plantbook-data">
                                 <h3>Plant Library Data</h3>
-                                Alias: {plantBookData.alias}; 
-                                Category: {plantBookData.category}; 
+                                Alias: {plantBookData.alias};
+                                Category: {plantBookData.category};
                                 Max Light: {plantBookData.max_light_lux}lux;
-                                Min Light: {plantBookData.min_light_lux}lux; 
-                                Max Temperature: {plantBookData.max_temp}°F; 
+                                Min Light: {plantBookData.min_light_lux}lux;
+                                Max Temperature: {plantBookData.max_temp}°F;
                                 Min Temperature: {plantBookData.min_temp}°F;
-                                Max Env. Humidity: {plantBookData.max_env_humid}%; 
-                                Min Env. Humidity: {plantBookData.min_env_humid}%; 
+                                Max Env. Humidity: {plantBookData.max_env_humid}%;
+                                Min Env. Humidity: {plantBookData.min_env_humid}%;
                                 Max Soil Moisture: {plantBookData.max_soil_moist}%;
-                                Min Soil Moisture = {plantBookData.min_soil_moist}%; 
-                                Max Soil EC: {plantBookData.max_soil_ec}; 
+                                Min Soil Moisture = {plantBookData.min_soil_moist}%;
+                                Max Soil EC: {plantBookData.max_soil_ec};
                                 Min Soil EC: {plantBookData.min_soil_ec};
                             </div>
                         )}
@@ -91,10 +91,22 @@ function Plant() {
             });
     };
 
+    React.useEffect(() => {
+        $('.plant-carousel').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: true,
+        });
+    }, []);
 
     const handleClose = () => {
         setShowModal(false);
     };
+
+
+
 
 
 
@@ -104,13 +116,17 @@ function Plant() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <div id="plant-ids">
+                        <div id="plant-ids" className="carousel">
                             {plantIds.map((plantID, index) => (
                                 <React.Fragment key={plantID}>
-                                    <div className="col-md-4">
-                                        <PlantButton id={plantID} onClick={handleButtonClick} plantBookData={plantBookData} sensorData={sensorData} />
+                                    <div className="col-md-4 carousel-item">
+                                        <PlantButton
+                                            id={plantID}
+                                            onClick={handleButtonClick}
+                                            plantBookData={plantBookData}
+                                            sensorData={sensorData}
+                                        />
                                     </div>
-                                    {(index + 1) % 3 === 0 && <div className="w-100"></div>}
                                 </React.Fragment>
                             ))}
                         </div>

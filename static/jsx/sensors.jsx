@@ -7,7 +7,6 @@ const SensorModal = (props) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title">{selectedSensorId}</h2>
-
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
                     <div className="modal-body">
@@ -28,20 +27,18 @@ const SensorModal = (props) => {
     );
 };
 
-
-
 const SensorButton = (props) => {
-    // console.log(props);
     return (
-            <div>
-                <button
-                    key={`sensor-${props.id}`}
-                    id={`sensors=${props.id}-button`}
-                    onClick={() => props.onClick(props.id)}
-                >
-                    Sensor {props.id}
-                </button>
-            </div>
+        <div>
+            <button
+                key={`sensor-${props.id}`}
+                id={`sensors=${props.id}-button`}
+                onClick={() => props.onClick(props.id)}
+                className="btn btn-primary btn-sm"
+            >
+                Sensor {props.id}
+            </button>
+        </div>
     );
 };
 
@@ -61,7 +58,6 @@ function Sensor() {
     }, []);
 
     const handleSensorClick = (sensorId) => {
-        // console.log(sensorId);
         fetch(`/sensors/${sensorId}.json`)
             .then((response) => response.json())
             .then((data) => {
@@ -75,32 +71,26 @@ function Sensor() {
         setShowModal(false);
     };
 
-
     return (
         <React.Fragment>
-            <h2> Sensor Data</h2>
-            <div id="sensor-ids">
-                {sensorIds.map((sensorID) => (
-                    <SensorButton key={sensorID} id={sensorID} onClick={handleSensorClick} />
-                ))}
+            <div className="container">
+                <h2>Sensor Data</h2>
+                <div className="card">
+                    <div className="card-body row row-cols-3 g-3">
+                        {sensorIds.map((sensorID) => (
+                            <div className="col" key={sensorID}>
+                                <SensorButton id={sensorID} onClick={handleSensorClick} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-            <div>
-                <SensorModal
-                    sensorData={sensorData}
-                    selectedSensorId={selectedSensorId}
-                    showModal={showModal}
-                    handleClose={handleClose}
-                />
-            </div>
-        </React.Fragment >
+            <SensorModal
+                sensorData={sensorData}
+                selectedSensorId={selectedSensorId}
+                showModal={showModal}
+                handleClose={handleClose}
+            />
+        </React.Fragment>
     );
-};
-
-
-
-
-
-
-
-
-
+}

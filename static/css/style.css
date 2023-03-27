@@ -13,3 +13,21 @@
     padding: 10px;
     background-color: #061908;
 }
+
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    margin-right: 16px;
+}
+
+.carousel-item:last-child {
+    margin-right: 0;
+}
