@@ -6,28 +6,29 @@
 
 .plant-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 50%;
+    justify-content: center;
+    padding: 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.round-image {
     width: 100%;
-    padding: 10px;
-    background-color: #061908;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory;
+/* Add some spacing between the rows */
+.row .col-md-3:nth-child(4n + 1) {
+    clear: left;
 }
 
-.carousel-item {
-    scroll-snap-align: start;
-    flex: 0 0 auto;
-    margin-right: 16px;
+@media (max-width: 767.98px) {
+    .row .col-sm-6:nth-child(2n + 1) {
+        clear: left;
+    }
 }
 
-.carousel-item:last-child {
-    margin-right: 0;
-}

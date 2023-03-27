@@ -50,11 +50,9 @@ const PlantModal = (props) => {
 const PlantButton = (props) => {
     const { id, onClick } = props;
     return (
-        <div>
-            <button className="plant-button" type="button" onClick={() => onClick(id)}>
-                <img className="round-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
-            </button>
-        </div>
+        <button className="plant-button" type="button" onClick={() => onClick(id)}>
+            <img className="round-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
+        </button>
     );
 };
 
@@ -74,6 +72,7 @@ function Plant() {
             });
     }, []);
 
+
     const handleButtonClick = (plantID) => {
         fetch(`/plants/${plantID}.json`)
             .then((response) => response.json())
@@ -90,61 +89,41 @@ function Plant() {
                 setPlantBookData(plant_data);
             });
     };
-
-    React.useEffect(() => {
-        $('.plant-carousel').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            arrows: true,
-        });
-    }, []);
+    
 
     const handleClose = () => {
         setShowModal(false);
     };
 
 
-
-
-
-
     return (
         <React.Fragment>
             <h2>All Plant Data</h2>
             <div className="container">
-                <div className="row">
-                    <div className="col">
-                        <div id="plant-ids" className="carousel">
-                            {plantIds.map((plantID, index) => (
-                                <React.Fragment key={plantID}>
-                                    <div className="col-md-4 carousel-item">
-                                        <PlantButton
-                                            id={plantID}
-                                            onClick={handleButtonClick}
-                                            plantBookData={plantBookData}
-                                            sensorData={sensorData}
-                                        />
+                {plantIds && (
+                    <React.Fragment>
+                        {plantIds.reduce((rows, plantID, i) => {
+                            if (i % 4 === 0) rows.push([]);
+                            rows[rows.length - 1].push(plantID);
+                            return rows;
+                        }, []).map((row, index) => (
+                            <div className="row" key={`row-${index}`}>
+                                {row.map((plantID) => (
+                                    <div className="col-md-3" key={plantID}>
+                                        <PlantButton id={plantID} onClick={handleButtonClick} />
                                     </div>
-                                </React.Fragment>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <div>
-                            <PlantModal
-                                plantBookData={plantBookData}
-                                sensorData={sensorData}
-                                selectedPlantId={selectedPlantId}
-                                showModal={showModal}
-                                handleClose={handleClose}
-                            />
-                        </div>
-                    </div>
-                </div>
+                                ))}
+                            </div>
+                        ))}
+                    </React.Fragment>
+                )}
+                <PlantModal
+                    plantBookData={plantBookData}
+                    sensorData={sensorData}
+                    selectedPlantId={selectedPlantId}
+                    showModal={showModal}
+                    handleClose={() => setShowModal(false)}
+                />
             </div>
         </React.Fragment>
     );
