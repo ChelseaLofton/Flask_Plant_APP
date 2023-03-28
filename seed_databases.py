@@ -4,6 +4,7 @@ It populates the database with sensor data obtained from the Home Assistant API.
 
 Language: Python
 Frameworks/Libraries: Flask-SQLAlchemy, Home Assistant API
+Database: SQLAlchemy
 """
 
 import os
