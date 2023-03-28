@@ -4,6 +4,7 @@
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Libraries: React Bootstrap
+ * APIS: Home Assistant
  * Components: PlantModal, PlantButton, Plant
  */
 
