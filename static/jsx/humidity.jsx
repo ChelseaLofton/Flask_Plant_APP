@@ -1,6 +1,7 @@
 /**
- * 
- * Libraries: React
+ * Language: JavaScript (JSX)
+ * Frameworks: React
+ * Libraries: React Bootstrap
  * Components: HumidityModal, HumidityButton, Humidity
  */
 
