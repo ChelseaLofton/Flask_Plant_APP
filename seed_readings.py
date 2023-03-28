@@ -1,20 +1,34 @@
+"""
+This script collects sensor data and populates the database with the readings.
+It is run on a cron tab every 5 minutes to collect data at a steady rate.
+
+Language: Python
+Frameworks/Libraries: Flask-SQLAlchemy
+Database: SQLAlchemy
+"""
+
 from hass import get_plant_sensors, get_humidity_sensors
 import model 
 import crud
 import server
 from datetime import datetime
-# import time
-# import schedule 
 
 model.connect_to_db(server.app)
 
+
 def run_seed():
+    """
+    Run the seed functions for sensor readings and humidity readings.
+    """
     print("Running seed functions")
     seed_readings()
     seed_humidity_readings()
     print("Finished seeding")
 
 def seed_readings():
+    """
+    Populate the database with sensor readings.
+    """
     print("Seeding readings")
     sensor_data = get_plant_sensors()
 
@@ -34,6 +48,10 @@ def seed_readings():
         model.db.session.commit()
 
 def seed_humidity_readings():
+    """
+    Populate the database with humidity readings.
+    """
+
     print("Seeding humidity readings")
     humidity_data = get_humidity_sensors()  
     
@@ -52,11 +70,13 @@ def seed_humidity_readings():
         model.db.session.commit()
 
 
-
+# Run the seed functions
 run_seed()
 
-# schedule.every(2).hours.do(run_seed)
-
+# Uncomment the following lines if you want to use the schedule library to run the seed functions periodically
+# import time
+# import schedule 
+# schedule.every(5).minutes.do(run_seed)
 # while True:
 #     print("Running schedule")
 #     schedule.run_pending()
