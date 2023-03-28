@@ -1,3 +1,12 @@
+"""
+Server module for handling routes and API calls.
+
+Language: Python
+Frameworks/Libraries: Flask, SQLAlchemy, Jinja2
+Database: SQLAlchemy
+APIs: Home Assistant (hass), PlantBookAPI
+"""
+
 from flask import (Flask, render_template, request, jsonify)
 from flask_sqlalchemy import SQLAlchemy
 from jinja2 import StrictUndefined
@@ -5,20 +14,19 @@ from hass import client, get_plant_sensors, get_humidity_sensors, get_outlets
 from model import (db, connect_to_db, Plant, PlantBook, PlantSensor,
             SensorReading, HumidityReading, HumiditySensor,)
 from PlantBookAPI import PlantBookAPI
-import os 
+import os
 import urllib.parse
 
 
 app = Flask(__name__)
-app.secret_key = "ILovePlants"
+app.secret_key = os.environ["APP_SECRET_KEY"]
 app.jinja_env.undefined = StrictUndefined
 
-
-# client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
 
 @app.route('/')
 def homepage():
+
 
     return render_template('index_react.html')
 
@@ -224,6 +232,10 @@ def view_light_readings():
 
 @app.route('/plantbook-query', methods=['POST'])
 def plantbook_query():
+    """
+    Query the PlantBook API for plant data based on the provided plant ID (pid).
+    Returns a JSON response containing the plant data.
+    """
     
     data = request.get_json()
     pid = data.get('pid')
