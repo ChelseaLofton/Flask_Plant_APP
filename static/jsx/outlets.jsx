@@ -1,3 +1,11 @@
+/**
+ * Language: JavaScript (JSX)
+ * Frameworks: React
+ * Components: OutletButtons, Outlets
+ */
+
+
+// OutletButtons component renders individual outlet buttons
 const OutletButtons = ({ outletID, switches, toggleOutletState }) => {
     return (
         <div className="outlet-buttons">
@@ -20,9 +28,12 @@ const OutletButtons = ({ outletID, switches, toggleOutletState }) => {
     );
 };
 
+
+// Outlets component renders all outlet buttons
 function Outlets() {
     const [outlets, setOutlets] = React.useState([]);
 
+    // Fetch outlet data from server
     React.useEffect(() => {
         fetch('/outlets.json')
             .then((response) => response.json())
@@ -31,6 +42,7 @@ function Outlets() {
             });
     }, []);
 
+    // Get outlet name from outlet ID
     const getOutletName = (outletID) => {
         if (outletID === 'livingroom') {
             return 'Living Room';
@@ -41,6 +53,7 @@ function Outlets() {
         }
     }
 
+    // Toggle outlet state
     const toggleOutletState = (outletID, switchID, switchButton) => {
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
