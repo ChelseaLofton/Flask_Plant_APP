@@ -8,7 +8,7 @@ Frameworks/Libraries: Flask-SQLAlchemy, Home Assistant API
 Database: SQLAlchemy
 """
 
-import os
+import os  
 import json
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
