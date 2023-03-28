@@ -1,16 +1,28 @@
+/**
+ * Description:  This page displays a chart of soil moisture sensor readings that are fetched from a database on the back end.
+ * The data is visualized using the Chart.js library, and the chart is rendered using a React component called MoistureData.
+ * 
+ * Language: JavaScript (JSX)
+ * Frameworks: React, Chart.js
+ * Libraries: React Bootstrap
+ * Databases: Back-end database
+ * Components: MoistureData, MoistureChart
+ */
+
+
+// MoistureData component renders the chart of soil moisture sensor readings
 const MoistureData = (props) => {
     const sensorData = props.sensorData;
     const chartRef = React.createRef();
 
+    // Create a chart when there is sensor data 
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-
-            // console.log(sensorIds)
             
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
-                // console.log(sensorIds)
+
                 return {
                     label: `Sensor ${sensorId}`,
                     data: readings.map((reading) => ({
@@ -45,6 +57,7 @@ const MoistureData = (props) => {
                 },
             };
 
+            // Create the chart
             const chartCanvas = chartRef.current;
             const chart = new Chart(chartCanvas, chartConfig);
 
@@ -57,6 +70,8 @@ const MoistureData = (props) => {
     return <canvas ref={chartRef} />;
 };
 
+
+// MoistureChart component renders the chart of soil moisture sensor readings
 const MoistureChart = () => {
     const [sensorData, setSensorData] = React.useState(null);
 
