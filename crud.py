@@ -1,9 +1,17 @@
+"""
+This script defines helper functions to create instances of the database models.
+
+Language: Python
+"""
 
 from model import db, PlantBook, PlantSensor, SensorReading, HumidityReading, HumiditySensor, Outlet, connect_to_db
 from model import Plant
 
 
 def create_plant(plant_id, pid, sensor_id):
+    """
+    Creates a Plant instance.
+    """
     plant_id = Plant(
         plant_id=plant_id,
         pid=pid,
@@ -16,6 +24,9 @@ def create_plant(plant_id, pid, sensor_id):
 def create_plant_data(pid, display_pid, alias, category, max_light_lux,
         min_light_lux, max_temp, min_temp, max_env_humid, min_env_humid,
         max_soil_moist, min_soil_moist, max_soil_ec, min_soil_ec, image_url):
+    """
+    Creates a PlantBook instance.
+    """
 
     pid = PlantBook(
         pid=pid,
@@ -38,6 +49,9 @@ def create_plant_data(pid, display_pid, alias, category, max_light_lux,
 
 
 def create_plant_sensors(sensor_id,):
+    """
+    Creates a PlantSensor instance.
+    """
 
     sensor_id = PlantSensor(
         sensor_id=sensor_id,
@@ -47,6 +61,9 @@ def create_plant_sensors(sensor_id,):
 
 def create_sensor_readings(battery, illuminance, conductivity,
         moisture, temperature, created_at, sensor_id):
+    """
+    Creates a SensorReading instance.
+    """
 
     try:
         if battery is not None:
@@ -70,6 +87,9 @@ def create_sensor_readings(battery, illuminance, conductivity,
 
 def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4,
         switch_id_5):
+    """
+    Creates a Outlet instance.
+    """
 
     outlet_id = Outlet(
         outlet_id=outlet_id,
@@ -83,6 +103,9 @@ def create_outlets(outlet_id, switch_id_2, switch_id_3, switch_id_4,
 
 
 def create_humidity_sensor(humidity_sensor_id):
+    """
+    Creates a HumiditySensor instance.
+    """
     humidity_sensor_id = HumiditySensor(
         humidity_sensor_id=humidity_sensor_id,
     )
@@ -91,7 +114,9 @@ def create_humidity_sensor(humidity_sensor_id):
 
 
 def create_humidity_readings(humidity, pressure, temperature, battery, created_at, humidity_sensor_id):
-    
+    """
+    Creates a HumidityReading instance.
+    """
     try:
         if battery is not None:
             battery = int(battery)
@@ -109,13 +134,6 @@ def create_humidity_readings(humidity, pressure, temperature, battery, created_a
     )
 
     return humidity_reading
-
-
-
-
-
-
-
 
 
 
