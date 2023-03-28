@@ -1,12 +1,13 @@
 const SensorModal = (props) => {
-    const { sensorData, showModal, selectedSensorId, handleClose } = props;
+    const { sensorData, showModal, associatedPlantId, selectedSensorId, handleClose } = props;
+    const displayName = associatedPlantId ? associatedPlantId.slice(0, -3) : '';
 
     return (
         <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title">{selectedSensorId}</h2>
+                        <h2 className="modal-title">Sensor {selectedSensorId}: {displayName}</h2>
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
                     <div className="modal-body">
@@ -50,6 +51,8 @@ function Sensor() {
     const [sensorData, setSensorData] = React.useState(null);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedSensorId, setSelectedSensorId] = React.useState(null);
+    const [associatedPlantId, setAssociatedPlantId] = React.useState(null);
+
 
     React.useEffect(() => {
         const url = '/sensors.json';
@@ -64,9 +67,10 @@ function Sensor() {
         fetch(`/sensors/${sensorId}.json`)
             .then((response) => response.json())
             .then((data) => {
-                setSensorData(data);
+                setSensorData(data.sensor_readings);
                 setShowModal(true);
                 setSelectedSensorId(sensorId);
+                setAssociatedPlantId(data.plant_id);
             });
     };
 
@@ -84,9 +88,11 @@ function Sensor() {
             <SensorModal
                 sensorData={sensorData}
                 selectedSensorId={selectedSensorId}
+                associatedPlantId={associatedPlantId}
                 showModal={showModal}
                 handleClose={handleClose}
             />
+
         </React.Fragment>
     );
 }

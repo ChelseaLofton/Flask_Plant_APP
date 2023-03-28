@@ -63,15 +63,19 @@ def view_all_sensors():
     return jsonify(sensor_ids)
 
 
-@ app.route('/sensors/<sensor_id>.json')
+@app.route('/sensors/<sensor_id>.json')
 def get_sensor_data(sensor_id):
     """View all sensor readings for a specific sensor."""
 
-    sensor_readings = get_plant_sensors().get(sensor_id)
-    
-    print(sensor_readings)
+    plant = Plant.query.filter_by(sensor_id=sensor_id).first()
+    plant_id = plant.plant_id if plant else None
 
-    return jsonify(sensor_readings)
+    sensor_readings = get_plant_sensors().get(sensor_id)
+
+    print(sensor_readings)
+    print(plant_id)
+
+    return jsonify({"sensor_readings": sensor_readings, "plant_id": plant_id})
 
 
 @ app.route('/outlets.json')
@@ -186,6 +190,8 @@ def view_soil_moisture_readings():
 
     return jsonify(moisture_readings_dict)
 
+
+
 @app.route('/light-readings.json')
 def view_light_readings():
 
@@ -214,8 +220,6 @@ def view_light_readings():
 
 
     return jsonify(light_readings_dict)
-
-
 
 
 @app.route('/plantbook-query', methods=['POST'])
