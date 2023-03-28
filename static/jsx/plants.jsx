@@ -1,3 +1,14 @@
+/**
+ * Description: This file contains the React components for the plant element.
+ * 
+ * Language: JavaScript (JSX)
+ * Frameworks: React
+ * Libraries: React Bootstrap
+ * Components: PlantModal, PlantButton, Plant
+ */
+
+
+// PlantModal component displays live sensor readings and plant library data in a modal
 const PlantModal = (props) => {
     const { plantBookData, sensorData, selectedPlantId, showModal, handleClose } = props;
     const displayName = selectedPlantId ? selectedPlantId.slice(0, -2) : '';
@@ -52,7 +63,7 @@ const PlantModal = (props) => {
 };
 
 
-
+// PlantButton component displays a button with a plant image
 const PlantButton = (props) => {
     const { id, onClick } = props;
     return (
@@ -70,6 +81,7 @@ function Plant() {
     const [showModal, setShowModal] = React.useState(false);
     const [selectedPlantId, setSelectedPlantId] = React.useState(null);
 
+    // Fetch plant IDs from the server
     React.useEffect(() => {
         fetch('/plants.json')
             .then(response => response.json())
@@ -78,16 +90,13 @@ function Plant() {
             });
     }, []);
 
-
+    // Fetch sensor readings and plant library data from the server
     const handleButtonClick = (plantID) => {
         fetch(`/plants/${plantID}.json`)
             .then((response) => response.json())
             .then((data) => {
                 const sensor_readings = data.sensor_readings;
                 const plant_data = data.plant_data;
-
-                // console.log(sensor_readings);
-                // console.log(plant_data);
 
                 setSelectedPlantId(plantID);
                 setShowModal(true);
@@ -96,7 +105,7 @@ function Plant() {
             });
     };
 
-
+    // Close the modal
     const handleClose = () => {
         setShowModal(false);
     };
@@ -127,7 +136,7 @@ function Plant() {
                     sensorData={sensorData}
                     selectedPlantId={selectedPlantId}
                     showModal={showModal}
-                    handleClose={() => setShowModal(false)}
+                    handleClose={handleClose}
                 />
             </div>
         </React.Fragment>
