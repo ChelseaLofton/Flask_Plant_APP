@@ -1,40 +1,39 @@
+import os
+import json
 from homeassistant_api import Client
 
-import asyncio
-from pprint import pprint
-import requests
-import json
-import os
 
-
+# Home Assistant API configuration
 url = 'http://plants.home.stu.mp:8123/api'
-api_Key = os.environ.get('API_KEY')
+api_key = os.environ.get('API_KEY')
 
-with Client(
-    'http://plants.home.stu.mp:8123/api',  # created a dns entry
-    api_Key
-) as client:
 
+# Initialize Home Assistant API client
+with Client(url, api_key) as client:
     sensors = client.get_entities()["sensor"]
     switches = client.get_entities()["switch"]
     states = client.get_states()
 
 
 def get_plant_sensors():
+    """
+    Function to retrieve plant sensor data from Home Assistant API.
+    Returns a dictionary containing plant sensor data.
+    """
     plant_sensors = {}
 
-    for entity_id, entity in sensors.entities.items():  # class sensors to object entity class entities sensors.entities is a dict, with entity_id as a key, value will be an instance of the Entity class given for that id
+    for entity_id, entity in sensors.entities.items():  
 
         if entity_id.startswith("plant_sensor_"):
             sensor_id = entity_id.split("_")[2]
             reading = entity_id.split("_")[-1]
 
-            if len(sensor_id) != 2:  # ignores all sensors that are not plant_sensors
+            if len(sensor_id) != 2:  
                 continue
 
             if sensor_id not in plant_sensors:
-                # adds our sliced id as a key in our dictionary and set the value to an empty dictionary
-                plant_sensors[sensor_id] = {}
+                
+                plant_sensors[sensor_id] = {}          
 
             try:  # type coercion
                 value = float(entity.state.state)
@@ -54,11 +53,15 @@ def get_plant_sensors():
 
 # plant_sensor_data = get_plant_sensors()
 
-# with open('plant_sensors.json', 'w') as f:
+# with open('plant_sensors.json', 'w') as f:    
 #     json.dump(plant_sensor_data, f)
 
 
 def get_humidity_sensors():
+    """
+    Function to retrieve humidity sensor data from Home Assistant API.
+    Returns a dictionary containing humidity sensor data.
+    """
     humidity_sensors = {}
 
     for entity_id, entity in sensors.entities.items():
@@ -86,13 +89,13 @@ def get_humidity_sensors():
 
     return humidity_sensors
 
-# humidity_sensor_data = get_humidity_sensors()
-
-# with open('humidity_sensors.json', 'w') as f:
-#     json.dump(humidity_sensor_data, f)
 
 
 def get_outlets():
+    """
+    Function to retrieve outlet switch data from Home Assistant API.
+    Returns a dictionary containing outlet switch data.
+    """
     outlets = {}
 
     for entity_id, entity in switches.entities.items():
