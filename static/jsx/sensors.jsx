@@ -1,3 +1,12 @@
+/**
+ * Sensor.jsx
+ * 
+ * Libraries: React
+ * Components: SensorModal, SensorButton, Sensor
+ */
+
+
+// SensorModal component displays live sensor readings in a modal
 const SensorModal = (props) => {
     const { sensorData, showModal, associatedPlantId, selectedSensorId, handleClose } = props;
     const displayName = associatedPlantId ? associatedPlantId.slice(0, -3) : '';
@@ -31,7 +40,7 @@ const SensorModal = (props) => {
 };
 
 
-
+// SensorButton component renders individual sensor buttons
 const SensorButton = (props) => {
     return (
         <div>
@@ -47,6 +56,7 @@ const SensorButton = (props) => {
     );
 };
 
+
 function Sensor() {
     const [sensorIds, setSensorIds] = React.useState([]);
     const [sensorData, setSensorData] = React.useState(null);
@@ -54,7 +64,7 @@ function Sensor() {
     const [selectedSensorId, setSelectedSensorId] = React.useState(null);
     const [associatedPlantId, setAssociatedPlantId] = React.useState(null);
 
-
+    // Fetch sensor IDs 
     React.useEffect(() => {
         const url = '/sensors.json';
         fetch(url)
@@ -64,6 +74,7 @@ function Sensor() {
             });
     }, []);
 
+    // Fetch sensor data when sensor button is clicked
     const handleSensorClick = (sensorId) => {
         fetch(`/sensors/${sensorId}.json`)
             .then((response) => response.json())
@@ -75,6 +86,7 @@ function Sensor() {
             });
     };
 
+    // Close modal when user clicks "x" button
     const handleClose = () => {
         setShowModal(false);
     };
