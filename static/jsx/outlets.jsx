@@ -41,7 +41,6 @@ function Outlets() {
         }
     }
 
-
     const toggleOutletState = (outletID, switchID, switchButton) => {
         const currentState = switchButton.innerText;
         const newState = currentState === 'on' ? 'off' : 'on';
@@ -66,20 +65,19 @@ function Outlets() {
             });
     };
 
-return (
-    <React.Fragment>
-        <div id="outlet-ids" style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-            {Object.keys(outlets).map(outletID => {
-                const switches = outlets[outletID];
-                return (
-                    <div key={outletID} style={{ width: "50%", margin: "0 5px 10px 5px", padding: "10px", border: "1px solid #ccc" }}>
-                        <p>{getOutletName(outletID)}:</p>
-                        <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
-                    </div>
-                );
-            })}
-        </div>
-    </React.Fragment>
-);
-
+    return (
+        <React.Fragment>
+            <div id="outlet-ids" style={{ gap: "10px" }}>
+                {Object.keys(outlets).map(outletID => {
+                    const switches = outlets[outletID];
+                    return (
+                        <div key={outletID} className="outlet-container" style={{ flexBasis: "calc(50% - 5px)" }}>
+                            <p>{getOutletName(outletID)}:</p>
+                            <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
+                        </div>
+                    );
+                })}
+            </div>
+        </React.Fragment>
+    );
 }

@@ -13,11 +13,13 @@ const SensorModal = (props) => {
                         {sensorData && (
                             <div id="plant-sensor-data">
                                 <h3>Live Sensor Readings</h3>
-                                Moisture: {sensorData.moisture}%;
-                                Temperature: {sensorData.temperature}°F;
-                                Illuminance: {sensorData.illuminance}lux;
-                                Conductivity: {sensorData.conductivity};
-                                Battery: {sensorData.battery}%;
+                                <ul style={{listStyleType: "disc"}}>
+                                    <li>Moisture: {sensorData.moisture}%</li>
+                                    <li>Temperature: {sensorData.temperature}°F</li>
+                                    <li>Illuminance: {sensorData.illuminance}lux</li>
+                                    <li>Conductivity: {sensorData.conductivity}</li>
+                                    <li>Battery: {sensorData.battery}%</li>
+                                </ul>
                             </div>
                         )}
                     </div>
@@ -26,6 +28,8 @@ const SensorModal = (props) => {
         </div>
     );
 };
+
+
 
 const SensorButton = (props) => {
     return (

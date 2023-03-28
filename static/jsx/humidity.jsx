@@ -1,9 +1,13 @@
-
 const HumidityModal = (props) => {
     const { humidityData, showModal, selectedHumidityId, handleClose } = props;
 
     return (
-        <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
+        <div
+            className={`modal fade ${showModal ? "show" : ""}`}
+            tabIndex="-1"
+            aria-hidden={!showModal}
+            style={{ display: showModal ? "block" : "none" }}
+        >
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -23,26 +27,22 @@ const HumidityModal = (props) => {
                     </div>
                 </div>
             </div>
-            </div>
-            );
+        </div>
+    );
 };
-
-
 
 const HumidityButton = (props) => {
     return (
-            <div>
-                <button
-                    key={`humidity-${props.id}`}
-                    id={`sensor=${props.id}-button`}
-                    onClick={() => props.onClick(props.id)}
-                >
-                    {props.id}
-                </button>
-            </div>
-            );
+        <button
+            key={`humidity-${props.id}`}
+            id={`sensor=${props.id}-button`}
+            className="humidity-button"
+            onClick={() => props.onClick(props.id)}
+        >
+            {props.id}
+        </button>
+    );
 };
-
 
 function Humidity() {
     const [humidityIds, setHumidityIds] = React.useState([]);
@@ -51,29 +51,29 @@ function Humidity() {
     const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
 
     React.useEffect(() => {
-        const url = '/humidity.json';
-            fetch(url)
+        const url = "/humidity.json";
+        fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 setHumidityIds(data);
-                    // console.log(data);
+                // console.log(data);
             });
     }, []);
 
     const handleHumidityClick = (humidityId) => {
-            // console.log(humidityId);
+        // console.log(humidityId);
         const url = `/humidity/${humidityId}.json`;
-            fetch(url)
+        fetch(url)
             .then((response) => response.json())
             .then((data) => {
-            setHumidityData(data);
-            setSelectedHumidityId(humidityId);
-            setShowModal(true);
+                setHumidityData(data);
+                setSelectedHumidityId(humidityId);
+                setShowModal(true);
             });
     };
 
     const handleClose = () => {
-                setShowModal(false);
+        setShowModal(false);
     };
 
     return (
@@ -90,8 +90,7 @@ function Humidity() {
                     showModal={showModal}
                     handleClose={handleClose}
                 />
-                </div>
-            </React.Fragment>
-
-            );
-    };
+            </div>
+        </React.Fragment>
+    );
+}

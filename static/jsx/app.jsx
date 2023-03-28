@@ -53,12 +53,12 @@ function Toolbox() {
                 <Sensor />
             </div>
             <div className="toolbox-group">
-                <h2>Outlets States</h2>
-                <Outlets />
-            </div>
-            <div className="toolbox-group">
                 <h2>Humidity Data</h2>
                 <Humidity />
+            </div>
+            <div className="toolbox-group">
+                <h2>Outlets States</h2>
+                <Outlets />
             </div>
         </div>
     );
