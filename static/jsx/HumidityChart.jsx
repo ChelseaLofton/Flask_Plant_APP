@@ -85,7 +85,10 @@ const HumidityChart = () => {
 
     return (
         <React.Fragment>
-            <h2>Location Humidity Data</h2>
+            <div className="text-center">
+                <h2>Atmospheric Humidity Data by Location</h2>
+                <p>This chart is showing atmospheric humidity readings for two different locations taken in 5 minute intervals.</p>
+            </div>
             <div className="container">
                 <div className="row">
                     <div className="col">
