@@ -1,4 +1,6 @@
 /**
+ * Description: Humidity component renders humidity sensor buttons and displays live sensor readings in a modal
+ * 
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Libraries: React Bootstrap
