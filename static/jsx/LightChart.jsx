@@ -1,3 +1,16 @@
+/**
+ * Description:  This page displays a chart of light readings that are fetched from a database on the back end.
+ * The data is visualized using the Chart.js library, and the chart is rendered using a React component called LightData.
+ * 
+ * Language: JavaScript (JSX)
+ * Frameworks: React, Chart.js
+ * Libraries: React Bootstrap
+ * Databases: Back-end database
+ * Components: LightData, LightChart
+ */
+
+
+// LightData component renders the chart of light readings
 const LightData = (props) => {
     const sensorData = props.sensorData;
     const chartRef = React.createRef();
@@ -5,12 +18,10 @@ const LightData = (props) => {
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-
-            // console.log(sensorIds)
             
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
-                // console.log(sensorIds)
+
                 return {
                     label: `Sensor ${sensorId}`,
                     data: readings.map((reading) => ({
@@ -45,6 +56,7 @@ const LightData = (props) => {
                 },
             };
 
+            // Create the chart
             const chartCanvas = chartRef.current;
             const chart = new Chart(chartCanvas, chartConfig);
 
@@ -57,6 +69,8 @@ const LightData = (props) => {
     return <canvas ref={chartRef} />;
 };
 
+
+// LightChart component renders the chart of light readings
 const LightChart = () => {
     const [sensorData, setSensorData] = React.useState(null);
 
