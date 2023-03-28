@@ -1,7 +1,9 @@
 """
-This script defines helper functions to create instances of the database models.
+This script defines helper functions to create instances of the database models using Flask-SQLAlchemy.
+It populates the database with sensor data obtained from the Home Assistant API.
 
 Language: Python
+Frameworks/Libraries: Flask-SQLAlchemy, Home Assistant API
 """
 
 from model import db, PlantBook, PlantSensor, SensorReading, HumidityReading, HumiditySensor, Outlet, connect_to_db
