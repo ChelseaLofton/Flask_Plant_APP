@@ -1,5 +1,4 @@
 /**
- * Sensor.jsx
  * 
  * Libraries: React
  * Components: SensorModal, SensorButton, Sensor
