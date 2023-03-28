@@ -1,3 +1,16 @@
+/**
+ * Description:  This page displays a chart of atmospheric humidity readings that are fetched from a database on the back end.
+ * The data is visualized using the Chart.js library, and the chart is rendered using a React component called HumidityData.
+ * 
+ * Language: JavaScript (JSX)
+ * Frameworks: React, Chart.js
+ * Libraries: React Bootstrap
+ * Databases: Back-end database
+ * Components: HumidityData, HumidityChart
+ */
+
+
+// HumidityData component renders the chart of atmospheric humidity readings
 const HumidityData = (props) => {
     const sensorData = props.sensorData;
     const chartRef = React.createRef();
@@ -58,6 +71,7 @@ const HumidityData = (props) => {
 };
 
 
+// HumidityChart component renders the chart of atmospheric humidity readings
 const HumidityChart = () => {
     const [sensorData, setSensorData] = React.useState(null);
 
