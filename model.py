@@ -1,12 +1,23 @@
+"""
+This script defines the database models and relationships for a plant monitoring system using
+Flask-SQLAlchemy.
+
+Language: Python
+Libraries: flask_sqlalchemy, datetime
+"""
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
 
 db = SQLAlchemy()
 
 
+
 class PlantBook(db.Model):
-    """Is a database of tolerance values via pid will back populate plants"""
+    """
+    A database of tolerance values for various plants, identified by pid. Each PlantBook entry
+    can be associated with multiple Plant instances.
+    """
     __tablename__ = "plantbooks"
 
     pid = db.Column(db.String, primary_key=True)
@@ -52,8 +63,11 @@ class PlantBook(db.Model):
 
 
 class Plant(db.Model):
-    """This table is for each individual plant, unique plant_id, pid references plantbook"""
-    """sensor_id is each plants individual sensor, location_id references the power strip location"""
+    """
+    Represents an individual plant with a unique plant_id. pid references the PlantBook table,
+    and sensor_id references the PlantSensor table.
+    """
+
     __tablename__ = "plants"
 
     plant_id = db.Column(db.String, primary_key=True)
@@ -63,7 +77,7 @@ class Plant(db.Model):
     def __repr__(self):
         return f"<plant_id = {self.plant_id}>"
 
-    def to_dict(obj):
+    def to_dict(self):
         return {
             "plant_id": self.plant_id,
             "pid": self.pid,
@@ -72,7 +86,10 @@ class Plant(db.Model):
 
 
 class PlantSensor(db.Model):
-    """Each plants individual sensor, via sensor id, back populates plants"""
+    """
+    Represents an individual sensor for a plant, identified by sensor_id. Each PlantSensor can
+    be associated with multiple SensorReading instances.
+    """
 
     __tablename__ = 'plant_sensors'
 
@@ -86,7 +103,10 @@ class PlantSensor(db.Model):
 
 
 class SensorReading(db.Model):
-    """Each sensors readings"""
+    """
+    Represents a sensor reading for a plant, containing data such as battery, conductivity,
+    illuminance, moisture, and temperature.
+    """
 
     __tablename__ = 'sensor_readings'
 
@@ -117,7 +137,10 @@ class SensorReading(db.Model):
 
 
 class Outlet(db.Model):
-    """This table is for a ZigBee power strip which has a humdifier & light plugged in"""
+    """
+    Represents a ZigBee power strip with multiple switches. Each Outlet can be associated with
+    a humidifier and a light.
+    """
     __tablename__ = "outlets"
 
     outlet_id = db.Column(db.String, primary_key=True)
@@ -131,8 +154,10 @@ class Outlet(db.Model):
 
 
 class HumiditySensor(db.Model):
-    """This is a table for an individual temp/hum sensor which backpopulates the climate"""
-    """control via location_id. (These are currently working attribute names, not actual)"""
+    """
+    Represents an individual temperature and humidity sensor. Each HumiditySensor can be
+    associated with multiple HumidityReading instances.
+    """
     __tablename__ = 'humidity_sensors'
 
     humidity_sensor_id = db.Column(db.String, primary_key=True)
@@ -144,6 +169,10 @@ class HumiditySensor(db.Model):
 
 
 class HumidityReading(db.Model):
+    """
+    Represents a reading from a temperature and humidity sensor, containing data such as
+    humidity, pressure, temperature, and battery.
+    """
 
     __tablename__ = 'humidity_readings'
 
@@ -171,6 +200,9 @@ class HumidityReading(db.Model):
         }
 
 def connect_to_db(flask_app, db_uri="postgresql:///project_data", echo=True):
+    """
+    Connects the Flask app to the database.
+    """
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
