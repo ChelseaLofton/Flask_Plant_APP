@@ -1,3 +1,12 @@
+/**
+ * 
+ * Libraries: React
+ * Components: HumidityModal, HumidityButton, Humidity
+ */
+
+
+
+// HumidityModal component displays live sensor readings in a modal
 const HumidityModal = (props) => {
     const { humidityData, showModal, selectedHumidityId, handleClose } = props;
 
@@ -34,6 +43,7 @@ const HumidityModal = (props) => {
 };
 
 
+// HumidityButton component renders individual humidity sensor buttons
 const HumidityButton = (props) => {
     return (
         <button
@@ -47,24 +57,25 @@ const HumidityButton = (props) => {
     );
 };
 
+
 function Humidity() {
     const [humidityIds, setHumidityIds] = React.useState([]);
     const [humidityData, setHumidityData] = React.useState(null);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
 
+    // Fetch humidity sensor IDs from API
     React.useEffect(() => {
         const url = "/humidity.json";
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 setHumidityIds(data);
-                // console.log(data);
             });
     }, []);
 
+    // Handle click event on a humidity sensor button
     const handleHumidityClick = (humidityId) => {
-        // console.log(humidityId);
         const url = `/humidity/${humidityId}.json`;
         fetch(url)
             .then((response) => response.json())
@@ -75,6 +86,7 @@ function Humidity() {
             });
     };
 
+    // Handle closing the modal 
     const handleClose = () => {
         setShowModal(false);
     };
