@@ -1,6 +1,9 @@
 /**
+ * Description: This file contains the React components for the sensors element.
  * 
- * Libraries: React
+ * Language: JavaScript (JSX)
+ * Frameworks: React
+ * Libraries: React Bootstrap
  * Components: SensorModal, SensorButton, Sensor
  */
 
