@@ -18,7 +18,7 @@ const LightData = (props) => {
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-            
+
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
 
@@ -84,7 +84,11 @@ const LightChart = () => {
 
     return (
         <React.Fragment>
-            <h2>Light Readings</h2>
+            <div className="text-center">
+                <h2>Light Readings</h2>
+                <p>This chart shows light readings from sensors placed in the pots of specific plant taken in 5 minute intervals. <
+                    br/>Unreliable readings due to canopy cover.</p>
+            </div>
             <div className="container">
                 <div className="row">
                     <div className="col">
@@ -95,3 +99,4 @@ const LightChart = () => {
         </React.Fragment>
     );
 };
+
