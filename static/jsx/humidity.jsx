@@ -2,6 +2,7 @@
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Libraries: React Bootstrap
+ * APIS: Home Assistant
  * Components: HumidityModal, HumidityButton, Humidity
  */
 
