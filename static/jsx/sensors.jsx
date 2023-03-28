@@ -37,7 +37,8 @@ const SensorButton = (props) => {
         <div>
             <button
                 key={`sensor-${props.id}`}
-                id={`sensors=${props.id}-button`}
+                id={`sensor=${props.id}-button`}
+                className="sensor-button"
                 onClick={() => props.onClick(props.id)}
             >
                 Sensor {props.id}
