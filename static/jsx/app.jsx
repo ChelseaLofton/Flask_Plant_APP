@@ -6,6 +6,7 @@ function App() {
             <div className="content-container">  {/* Add a new flexbox container */}
                 <div className="main-content-container">
                     <div id="main-content"></div>
+                    
                     <Plant />
                 </div>
                 <Toolbox />
