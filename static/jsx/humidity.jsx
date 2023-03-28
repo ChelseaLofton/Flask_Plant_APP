@@ -18,10 +18,12 @@ const HumidityModal = (props) => {
                     <div className="modal-body">
                         {humidityData && (
                             <div id="plant-sensor-data">
-                                Humidity: {humidityData.humidity}%;
-                                Pressure: {humidityData.pressure};
-                                Temperature: {humidityData.temperature}°F;
-                                Battery: {humidityData.battery}%;
+                                <ul>
+                                    <li>Humidity: {humidityData.humidity}%</li>
+                                    <li>Pressure: {humidityData.pressure}</li>
+                                    <li>Temperature: {humidityData.temperature}°F</li>
+                                    <li>Battery: {humidityData.battery}%</li>
+                                </ul>
                             </div>
                         )}
                     </div>
@@ -30,6 +32,7 @@ const HumidityModal = (props) => {
         </div>
     );
 };
+
 
 const HumidityButton = (props) => {
     return (
