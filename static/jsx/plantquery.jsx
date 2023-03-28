@@ -1,8 +1,6 @@
 /** 
- * PlantQuery.jsx
- * 
  * Description: This file contains the React components to query the PlantBook API.
-
+ * 
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Libraries: React Bootstrap
