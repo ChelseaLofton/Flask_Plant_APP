@@ -89,12 +89,11 @@ function Plant() {
                 setPlantBookData(plant_data);
             });
     };
-    
+
 
     const handleClose = () => {
         setShowModal(false);
     };
-
 
     return (
         <React.Fragment>

@@ -1,18 +1,16 @@
-/* Images */
-.round-image {
-    border-radius: 50%;
-    width: 100%;
-    max-width: 400px;
+/* New CSS rule */
+.content-container {
+    display: flex;
 }
 
+/* Plants */
 .round-image {
-    width: 100%;
-    height: auto;
     border-radius: 50%;
+    width: 120px;
+    height: auto;
     object-fit: cover;
 }
 
-/* Buttons */
 .plant-button {
     display: flex;
     align-items: center;
@@ -23,43 +21,32 @@
     cursor: pointer;
 }
 
-.humidity-button,
-.sensor-button {
-    margin-right: 5px;
-    margin-bottom: 5px;
+.main-content-container {
+    width: 70%;
 }
 
-/* Grid Layout */
-.row .col-md-3:nth-child(4n + 1) {
-    clear: left;
-}
-
-@media (max-width: 767.98px) {
-    .row .col-sm-6:nth-child(2n + 1) {
-        clear: left;
-    }
-}
-
-/* Toolbox */
+/* Adjust toolbox-container CSS */
 .toolbox-container {
-    position: absolute;
-    top: 0;
-    right: 0;
     width: 30%;
-    height: 100%;
+    height: fit-content;
+    /* Change height to fit-content */
     background-color: #f7f7f7;
     border: 1px solid #ccc;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-gap: 20px;
     padding: 20px;
-    overflow: auto;
 }
 
 .toolbox-group {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* New CSS rule for ChartCarousel */
+#chartCarousel {
+    margin-top: 20px;
 }
 
 /* Sensors */
@@ -69,7 +56,6 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
 }
 
 #sensor-ids {
@@ -86,99 +72,6 @@
     margin-right: 10px;
     margin-top: 5px;
     padding: 5px;
-}
-
-/* Outlets */
-#outlet-ids {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.outlet-container {
-    width: 48%;
-    margin-bottom: 20px;
-}
-
-.outlet-title {
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.outlet-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.outlet-switch {
-    display: flex;
-    align-items: center;
-}
-
-.outlet-switch label {
-    margin-right: 10px;
-}
-
-.switch {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    background-color: #ccc;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.switch.on {
-    background-color: #4CAF50;
-}
-
-.switch.off {
-    background-color: #f44336;
-}
-
-/* Humidity */
-#humidity-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-/* Images */
-.round-image {
-    border-radius: 50%;
-    width: 100%;
-    max-width: 400px;
-}
-
-.round-image {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Buttons */
-.plant-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.humidity-button {
-margin-right: 10px;
-margin-bottom: 10px;
 }
 
 .sensor-button {
@@ -188,62 +81,6 @@ margin-bottom: 10px;
     padding: 0.5rem;
 }
 
-/* Grid Layout */
-.row .col-md-3:nth-child(4n + 1) {
-    clear: left;
-}
-
-@media (max-width: 767.98px) {
-    .row .col-sm-6:nth-child(2n + 1) {
-        clear: left;
-    }
-}
-
-/* Toolbox */
-.toolbox-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 20px;
-    padding: 20px;
-}
-
-.toolbox-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Sensors */
-#sensor-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-#sensor-ids {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: 0;
-    padding-right: 0;
-}
-
-#sensor-ids>div {
-    width: 23%;
-    margin-bottom: 5px;
-    margin-right: 10px;
-    margin-top: 5px;
-    padding: 5px;
-}
 
 /* Outlets */
 #outlet-ids {
@@ -297,6 +134,7 @@ margin-bottom: 10px;
 .switch.off {
     background-color: #f44336;
 }
+
 
 /* Humidity */
 #humidity-container {
@@ -331,4 +169,9 @@ margin-bottom: 10px;
 .humidity-value {
     font-size: 24px;
     margin-top: 0;
+}
+
+.humidity-button {
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

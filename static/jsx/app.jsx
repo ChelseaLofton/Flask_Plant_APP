@@ -3,17 +3,18 @@
 function App() {
     return (
         <div>
-            <Toolbox />
-            <div id="main-content"></div>
-            <Plant />
+            <div className="content-container">  {/* Add a new flexbox container */}
+                <div className="main-content-container">
+                    <div id="main-content"></div>
+                    <Plant />
+                </div>
+                <Toolbox />
+            </div>
             
-            <h2>Plant Library Query</h2>
-            <PlantData /> 
             <ChartCarousel />
         </div>
     );
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
@@ -48,6 +49,10 @@ function ChartCarousel() {
 function Toolbox() {
     return (
         <div className="toolbox-container">
+            <div className="toolbox-group">
+                <h2>Plant Library</h2>
+                <PlantData />
+            </div>
             <div className="toolbox-group">
                 <h2>Plant Sensors</h2>
                 <Sensor />
