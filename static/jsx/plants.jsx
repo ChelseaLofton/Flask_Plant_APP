@@ -67,12 +67,15 @@ const PlantModal = (props) => {
 // PlantButton component displays a button with a plant image
 const PlantButton = (props) => {
     const { id, onClick } = props;
+    const displayName = id.slice(0, -3);
     return (
         <button className="plant-button" type="button" onClick={() => onClick(id)}>
-            <img className="round-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
+            <img className="plant-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
+            <div className="plant-id">{displayName}</div>
         </button>
     );
 };
+
 
 
 function Plant() {
@@ -115,23 +118,13 @@ function Plant() {
         <React.Fragment>
             <h2>All Plant Data</h2>
             <div className="container">
-                {plantIds && (
-                    <React.Fragment>
-                        {plantIds.reduce((rows, plantID, i) => {
-                            if (i % 4 === 0) rows.push([]);
-                            rows[rows.length - 1].push(plantID);
-                            return rows;
-                        }, []).map((row, index) => (
-                            <div className="row" key={`row-${index}`}>
-                                {row.map((plantID) => (
-                                    <div className="col-md-3" key={plantID}>
-                                        <PlantButton id={plantID} onClick={handleButtonClick} />
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </React.Fragment>
-                )}
+                <div className="row">
+                    {plantIds && plantIds.map((plantID) => (
+                        <div className="col-md-3" key={plantID}>
+                            <PlantButton id={plantID} onClick={handleButtonClick} />
+                        </div>
+                    ))}
+                </div>
                 <PlantModal
                     plantBookData={plantBookData}
                     sensorData={sensorData}
