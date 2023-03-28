@@ -1,6 +1,16 @@
+
 import os
 import json
 from homeassistant_api import Client
+
+
+"""
+This script uses the Home Assistant API to query information about plant sensors, humidity sensors, and outlets.
+
+Language: Python
+Libraries: os, json, homeassistant_api
+API: Home Assistant API (https://www.home-assistant.io/)
+"""
 
 
 # Home Assistant API configuration

@@ -1,14 +1,15 @@
-import os
-import json
-import requests
-import urllib.parse
-
 """
 This script uses the PlantBook API to query information about plants.
 
 Language: Python
 API: PlantBook API (https://open.plantbook.io/)
 """
+
+import os
+import json
+import requests
+import urllib.parse
+
 """
 IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACCESS_TOKEN and add it to secrets.sh:
 
