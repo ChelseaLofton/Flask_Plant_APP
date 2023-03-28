@@ -1,4 +1,6 @@
 /**
+ * Description: Outlet buttons for Home Assistant
+ * 
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Components: OutletButtons, Outlets
