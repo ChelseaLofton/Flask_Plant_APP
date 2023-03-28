@@ -85,7 +85,6 @@ function PlantData() {
     };
     return (
         <React.Fragment>
-            <h2>Plant Data</h2>
             <div className="container">
                 <div className="row">
                     <div className="col">

@@ -3,11 +3,12 @@
 function App() {
     return (
         <div>
+            <Toolbox />
+            <div id="main-content"></div>
             <Plant />
-            <Outlets />
-            <PlantData />
-            <Humidity />
-            <Sensor />
+            
+            <h2>Plant Library Query</h2>
+            <PlantData /> 
             <ChartCarousel />
         </div>
     );
@@ -39,6 +40,26 @@ function ChartCarousel() {
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
             </button>
+        </div>
+    );
+}
+
+
+function Toolbox() {
+    return (
+        <div className="toolbox-container">
+            <div className="toolbox-group">
+                <h2>Plant Sensors</h2>
+                <Sensor />
+            </div>
+            <div className="toolbox-group">
+                <h2>Outlets States</h2>
+                <Outlets />
+            </div>
+            <div className="toolbox-group">
+                <h2>Humidity Data</h2>
+                <Humidity />
+            </div>
         </div>
     );
 }

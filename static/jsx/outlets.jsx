@@ -1,10 +1,10 @@
 const OutletButtons = ({ outletID, switches, toggleOutletState }) => {
     return (
-        <React.Fragment>
+        <div className="outlet-buttons">
             {Object.keys(switches).map(switchID => {
                 const switchState = switches[switchID];
                 return (
-                    <div key={switchID}>
+                    <div key={switchID} className="outlet-switch">
                         <label htmlFor={`outlet_${outletID}_${switchID}`}>Switch {switchID}:</label>
                         <button
                             id={`${outletID}_${switchID}`}
@@ -16,11 +16,9 @@ const OutletButtons = ({ outletID, switches, toggleOutletState }) => {
                     </div>
                 );
             })}
-        </React.Fragment>
+        </div>
     );
 };
-
-
 
 function Outlets() {
     const [outlets, setOutlets] = React.useState([]);
@@ -32,6 +30,17 @@ function Outlets() {
                 setOutlets(data);
             });
     }, []);
+
+    const getOutletName = (outletID) => {
+        if (outletID === 'livingroom') {
+            return 'Living Room';
+        } else if (outletID === 'propagation') {
+            return 'Propagation';
+        } else {
+            return outletID;
+        }
+    }
+
 
     const toggleOutletState = (outletID, switchID, switchButton) => {
         const currentState = switchButton.innerText;
@@ -57,22 +66,20 @@ function Outlets() {
             });
     };
 
-    return (
-        <React.Fragment>
-            <h2> Outlet States</h2>
-            <div id="outlet-ids">
-                {Object.keys(outlets).map(outletID => {
-                    const switches = outlets[outletID];
-                    return (
-                        <div key={outletID}>
-                            <p>Outlet {outletID}:</p>
-                            <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
-                        </div>
-                    );
-                })}
-            </div>
-        </React.Fragment>
-    );
-};
+return (
+    <React.Fragment>
+        <div id="outlet-ids" style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+            {Object.keys(outlets).map(outletID => {
+                const switches = outlets[outletID];
+                return (
+                    <div key={outletID} style={{ width: "50%", margin: "0 5px 10px 5px", padding: "10px", border: "1px solid #ccc" }}>
+                        <p>{getOutletName(outletID)}:</p>
+                        <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
+                    </div>
+                );
+            })}
+        </div>
+    </React.Fragment>
+);
 
-window.Outlets = Outlets;
+}

@@ -34,7 +34,6 @@ const SensorButton = (props) => {
                 key={`sensor-${props.id}`}
                 id={`sensors=${props.id}-button`}
                 onClick={() => props.onClick(props.id)}
-                className="btn btn-primary btn-sm"
             >
                 Sensor {props.id}
             </button>
@@ -73,17 +72,10 @@ function Sensor() {
 
     return (
         <React.Fragment>
-            <div className="container">
-                <h2>Sensor Data</h2>
-                <div className="card">
-                    <div className="card-body row row-cols-3 g-3">
-                        {sensorIds.map((sensorID) => (
-                            <div className="col" key={sensorID}>
-                                <SensorButton id={sensorID} onClick={handleSensorClick} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            <div id="sensor-ids">
+                {sensorIds.map((sensorID) => (
+                    <SensorButton id={sensorID} onClick={handleSensorClick} />
+                ))}
             </div>
             <SensorModal
                 sensorData={sensorData}
