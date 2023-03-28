@@ -1,56 +1,65 @@
-import requests
 import os
 import json
+import requests
 import urllib.parse
 
 """
-First Things First!
-    IMPORTANT! The $PLANTBOOK_ACCESS_TOKEN needs to be written in secrets.sh. 
+This script uses the PlantBook API to query information about plants.
 
-Run this in the terminal once a day. The API_TOKEN is good for 86400 seconds. Curl command was
-found in the PlantBook API documentation.
+Language: Python
+API: PlantBook API (https://open.plantbook.io/)
+"""
+"""
+IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACCESS_TOKEN and add it to secrets.sh:
 
-Run this =>
+1. Run the following command in the terminal to get a new API token (valid for 86400 seconds):
 
     export PLANTBOOK_ACCESS_TOKEN=$(curl --location 'https://open.plantbook.io/api/v1/token/' \
         --form 'grant_type="client_credentials"' \
         --form "client_id=\"${CLIENT_ID}\"" \
         --form "client_secret=\"${CLIENT_SECRET}\"" -s | jq -r .access_token)
 
+2. To test the token, run the following command:
+
     curl 'https://open.plantbook.io/api/v1/plant/detail/platanus%20acerifolia/' \
         -H "Authorization: Bearer ${PLANTBOOK_ACCESS_TOKEN}" \
         -H "Accept: application/json" | jq
 
-        
-To get the PlantBook API token to copy and paste into secrets.sh
-Dont' forget to source secrets.sh after it has been added to secrets.sh
+3. To display the token, run:
 
-Run this in the terminal =>
-    
     echo $PLANTBOOK_ACCESS_TOKEN
 
+4. Copy the displayed token and paste it into the secrets.sh file.
 
-    """
+5. Don't forget to source secrets.sh after adding the token:
 
-
+    source secrets.sh
+"""
 class PlantBookAPI(object):
-
     BASE_URL = "https://open.plantbook.io/api/v1"
 
     def __init__(self, client_id, client_secret):
+        """
+        Initialize the PlantBookAPI client with client_id and client_secret.
 
+        :param client_id: The client ID for the PlantBook API.
+        :param client_secret: The client secret for the PlantBook API.
+        """
         self.client_id = client_id
         self.client_secret = client_secret
         self.logged_in = False
-
 
         token = os.environ.get("PLANTBOOK_ACCESS_TOKEN", None)
         if token is not None:
             self._create_session(token)
 
 
-
     def login(self):
+        """
+        Log in to the PlantBook API and store the access_token.
+
+        :return: True if logged in successfully, otherwise raises an exception.
+        """
         if self.logged_in:
             return True
 
@@ -65,11 +74,16 @@ class PlantBookAPI(object):
             raise Exception(
                 f"Unable to generate access_token (HTTP {r.status_code})")
 
-        self._create_session(response.json()["access_token"])
+        self._create_session(r.json()["access_token"])
         return True
 
 
     def _create_session(self, token):
+        """
+        Create a session with the PlantBook API using the access_token.
+
+        :param token: The access_token for the PlantBook API.
+        """
         self.session = requests.Session()
         self.session.headers.update({
             'Authorization': f"Bearer {token}"
@@ -88,9 +102,15 @@ class PlantBookAPI(object):
     
     
     def get(self, endpoint, **kwargs):
+        """
+        Make a GET request to the PlantBook API.
+
+        :param endpoint: The API endpoint to query.
+        :param kwargs: The query parameters for the API endpoint.
+        :return: The API response.
+        """
         url = f"{PlantBookAPI.BASE_URL}{endpoint}"
         return self.session.get(url, params=kwargs)
-
 
 # Uncomment to test.
 client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
@@ -98,6 +118,5 @@ client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 
 
 # pid = "platanus acerifolia"
-
 # calathea_11 = client.get(f"/plant/detail/{urllib.parse.quote(pid)}/").json()
 # print(calathea_11)
