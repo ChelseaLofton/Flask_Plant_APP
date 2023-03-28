@@ -85,7 +85,10 @@ const MoistureChart = () => {
 
     return (
         <React.Fragment>
-            <h2>Soil Moisture</h2>
+            <div className="text-center">
+                <h2>Soil Moisture</h2>
+                <p>This chart shows soil moisture readings from sensors placed in the pots of specific plants taken in 5 minute intervals. <br />Note: Readings may not be accurate due to sensor placement.</p>
+            </div>
             <div className="container">
                 <div className="row">
                     <div className="col">
