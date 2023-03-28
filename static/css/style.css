@@ -3,6 +3,20 @@
     display: flex;
 }
 
+
+/*Plant query*/
+input[type="text"] {
+    border-radius: 5px;
+    padding: 5px;
+}
+
+button[type="submit"] {
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+
+
 /* Plants */
 .round-image {
     border-radius: 10px;
@@ -80,7 +94,8 @@
     margin-right: 5px;
     margin-bottom: 5px;
     font-size: 0.8rem;
-    padding: 0.7rem 1.2rem; /* increase the padding here */
+    padding: 0.7rem 1.2rem;
+    /* increase the padding here */
     border-radius: 10px;
     border: 1px solid black;
 }
