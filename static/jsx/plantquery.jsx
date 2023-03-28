@@ -1,5 +1,17 @@
+/** 
+ * PlantQuery.jsx
+ * 
+ * Description: This file contains the React components to query the PlantBook API.
+
+ * Language: JavaScript (JSX)
+ * Frameworks: React
+ * Libraries: React Bootstrap
+ * APIs: PlantBook API
+ * Components: PlantDataModal, PlantForm, PlantData
+ */
 
 
+// PlantDataModal component displays plant library data in a modal
 const PlantDataModal = (props) => {
     const { showModal, handleClose, plantData } = props;
     console.log(plantData);
@@ -32,6 +44,7 @@ const PlantDataModal = (props) => {
 };
 
 
+// PlantForm component renders the form to query the PlantBook API
 const PlantForm = (props) => {
     const { onSubmit, pid, handleChange } = props;
     console.log(pid)
@@ -58,11 +71,12 @@ function PlantData() {
     const [plantData, setPlantData] = React.useState(null);
     console.log(plantData);
 
-
+    // Handle change in input field
     const handleChange = (event) => {
         setPid(event.target.value);
     };
 
+    // Handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
         const response = await fetch("/plantbook-query", {
@@ -80,6 +94,7 @@ function PlantData() {
         }
     };
 
+    // Handle closing modal
     const handleClose = () => {
         setShowModal(false);
     };
