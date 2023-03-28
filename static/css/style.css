@@ -5,11 +5,13 @@
 
 /* Plants */
 .round-image {
-    border-radius: 50%;
-    width: 120px;
-    height: auto;
+    border-radius: 10px;
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
 }
+
 
 .plant-button {
     display: flex;
@@ -79,6 +81,7 @@
     margin-bottom: 5px;
     font-size: 0.8rem;
     padding: 0.5rem;
+    border-radius: 10px;
 }
 
 
