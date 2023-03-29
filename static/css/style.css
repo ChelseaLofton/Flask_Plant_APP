@@ -192,7 +192,7 @@ button[type="submit"] {
     justify-content: space-between;
     padding-left: 15px;
     padding-right: 0;
-    gap: 5px;
+    gap: 3px; /* Reduce gap between buttons */
 }
 
 .humidity-item {
@@ -216,10 +216,14 @@ button[type="submit"] {
 }
 
 .humidity-button {
-    margin-right: 10px;
-    margin-bottom: 10px;
+    width: 120px; /* Fixed width for button */
+    margin-right: 5px;
+    margin-bottom: 5px;
     font-size: 0.7rem;
-    padding: 0.5rem .7rem;
+    padding: 0.5rem 0.7rem;
     border-radius: 10px;
     border: 1px solid black;
+    text-overflow: ellipsis; /* Truncate overflowing text */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
 }
