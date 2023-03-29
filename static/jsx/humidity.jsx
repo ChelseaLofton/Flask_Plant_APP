@@ -13,6 +13,7 @@
 // HumidityModal component displays live sensor readings in a modal
 const HumidityModal = (props) => {
     const { humidityData, showModal, selectedHumidityId, handleClose } = props;
+    const displayName = getNameForId(selectedHumidityId);
 
     return (
         <div
@@ -24,7 +25,7 @@ const HumidityModal = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title">{selectedHumidityId} Atmospheric Humidity</h2>
+                        <h2 className="modal-title">{displayName} Atmospheric Humidity</h2>
 
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
@@ -49,6 +50,7 @@ const HumidityModal = (props) => {
 
 // HumidityButton component renders individual humidity sensor buttons
 const HumidityButton = (props) => {
+    const displayName = getNameForId(props.id);
     return (
         <button
             key={`humidity-${props.id}`}
@@ -56,20 +58,23 @@ const HumidityButton = (props) => {
             className="humidity-button"
             onClick={() => props.onClick(props.id)}
         >
-            {props.id}
+            {displayName}
         </button>
     );
 };
 
+function getNameForId(id) {
+    switch (id) {
+        case 'livingroom':
+            return 'Living Room';
+        case 'propagation':
+            return 'Propagation Tent';
+        // add more cases for other ids as needed
+        default:
+            return id;
+    }
+}
 
-const formatEntityId = (entityId) => {
-    const formattedIdMap = {
-        livingroom: "Living Room",
-        propagation: "Propagation Tent",
-    };
-
-    return formattedIdMap[entityId] || entityId;
-};
 
 function Humidity() {
     const [humidityIds, setHumidityIds] = React.useState([]);
@@ -90,6 +95,7 @@ function Humidity() {
     // Handle click event on a humidity sensor button
     const handleHumidityClick = (humidityId) => {
         const url = `/humidity/${humidityId}.json`;
+        // console.log(humidityId);
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
@@ -116,7 +122,7 @@ function Humidity() {
             <div>
                 <HumidityModal
                     humidityData={humidityData}
-                    setSelectedHumidityId={selectedHumidityId}
+                    selectedHumidityId={selectedHumidityId}
                     showModal={showModal}
                     handleClose={handleClose}
                 />
