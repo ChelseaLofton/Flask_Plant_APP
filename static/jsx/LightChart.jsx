@@ -38,34 +38,38 @@ const LightData = (props) => {
             };
 
             const chartConfig = {
-                type: "line",
+                type: 'line',
                 data: data,
                 options: {
                     scales: {
                         x: {
-                            type: "time",
+                            type: 'time',
                             time: {
-                                unit: "day",
+                                unit: 'hour',
+                                tooltipFormat: 'MMM d, h a',
                                 displayFormats: {
-                                    hour: "HH:mm",
-                                    day: "MMM D",
+                                    hour: 'MMM d, h a'
                                 },
+                            },
+                            ticks: {
+                                source: 'data'
                             },
                         },
                     },
                     plugins: {
                         legend: {
-                            position: "right",
-                            align: "start",
+                            position: 'right',
+                            align: 'start',
                             labels: {
                                 usePointStyle: true,
-                                pointStyle: "circle",
+                                pointStyle: 'circle',
                             },
                         },
                     },
                     layout: {
                         padding: {
-                            right: 10, // adjust as needed
+                            right: 10,
+                            bottom: 50
                         },
                     },
                 },

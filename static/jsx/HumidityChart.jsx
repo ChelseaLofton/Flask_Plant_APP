@@ -25,7 +25,7 @@ const HumidityData = (props) => {
                 const label = sensorId === 'livingroom' ? 'Living Room' : 'Propagation';
                 const borderColor = `hsl(${index * (360 / sensorIds.length)}, 100%, 50%)`;
                 const backgroundColor = `hsla(${index * (360 / sensorIds.length)}, 100%, 50%, 0.2)`;
-                
+
 
                 return {
                     label: label,
@@ -35,45 +35,50 @@ const HumidityData = (props) => {
                     })),
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
-                    pointStyle: 'circle', 
+                    pointStyle: 'circle',
                 };
             });
 
             const data = { datasets };
-
             const chartConfig = {
-                type: "line",
+                type: 'line',
                 data: data,
                 options: {
                     scales: {
                         x: {
-                            type: "time",
+                            type: 'time',
                             time: {
-                                unit: "day",
+                                unit: 'hour',
+                                tooltipFormat: 'MMM d, h a',
                                 displayFormats: {
-                                    hour: "HH:mm",
-                                    day: "MMM D",
+                                    hour: 'MMM d, h a'
                                 },
+                            },
+                            ticks: {
+                                source: 'data'
                             },
                         },
                     },
                     plugins: {
                         legend: {
-                            position: "right",
-                            align: "start",
+                            position: 'right',
+                            align: 'start',
                             labels: {
                                 usePointStyle: true,
-                                pointStyle: "circle",
+                                pointStyle: 'circle',
                             },
                         },
                     },
                     layout: {
                         padding: {
-                            right: 10, // adjust as needed
+                            right: 10,
+                            bottom: 50
                         },
                     },
                 },
             };
+
+
 
 
             const chartCanvas = chartRef.current;
