@@ -178,6 +178,7 @@ button[type="submit"] {
 }
 
 
+
 /* Humidity */
 #humidity-container {
     display: flex;
@@ -192,21 +193,13 @@ button[type="submit"] {
     justify-content: space-between;
     padding-left: 15px;
     padding-right: 0;
-    gap: 3px; /* Reduce gap between buttons */
+
 }
 
 .humidity-item {
-    width: calc(100% / 3 - 5px);
+    width: calc(33.33% - 5px);
     margin-bottom: 10px;
-    padding: 5px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#humidity-ids p {
-    margin-bottom: 5px;
-    font-size: 16px;
     justify-content: center;
 }
 
@@ -216,14 +209,21 @@ button[type="submit"] {
 }
 
 .humidity-button {
-    width: 120px; /* Fixed width for button */
-    margin-right: 5px;
-    margin-bottom: 5px;
-    font-size: 0.7rem;
-    padding: 0.5rem 0.7rem;
+    font-size: 14px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid black;
-    text-overflow: ellipsis; /* Truncate overflowing text */
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflowing text */
+    text-overflow: clip;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: break-word;
+    aspect-ratio: 1/1; /* Set aspect ratio of the button to 1:1 */
 }
+
+
+
+
+
+
+
+
