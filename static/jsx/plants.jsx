@@ -69,12 +69,15 @@ const PlantButton = (props) => {
     const { id, onClick } = props;
     const displayName = id.slice(0, -3);
     return (
-        <button className="plant-button" type="button" onClick={() => onClick(id)}>
-            <img className="plant-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
-            <div className="plant-id">{displayName}</div>
-        </button>
+        <div className="plant-container">
+            <button className="plant-button" type="button" onClick={() => onClick(id)}>
+                <img className="plant-image" key={`sensor-${id}`} id={`sensors=${id}-button`} src={`/static/images/project photos/${id}.png`} />
+                <div className="plant-id">{displayName}</div>
+            </button>
+        </div>
     );
 };
+
 
 
 
