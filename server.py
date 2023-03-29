@@ -61,11 +61,11 @@ def view_plant_data(plant_id):
     return jsonify({"plant_data": plant_data.to_dict(), "sensor_readings": sensor_readings})
 
 
-@ app.route('/sensors.json')
+@app.route('/sensors.json')
 def view_all_sensors():
     """View all sensors."""
 
-    sensors = PlantSensor.query.all()
+    sensors = PlantSensor.query.order_by(PlantSensor.sensor_id.asc()).all()
     sensor_ids = [sensor.sensor_id for sensor in sensors]
 
     return jsonify(sensor_ids)

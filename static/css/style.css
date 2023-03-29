@@ -4,7 +4,12 @@
     justify-content: space-between; 
 }
 
-
+/* Modal Rules */
+.modal-body ul {
+    list-style-type: disc;
+    margin-left: 1.5rem; /* Adjust this value as needed */
+    text-align: left;
+}
 
 /*Plant query*/
 input[type="text"] {
