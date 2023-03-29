@@ -25,6 +25,7 @@ const HumidityData = (props) => {
                 const label = sensorId === 'livingroom' ? 'Living Room' : 'Propagation';
                 const borderColor = `hsl(${index * (360 / sensorIds.length)}, 100%, 50%)`;
                 const backgroundColor = `hsla(${index * (360 / sensorIds.length)}, 100%, 50%, 0.2)`;
+                
 
                 return {
                     label: label,
@@ -34,29 +35,46 @@ const HumidityData = (props) => {
                     })),
                     borderColor: borderColor,
                     backgroundColor: backgroundColor,
+                    pointStyle: 'circle', 
                 };
             });
 
             const data = { datasets };
 
             const chartConfig = {
-                type: 'line',
+                type: "line",
                 data: data,
                 options: {
                     scales: {
                         x: {
-                            type: 'time',
+                            type: "time",
                             time: {
-                                unit: 'day',
+                                unit: "day",
                                 displayFormats: {
-                                    hour: 'HH:mm',
-                                    day: 'MMM D',
+                                    hour: "HH:mm",
+                                    day: "MMM D",
                                 },
                             },
                         },
                     },
+                    plugins: {
+                        legend: {
+                            position: "right",
+                            align: "start",
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: "circle",
+                            },
+                        },
+                    },
+                    layout: {
+                        padding: {
+                            right: 10, // adjust as needed
+                        },
+                    },
                 },
             };
+
 
             const chartCanvas = chartRef.current;
             const chart = new Chart(chartCanvas, chartConfig);

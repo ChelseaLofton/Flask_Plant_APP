@@ -65,7 +65,7 @@ button[type="submit"] {
 
 
 
-/* Adjust toolbox-container CSS */
+/* oolbox-container CSS */
 .toolbox-container {
     width: 30%;
     height: fit-content;
@@ -83,10 +83,11 @@ button[type="submit"] {
     align-items: center;
 }
 
-/* New CSS rule for ChartCarousel */
+/* ChartCarousel */
 #chartCarousel {
     margin-top: 20px;
 }
+
 
 /* Sensors */
 #sensor-container {
