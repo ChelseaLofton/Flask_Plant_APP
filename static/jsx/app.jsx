@@ -16,10 +16,12 @@ function App() {
     return (
         <div className="container-fluid">
             <div className="row">
-                <div className="col-xl-9 col-lg-8 col-md-7 col-sm-12">
-                    <Plant />
+                <div className="col-lg-8 col-md-6 col-sm-12">
+                    <div className="row">
+                        <Plant />
+                    </div>
                 </div>
-                <div className="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                <div className="col-lg-4 col-md-6 col-sm-12 ">
                     <Toolbox />
                 </div>
             </div>
@@ -31,6 +33,7 @@ function App() {
         </div>
     );
 }
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

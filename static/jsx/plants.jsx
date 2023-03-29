@@ -118,23 +118,17 @@ function Plant() {
     };
 
     return (
-        <React.Fragment>
-            <div className="container">
-                <div className="row">
-                    {plantIds && plantIds.map((plantID) => (
-                        <div className="col-md-3" key={plantID}>
-                            <PlantButton id={plantID} onClick={handleButtonClick} />
-                        </div>
-                    ))}
-                </div>
-                <PlantModal
-                    plantBookData={plantBookData}
-                    sensorData={sensorData}
-                    selectedPlantId={selectedPlantId}
-                    showModal={showModal}
-                    handleClose={handleClose}
-                />
-            </div>
-        </React.Fragment>
+        <div className="plant-container plant-grid">
+            {plantIds.map((plantId) => (
+                <PlantButton key={plantId} id={plantId} onClick={handleButtonClick} />
+            ))}
+            <PlantModal
+                plantBookData={plantBookData}
+                sensorData={sensorData}
+                selectedPlantId={selectedPlantId}
+                showModal={showModal}
+                handleClose={handleClose}
+            />
+        </div>
     );
 }
