@@ -16,11 +16,8 @@ function App() {
     return (
         <div>
             <div className="content-container"> 
-                <div className="main-content-container">
-                    <div id="main-content"></div>
                     
-                    <Plant />
-                </div>
+                <Plant />
                 <Toolbox />
             </div>
             

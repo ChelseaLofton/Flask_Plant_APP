@@ -119,7 +119,6 @@ function Plant() {
 
     return (
         <React.Fragment>
-            <h2>All Plant Data</h2>
             <div className="container">
                 <div className="row">
                     {plantIds && plantIds.map((plantID) => (

@@ -24,7 +24,7 @@ const HumidityModal = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title">Live Sensor Readings</h2>
+                        <h2 className="modal-title">{selectedHumidityId} Atmospheric Humidity</h2>
 
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
@@ -61,6 +61,15 @@ const HumidityButton = (props) => {
     );
 };
 
+
+const formatEntityId = (entityId) => {
+    const formattedIdMap = {
+        livingroom: "Living Room",
+        propagation: "Propagation Tent",
+    };
+
+    return formattedIdMap[entityId] || entityId;
+};
 
 function Humidity() {
     const [humidityIds, setHumidityIds] = React.useState([]);

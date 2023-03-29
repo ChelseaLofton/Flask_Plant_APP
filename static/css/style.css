@@ -1,11 +1,9 @@
 /* New CSS rule */
 .content-container {
     display: flex;
+    justify-content: space-between; 
 }
 
-.main-content-container {
-    width: 70%;
-}
 
 
 /*Plant query*/
@@ -24,10 +22,12 @@ button[type="submit"] {
 /* Plants */
 .plant-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px; 
 }
+
 
 .plant-name {
     margin-bottom: 0.5rem;
@@ -41,13 +41,15 @@ button[type="submit"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 1rem 0.25rem; 
     border: 1px solid black;
     border-radius: 10px;
     background: transparent;
     cursor: pointer;
     position: relative;
+    margin-bottom: 15px;
 }
+
 
 .plant-image {
     width: 150px;
@@ -65,9 +67,9 @@ button[type="submit"] {
 
 
 
-/* oolbox-container CSS */
+/* Toolbox-container CSS */
 .toolbox-container {
-    width: 30%;
+    width: 35%;
     height: fit-content;
     background-color: #f7f7f7;
     border: 1px solid #ccc;
@@ -117,9 +119,8 @@ button[type="submit"] {
 .sensor-button {
     margin-right: 5px;
     margin-bottom: 5px;
-    font-size: 0.8rem;
-    padding: 0.7rem 1.2rem;
-    /* increase the padding here */
+    font-size: 0.7rem; /* Reduced font-size */
+    padding: 0.4rem 0.8rem; /* Reduced padding */
     border-radius: 10px;
     border: 1px solid black;
 }
@@ -218,8 +219,8 @@ button[type="submit"] {
 .humidity-button {
     margin-right: 10px;
     margin-bottom: 10px;
-    font-size: 1rem;
-    padding: 1rem;
+    font-size: 0.6rem; /* Reduced font-size */
+    padding: 0.3rem 0.6rem; /* Reduced padding */
     border-radius: 10px;
     border: 1px solid black;
 }
