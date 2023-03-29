@@ -86,7 +86,7 @@ const LightChart = () => {
         <React.Fragment>
             <div className="text-center">
                 <h2>Light Readings</h2>
-                <p>This chart shows light readings from sensors placed in the pots of specific plant taken in 5 minute intervals. <
+                <p>This chart shows light readings for sensors placed in the pots of specific plant from the last 24 hours taken in 5 minute intervals. <
                     br/>Unreliable readings due to canopy cover.</p>
             </div>
             <div className="container">
