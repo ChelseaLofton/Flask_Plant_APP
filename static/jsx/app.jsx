@@ -14,17 +14,24 @@
 // Main App component
 function App() {
     return (
-        <div>
-            <div className="content-container"> 
-                    
-                <Plant />
-                <Toolbox />
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-xl-9 col-lg-8 col-md-7 col-sm-12">
+                    <Plant />
+                </div>
+                <div className="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+                    <Toolbox />
+                </div>
             </div>
-            
-            <ChartCarousel />
+            <div className="row">
+                <div className="col-12">
+                    <ChartCarousel />
+                </div>
+            </div>
         </div>
     );
 }
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 

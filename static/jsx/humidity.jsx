@@ -108,7 +108,9 @@ function Humidity() {
         <React.Fragment>
             <div id="humidity-ids">
                 {humidityIds.map((humidityID) => (
-                    <HumidityButton key={humidityID} id={humidityID} onClick={handleHumidityClick} />
+                    <div key={humidityID} className="humidity-item">
+                        <HumidityButton id={humidityID} onClick={handleHumidityClick} />
+                    </div>
                 ))}
             </div>
             <div>

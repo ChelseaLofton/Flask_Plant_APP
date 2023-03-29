@@ -1,8 +1,4 @@
-/* New CSS rule */
-.content-container {
-    display: flex;
-    justify-content: space-between; 
-}
+
 
 /* Modal Rules */
 .modal-body ul {
@@ -31,7 +27,7 @@ button[type="submit"] {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 10px; 
-}
+} 
 
 
 .plant-name {
@@ -74,15 +70,16 @@ button[type="submit"] {
 
 /* Toolbox-container CSS */
 .toolbox-container {
-    width: 35%;
-    height: fit-content;
+    width: 100%;
     background-color: #f7f7f7;
     border: 1px solid #ccc;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 20px;
     padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+
+
 
 .toolbox-group {
     display: flex;
@@ -98,9 +95,6 @@ button[type="submit"] {
 
 /* Sensors */
 #sensor-container {
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     flex-direction: column;
 }
@@ -111,13 +105,12 @@ button[type="submit"] {
     justify-content: space-between;
     padding-left: 0;
     padding-right: 0;
+    gap: 5px;
 }
 
 #sensor-ids>div {
-    width: 23%;
+    width: calc(100% / 3 - 5px);
     margin-bottom: 5px;
-    margin-right: 15px;
-    margin-top: 5px;
     padding: 5px;
 }
 
@@ -140,9 +133,10 @@ button[type="submit"] {
 }
 
 .outlet-container {
-    width: 48%;
+    width: calc(100% / 2 - 5px);
     margin-bottom: 20px;
 }
+
 
 .outlet-title {
     margin-bottom: 10px;
@@ -188,9 +182,6 @@ button[type="submit"] {
 
 /* Humidity */
 #humidity-container {
-    position: absolute;
-    top: 0;
-    right: 0;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -200,15 +191,18 @@ button[type="submit"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-left: 0;
+    padding-left: 15px;
     padding-right: 0;
+    gap: 5px;
 }
 
-#humidity-ids>div {
-    width: 23%;
+.humidity-item {
+    width: calc(100% / 3 - 5px);
     margin-bottom: 10px;
-    margin-right: 10px;
     padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #humidity-ids p {
@@ -224,8 +218,9 @@ button[type="submit"] {
 .humidity-button {
     margin-right: 10px;
     margin-bottom: 10px;
-    font-size: 0.6rem; /* Reduced font-size */
-    padding: 0.3rem 0.6rem; /* Reduced padding */
+    font-size: 0.7rem;
+    padding: 0.5rem .7rem;
     border-radius: 10px;
     border: 1px solid black;
 }
+
