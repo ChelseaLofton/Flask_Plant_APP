@@ -19,7 +19,7 @@ const MoistureData = (props) => {
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-            
+
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
 
@@ -52,6 +52,21 @@ const MoistureData = (props) => {
                                     day: "MMM D",
                                 },
                             },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            position: "right",
+                            align: "start",
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: "circle",
+                            },
+                        },
+                    },
+                    layout: {
+                        padding: {
+                            right: 10, // adjust as needed
                         },
                     },
                 },
