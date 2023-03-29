@@ -10,6 +10,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+    padding-bottom: 20px;
 }
 
 .plant-grid {
