@@ -26,7 +26,7 @@ const MoistureData = (props) => {
                 const plantId = plantIds[sensorId];
 
                 return {
-                    label: plantId ? `Plant ${plantId}` : `Sensor ${sensorId}`,
+                    label: plantId ? ` ${plantId}` : `Sensor ${sensorId}`,
                     data: readings.map((reading) => ({
                         x: new Date(reading.created_at),
                         y: reading.moisture,
