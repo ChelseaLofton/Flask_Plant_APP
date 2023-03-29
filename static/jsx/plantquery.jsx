@@ -12,7 +12,7 @@
 // PlantDataModal component displays plant library data in a modal
 const PlantDataModal = (props) => {
     const { showModal, handleClose, plantData } = props;
-    console.log(plantData);
+    // console.log(plantData);
 
     return (
         <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
@@ -45,7 +45,7 @@ const PlantDataModal = (props) => {
 // PlantForm component renders the form to query the PlantBook API
 const PlantForm = (props) => {
     const { onSubmit, pid, handleChange } = props;
-    console.log(pid)
+    // console.log(pid)
 
     return (
         <form onSubmit={onSubmit}>
@@ -67,7 +67,7 @@ function PlantData() {
     const [showModal, setShowModal] = React.useState(false);
     const [pid, setPid] = React.useState("");
     const [plantData, setPlantData] = React.useState(null);
-    console.log(plantData);
+    // console.log(plantData);
 
     // Handle change in input field
     const handleChange = (event) => {

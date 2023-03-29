@@ -11,20 +11,22 @@
 
 
 // MoistureData component renders the chart of soil moisture sensor readings
+// MoistureData component renders the chart of soil moisture sensor readings
 const MoistureData = (props) => {
-    const sensorData = props.sensorData;
+    const { sensorData } = props;
     const chartRef = React.createRef();
 
-    // Create a chart when there is sensor data 
+    // Create a chart when there is moisture data 
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-
+            const plantIds = props.plantIds;
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
+                const plantId = plantIds[sensorId];
 
                 return {
-                    label: `Sensor ${sensorId}`,
+                    label: plantId ? `Plant ${plantId}` : `Sensor ${sensorId}`,
                     data: readings.map((reading) => ({
                         x: new Date(reading.created_at),
                         y: reading.moisture,
@@ -84,10 +86,11 @@ const MoistureData = (props) => {
                 chart.destroy();
             };
         }
-    }, [sensorData]);
+    }, [sensorData, props.plantIds]);
 
     return <canvas ref={chartRef} />;
 };
+
 
 
 // MoistureChart component renders the chart of soil moisture sensor readings
@@ -111,7 +114,12 @@ const MoistureChart = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <MoistureData sensorData={sensorData} />
+                        {sensorData && (
+                            <MoistureData
+                                sensorData={sensorData.moisture_readings}
+                                plantIds={sensorData.plant_ids}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

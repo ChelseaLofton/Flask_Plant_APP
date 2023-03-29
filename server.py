@@ -195,8 +195,20 @@ def view_soil_moisture_readings():
             'created_at': reading.created_at
         })
 
+    # Query the Plant table for plant_id using sensor_id
+    plant_id_dict = {}
+    for sensor_id in moisture_readings_dict.keys():
+        plant = Plant.query.filter_by(sensor_id=sensor_id).first()
+        plant_id_dict[sensor_id] = plant.plant_id if plant else None
 
-    return jsonify(moisture_readings_dict)
+    # Return a dictionary with moisture readings and corresponding plant_ids
+    response_dict = {
+        'moisture_readings': moisture_readings_dict,
+        'plant_ids': plant_id_dict
+    }
+
+    return jsonify(response_dict)
+
 
 
 
