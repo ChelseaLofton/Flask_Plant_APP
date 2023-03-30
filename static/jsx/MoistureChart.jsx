@@ -107,6 +107,7 @@ const MoistureChart = () => {
 
     return (
         <React.Fragment>
+            <div id="moisture-chart-container">
             <div className="text-center">
                 <h2>Soil Moisture</h2>
                 <p>Soil moisture readings taken in 5 minute intervals.<
@@ -124,6 +125,7 @@ const MoistureChart = () => {
                         )}
                     </div>
                 </div>
+            </div>
             </div>
         </React.Fragment>
     );

@@ -13,6 +13,7 @@ body {
 #main-heading {
     color: #F5F5F5;
     font-family: 'Rock Salt', regular;
+    margin-top: 20px;
 }
 
 h2, h3 {
@@ -57,7 +58,19 @@ label {
     color: #161810;
 }
 
+#moisture-chart-container p {
+    font-family: 'Edu NSW ACT Foundation';
+    font-weight: regular;
+    font-size: 1.5rem;
+    color: #161810;
+}
 
+#conductivity-chart-container p {
+    font-family: 'Edu NSW ACT Foundation';
+    font-weight: regular;
+    font-size: 1.5rem;
+    color: #161810;
+}
 
 /* Plant query*/
 input[type="text"] {

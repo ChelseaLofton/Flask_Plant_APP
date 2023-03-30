@@ -108,7 +108,7 @@ const ConductivityChart = () => {
 
     return (
         <React.Fragment>
-            <div id="conductivity-chart-container"></div>
+            <div id="conductivity-chart-container">
             <div className="text-center">
                 <h2>Conductivity Readings</h2>
                 <p>Conductivity readings to read available nutrients in soil, taken in 5 minute intervals. <
@@ -124,6 +124,7 @@ const ConductivityChart = () => {
                         )}
                     </div>
                 </div>
+            </div>
             </div>
         </React.Fragment>
     );
