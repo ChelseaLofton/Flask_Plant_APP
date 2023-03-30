@@ -30,7 +30,7 @@ const SensorModal = (props) => {
                                     <li>Moisture: {sensorData.moisture}%</li>
                                     <li>Temperature: {sensorData.temperature}°F</li>
                                     <li>Illuminance: {sensorData.illuminance}lux</li>
-                                    <li>Conductivity: {sensorData.conductivity}</li>
+                                    <li>Conductivity: {sensorData.conductivity}uS/cm</li>
                                     <li>Battery: {sensorData.battery}%</li>
                                 </ul>
                             </div>

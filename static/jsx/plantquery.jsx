@@ -39,8 +39,8 @@ const PlantDataModal = (props) => {
                                     <li>Min Env. Humidity: {plantData.min_env_humid}%</li>
                                     <li>Max Soil Moisture: {plantData.max_soil_moist}%</li>
                                     <li>Min Soil Moisture = {plantData.min_soil_moist}%</li>
-                                    <li>Max Soil EC: {plantData.max_soil_ec}</li>
-                                    <li>Min Soil EC: {plantData.min_soil_ec}</li>
+                                    <li>Max Soil EC: {plantData.max_soil_ec}uS/cm</li>
+                                    <li>Min Soil EC: {plantData.min_soil_ec}uS/cm</li>
                                 </ul>
                                 <img src={plantData.image_url} alt={plantData.alias} style={{ height: "200px", width: "200px" }} />
                             </div>
