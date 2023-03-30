@@ -16,6 +16,7 @@ const PlantModal = (props) => {
     const displayName = selectedPlantId ? selectedPlantId.slice(0, -2) : '';
     const sensorNumber = selectedPlantId ? selectedPlantId.slice(-2) : '';
     const isMoistureOutOfRange = sensorData && plantBookData && (sensorData.moisture < plantBookData.min_soil_moist || sensorData.moisture > plantBookData.max_soil_moist);
+    const isConductivityOutOfRange = sensorData && plantBookData && (sensorData.conductivity < plantBookData.min_soil_ec || sensorData.moisture > plantBookData.max_soil_ec);
 
 
     return (
@@ -35,6 +36,7 @@ const PlantModal = (props) => {
                                     <li className={isMoistureOutOfRange ? "text-danger" : ""}>Moisture: {sensorData.moisture}%</li>
                                     <li>Temperature: {sensorData.temperature}°F</li>
                                     <li>Illuminance: {sensorData.illuminance}lux</li>
+                                    <li className={isConductivityOutOfRange ? "text-danger" : ""}>Conductivity: {sensorData.conductivity}%</li>
                                     <li>Conductivity: {sensorData.conductivity}</li>
                                     <li>Battery: {sensorData.battery}%</li>
                                 </ul>
@@ -54,7 +56,6 @@ const PlantModal = (props) => {
                                     <li>Min Env. Humidity: {plantBookData.min_env_humid}%</li>
                                     <li>Max Soil Moisture: {plantBookData.max_soil_moist}%</li>
                                     <li>Min Soil Moisture: {plantBookData.min_soil_moist}%</li>
-
                                     <li>Max Soil EC: {plantBookData.max_soil_ec}</li>
                                     <li>Min Soil EC: {plantBookData.min_soil_ec}</li>
                                 </ul>
