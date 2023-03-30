@@ -213,40 +213,40 @@ def view_soil_moisture_readings():
 
 
 
-@app.route('/light-readings.json')
-def view_light_readings():
+@app.route('/conductivity-readings.json')
+def view_conductivity_readings():
 
-    # Query the light readings for the last 24 hours
-    light_readings = db.session.query(
+    # Query the conductivity readings for the last 24 hours
+    conductivity_readings = db.session.query(
         SensorReading.sensor_id,
-        SensorReading.illuminance,
+        SensorReading.conductivity,  # Change illuminance to conductivity
         SensorReading.created_at
     ).filter(
         SensorReading.created_at >= last_24_hours,
-        SensorReading.illuminance.isnot(None)
+        SensorReading.conductivity.isnot(None)  # Change illuminance to conductivity
     ).order_by(SensorReading.created_at.desc()).all()
 
     # Grouping by sensor ID
-    light_readings_dict = {}
-    for reading in light_readings:
+    conductivity_readings_dict = {}
+    for reading in conductivity_readings:
         sensor_id = reading.sensor_id
 
-        if sensor_id not in light_readings_dict:
-            light_readings_dict[sensor_id] = []
-        light_readings_dict[sensor_id].append({
-            'illuminance': reading.illuminance,
+        if sensor_id not in conductivity_readings_dict:
+            conductivity_readings_dict[sensor_id] = []
+        conductivity_readings_dict[sensor_id].append({
+            'conductivity': reading.conductivity,  # Change illuminance to conductivity
             'created_at': reading.created_at
         })
 
     # Query the Plant table for plant_id using sensor_id
     plant_id_dict = {}
-    for sensor_id in light_readings_dict.keys():
+    for sensor_id in conductivity_readings_dict.keys():
         plant = Plant.query.filter_by(sensor_id=sensor_id).first()
         plant_id_dict[sensor_id] = plant.plant_id if plant else None
 
-    # Return a dictionary with light readings and corresponding plant_ids
+    # Return a dictionary with conductivity readings and corresponding plant_ids
     response_dict = {
-        'light_readings': light_readings_dict,
+        'conductivity_readings': conductivity_readings_dict,  # Change light_readings to conductivity_readings
         'plant_ids': plant_id_dict
     }
 

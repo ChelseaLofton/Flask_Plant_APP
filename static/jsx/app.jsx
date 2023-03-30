@@ -52,7 +52,7 @@ function ChartCarousel() {
                     <HumidityChart />
                 </div>
                 <div className="carousel-item">
-                    <LightChart />
+                    <ConductivityChart />
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#chartCarousel" data-bs-slide="prev">
