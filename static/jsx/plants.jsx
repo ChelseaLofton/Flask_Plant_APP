@@ -10,6 +10,7 @@
 
 
 // PlantModal component displays live sensor readings and plant library data in a modal
+// PlantModal component displays live sensor readings and plant library data in a modal
 const PlantModal = (props) => {
     const { plantBookData, sensorData, selectedPlantId, showModal, handleClose } = props;
     const displayName = selectedPlantId ? selectedPlantId.slice(0, -2) : '';
@@ -19,7 +20,7 @@ const PlantModal = (props) => {
 
     return (
         <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
-            <div className="modal-dialog modal-sm">
+            <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title">{displayName}</h2>
@@ -30,7 +31,7 @@ const PlantModal = (props) => {
                             <div id="plant-sensor-data">
                                 <h3>Live Sensor Readings</h3>
                                 <ul>
-                                    <li> Sensor Id: {sensorNumber}</li>
+                                    <li><strong>Sensor Id:</strong> {sensorNumber}</li>
                                     <li className={isMoistureOutOfRange ? "text-danger" : ""}>Moisture: {sensorData.moisture}%</li>
                                     <li>Temperature: {sensorData.temperature}°F</li>
                                     <li>Illuminance: {sensorData.illuminance}lux</li>
@@ -53,6 +54,7 @@ const PlantModal = (props) => {
                                     <li>Min Env. Humidity: {plantBookData.min_env_humid}%</li>
                                     <li>Max Soil Moisture: {plantBookData.max_soil_moist}%</li>
                                     <li>Min Soil Moisture: {plantBookData.min_soil_moist}%</li>
+
                                     <li>Max Soil EC: {plantBookData.max_soil_ec}</li>
                                     <li>Min Soil EC: {plantBookData.min_soil_ec}</li>
                                 </ul>
