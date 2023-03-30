@@ -50,6 +50,13 @@ label {
     color: #161810;
 }
 
+#light-chart-container p {
+    font-family: 'Edu NSW ACT Foundation';
+    font-weight: regular;
+    font-size: 1.5rem;
+    color: #161810;
+}
+
 
 
 /* Plant query*/
