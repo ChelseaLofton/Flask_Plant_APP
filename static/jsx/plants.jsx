@@ -21,7 +21,7 @@ const PlantModal = (props) => {
 
     return (
         <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
-            <div className="modal-dialog">
+            <div class="modal-dialog modal-sm">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title">{displayName}</h2>

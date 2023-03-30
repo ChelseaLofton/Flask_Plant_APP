@@ -102,6 +102,7 @@ const LightChart = () => {
             .then((response) => response.json())
             .then((data) => {
                 setSensorData(data);
+                console.log(data);
             });
     }, []);
 
