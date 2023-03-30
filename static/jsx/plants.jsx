@@ -37,7 +37,6 @@ const PlantModal = (props) => {
                                     <li>Temperature: {sensorData.temperature}°F</li>
                                     <li>Illuminance: {sensorData.illuminance}lux</li>
                                     <li className={isConductivityOutOfRange ? "text-danger" : ""}>Conductivity: {sensorData.conductivity}%</li>
-                                    <li>Conductivity: {sensorData.conductivity}</li>
                                     <li>Battery: {sensorData.battery}%</li>
                                 </ul>
                             </div>
