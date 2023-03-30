@@ -165,7 +165,7 @@ button[type="submit"] {
     align-items: center;
     justify-content: center;
     padding: 13px 5px 20px 5px;
-    border: 0.5px solid black;
+    border: 0.5px #161810;
     border-radius: 3px;
     background: #F5F5F5;
     cursor: pointer;
@@ -225,7 +225,7 @@ button[type="submit"] {
     font-size: 1rem;
     padding: 0.6rem 1.2rem;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1.5px solid #161810;
     background: #8cb602;
     font-family: 'Edu NSW ACT Foundation';
     font-weight: regular;
@@ -325,7 +325,7 @@ button[type="submit"] {
     font-size: 17px;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1.5px solid #161810;
     text-overflow: clip;
     white-space: normal;
     overflow: visible;
