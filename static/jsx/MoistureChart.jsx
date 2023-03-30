@@ -11,7 +11,6 @@
 
 
 // MoistureData component renders the chart of soil moisture sensor readings
-// MoistureData component renders the chart of soil moisture sensor readings
 const MoistureData = (props) => {
     const { sensorData } = props;
     const chartRef = React.createRef();

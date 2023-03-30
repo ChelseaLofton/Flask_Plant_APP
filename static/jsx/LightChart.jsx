@@ -12,18 +12,19 @@
 
 // LightData component renders the chart of light readings
 const LightData = (props) => {
-    const sensorData = props.sensorData;
+    const { sensorData } = props;
     const chartRef = React.createRef();
 
     React.useEffect(() => {
         if (sensorData) {
             const sensorIds = Object.keys(sensorData);
-
+            const plantIds = props.plantIds;
             const datasets = sensorIds.map((sensorId) => {
                 const readings = sensorData[sensorId];
+                const plantId = plantIds[sensorId];
 
                 return {
-                    label: `Sensor ${sensorId}`,
+                    label: plantId ? ` ${plantId}` : `Sensor ${sensorId}`,
                     data: readings.map((reading) => ({
                         x: new Date(reading.created_at),
                         y: reading.illuminance,
@@ -84,10 +85,12 @@ const LightData = (props) => {
                 chart.destroy();
             };
         }
-    }, [sensorData]);
+    }, [sensorData, props.plantIds]);
 
     return <canvas ref={chartRef} />;
 };
+
+
 
 
 // LightChart component renders the chart of light readings
@@ -112,11 +115,16 @@ const LightChart = () => {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <LightData sensorData={sensorData} />
+                        {sensorData && (
+                        <LightData 
+                        sensorData={sensorData.light_readings} 
+                        plantIds={sensorData.plant_ids} />
+                        )}
                     </div>
                 </div>
             </div>
         </React.Fragment>
     );
 };
+
 

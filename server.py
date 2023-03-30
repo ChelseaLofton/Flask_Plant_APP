@@ -188,6 +188,7 @@ def view_soil_moisture_readings():
     moisture_readings_dict = {}
     for reading in moisture_readings:
         sensor_id = reading.sensor_id
+        
         if sensor_id not in moisture_readings_dict:
             moisture_readings_dict[sensor_id] = []
         moisture_readings_dict[sensor_id].append({
@@ -215,7 +216,7 @@ def view_soil_moisture_readings():
 @app.route('/light-readings.json')
 def view_light_readings():
 
-    # Query the moisture readings for the last 24 hours
+    # Query the light readings for the last 24 hours
     light_readings = db.session.query(
         SensorReading.sensor_id,
         SensorReading.illuminance,
@@ -231,15 +232,27 @@ def view_light_readings():
         sensor_id = reading.sensor_id
 
         if sensor_id not in light_readings_dict:
-
             light_readings_dict[sensor_id] = []
         light_readings_dict[sensor_id].append({
             'illuminance': reading.illuminance,
             'created_at': reading.created_at
         })
 
+    # Query the Plant table for plant_id using sensor_id
+    plant_id_dict = {}
+    for sensor_id in light_readings_dict.keys():
+        plant = Plant.query.filter_by(sensor_id=sensor_id).first()
+        plant_id_dict[sensor_id] = plant.plant_id if plant else None
 
-    return jsonify(light_readings_dict)
+    # Return a dictionary with light readings and corresponding plant_ids
+    response_dict = {
+        'light_readings': light_readings_dict,
+        'plant_ids': plant_id_dict
+    }
+
+    return jsonify(response_dict)
+
+
 
 
 @app.route('/plantbook-query', methods=['POST'])
