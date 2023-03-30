@@ -23,7 +23,7 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 col-md-12">
+                <div className="col-lg-4 col-md-8 offset-md-2">
                     <Toolbox />
                 </div>
             </div>
