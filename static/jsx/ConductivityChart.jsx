@@ -1,6 +1,6 @@
 /**
- * Description:  This page displays a chart of light readings that are fetched from a database on the back end.
- * The data is visualized using the Chart.js library, and the chart is rendered using a React component called LightData.
+ * Description:  This page displays soil conductivity readings that are fetched from a database on the back end.
+ * The data is visualized using the Chart.js library.
  * 
  * Language: JavaScript (JSX)
  * Frameworks: React, Chart.js
