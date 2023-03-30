@@ -133,13 +133,12 @@ button[type="submit"] {
 .sensor-button {
     margin-right: 5px;
     margin-bottom: 10px;
-    font-size: 0.7rem;
-    /* Reduced font-size */
-    padding: 0.4rem 0.8rem;
-    /* Reduced padding */
+    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 10px;
     border: 1px solid black;
 }
+
 
 /* Outlets */
 #outlet-ids {
