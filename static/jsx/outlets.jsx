@@ -88,7 +88,7 @@ function Outlets() {
                     const switches = outlets[outletID];
                     return (
                         <div key={outletID} className="outlet-container" style={{ flexBasis: "calc(50% - 5px)" }}>
-                            <p>{getOutletName(outletID)}:</p>
+                            <p style={{ fontWeight: "bold" }}>{getOutletName(outletID)}:</p>
                             <OutletButtons outletID={outletID} switches={switches} toggleOutletState={toggleOutletState} />
                         </div>
                     );
