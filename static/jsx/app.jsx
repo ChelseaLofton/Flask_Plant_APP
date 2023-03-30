@@ -43,7 +43,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // Renders our carousel of charts
 function ChartCarousel() {
     return (
-        <div id="chartCarousel" className="carousel slide" data-bs-ride="carousel">
+        <div id="chartCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <MoistureChart />
@@ -53,6 +53,9 @@ function ChartCarousel() {
                 </div>
                 <div className="carousel-item">
                     <ConductivityChart />
+                </div>
+                <div className="carousel-item">
+                    <LightChart />
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#chartCarousel" data-bs-slide="prev">
@@ -66,6 +69,7 @@ function ChartCarousel() {
         </div>
     );
 }
+
 
 
 //Organizes our components into a tool box

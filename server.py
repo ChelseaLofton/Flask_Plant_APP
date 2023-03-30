@@ -254,6 +254,46 @@ def view_conductivity_readings():
 
 
 
+@app.route('/illuminance-readings.json')
+def view_illuminance_readings():
+
+    # Query the illuminance readings for the last 24 hours
+    illuminance_readings = db.session.query(
+        SensorReading.sensor_id,
+        SensorReading.illuminance,
+        SensorReading.created_at
+    ).filter(
+        SensorReading.created_at >= last_24_hours,
+        SensorReading.illuminance.isnot(None)
+    ).order_by(SensorReading.created_at.desc()).all()
+
+    # Grouping by sensor ID
+    illuminance_readings_dict = {}
+    for reading in illuminance_readings:
+        sensor_id = reading.sensor_id
+
+        if sensor_id not in illuminance_readings_dict:
+            illuminance_readings_dict[sensor_id] = []
+        illuminance_readings_dict[sensor_id].append({
+            'illuminance': reading.illuminance,
+            'created_at': reading.created_at
+        })
+
+    # Query the Plant table for plant_id using sensor_id
+    plant_id_dict = {}
+    for sensor_id in illuminance_readings_dict.keys():
+        plant = Plant.query.filter_by(sensor_id=sensor_id).first()
+        plant_id_dict[sensor_id] = plant.plant_id if plant else None
+
+    # Return a dictionary with illuminance readings and corresponding plant_ids
+    response_dict = {
+        'illuminance_readings': illuminance_readings_dict,
+        'plant_ids': plant_id_dict
+    }
+
+    return jsonify(response_dict)
+
+
 
 @app.route('/plantbook-query', methods=['POST'])
 def plantbook_query():
