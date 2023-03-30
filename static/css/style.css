@@ -57,11 +57,6 @@
     outline: none;
 }
 
-
-
-
-
-
 .plant-id {
     margin-top: 0.25rem;
     text-align: center;
@@ -202,7 +197,7 @@ button[type="submit"] {
 #humidity-ids {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     padding-left: 15px;
     padding-right: 0;
 
@@ -211,6 +206,7 @@ button[type="submit"] {
 .humidity-item {
     width: calc(33.33% - 5px);
     margin-bottom: 10px;
+    margin-right: 30px;
     display: flex;
     justify-content: center;
 }
