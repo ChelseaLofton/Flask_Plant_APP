@@ -28,7 +28,7 @@ function App() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-12">
+                <div className="col-10 mx-auto">
                     <ChartCarousel />
                 </div>
             </div>
