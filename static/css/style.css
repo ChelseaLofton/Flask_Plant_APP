@@ -71,7 +71,9 @@ button[type="submit"] {
     font-weight: bold;
     text-align: center;
     font-size: 1rem;
+    margin-top: 10px;
 }
+
 
 .plant-button {
     display: flex;
@@ -86,6 +88,7 @@ button[type="submit"] {
     position: relative;
     width: 150px;
     height: 175px;
+    padding-bottom: 30px;
 }
 
 .plant-image {

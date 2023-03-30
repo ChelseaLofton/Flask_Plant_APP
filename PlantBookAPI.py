@@ -10,6 +10,7 @@ import json
 import requests
 import urllib.parse
 
+
 """
 IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACCESS_TOKEN and add it to secrets.sh:
 
@@ -19,8 +20,6 @@ IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACC
         --form 'grant_type="client_credentials"' \
         --form "client_id=\"${CLIENT_ID}\"" \
         --form "client_secret=\"${CLIENT_SECRET}\"" -s | jq -r .access_token)
-
-2. To test the token, run the following command:
 
     curl 'https://open.plantbook.io/api/v1/plant/detail/platanus%20acerifolia/' \
         -H "Authorization: Bearer ${PLANTBOOK_ACCESS_TOKEN}" \
@@ -36,13 +35,14 @@ IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACC
 
     source secrets.sh
 """
+
+
 class PlantBookAPI(object):
     BASE_URL = "https://open.plantbook.io/api/v1"
 
     def __init__(self, client_id, client_secret):
         """
         Initialize the PlantBookAPI client with client_id and client_secret.
-
         :param client_id: The client ID for the PlantBook API.
         :param client_secret: The client secret for the PlantBook API.
         """
@@ -58,7 +58,6 @@ class PlantBookAPI(object):
     def login(self):
         """
         Log in to the PlantBook API and store the access_token.
-
         :return: True if logged in successfully, otherwise raises an exception.
         """
         if self.logged_in:
@@ -75,14 +74,13 @@ class PlantBookAPI(object):
             raise Exception(
                 f"Unable to generate access_token (HTTP {r.status_code})")
 
-        self._create_session(r.json()["access_token"])
+        self._create_session(response.json()["access_token"])
         return True
 
 
     def _create_session(self, token):
         """
         Create a session with the PlantBook API using the access_token.
-
         :param token: The access_token for the PlantBook API.
         """
         self.session = requests.Session()
@@ -105,7 +103,6 @@ class PlantBookAPI(object):
     def get(self, endpoint, **kwargs):
         """
         Make a GET request to the PlantBook API.
-
         :param endpoint: The API endpoint to query.
         :param kwargs: The query parameters for the API endpoint.
         :return: The API response.
