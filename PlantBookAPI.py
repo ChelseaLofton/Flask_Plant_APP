@@ -74,7 +74,7 @@ class PlantBookAPI(object):
             raise Exception(
                 f"Unable to generate access_token (HTTP {r.status_code})")
 
-        self._create_session(response.json()["access_token"])
+        self._create_session(r.json()["access_token"])
         return True
 
 
