@@ -59,14 +59,14 @@ const LightData = (props) => {
                     },
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: 'bottom',
                             align: 'start',
                             labels: {
                                 usePointStyle: true,
                                 pointStyle: 'circle',
                             },
                         },
-                    },
+                    },                    
                     layout: {
                         padding: {
                             right: 10,

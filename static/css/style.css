@@ -96,7 +96,15 @@ button[type="submit"] {
 /* ChartCarousel */
 #chartCarousel {
     margin-top: 20px;
+    max-width: 1500px;
 }
+
+/* .chart-container {
+    border: 1px solid #ccc;
+    padding: 50px;
+    max-width: 1500px;
+} */
+
 
 /* Sensors */
 #sensor-container {

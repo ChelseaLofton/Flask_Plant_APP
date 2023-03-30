@@ -60,7 +60,7 @@ const MoistureData = (props) => {
                     },
                     plugins: {
                         legend: {
-                            position: 'right',
+                            position: 'bottom',
                             align: 'start',
                             labels: {
                                 usePointStyle: true,
@@ -68,6 +68,7 @@ const MoistureData = (props) => {
                             },
                         },
                     },
+                    
                     layout: {
                         padding: {
                             right: 10,
