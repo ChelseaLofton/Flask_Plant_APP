@@ -39,7 +39,8 @@
     cursor: pointer;
     position: relative;
     width: 150px;
-    height: 175px; /* Increase the height to 175px */
+    height: 175px;
+    /* Increase the height to 175px */
 }
 
 
@@ -47,7 +48,8 @@
 
 .plant-image {
     width: 100%;
-    height: 127.5px; /* Set the height to 85% of the original value (150px) */
+    height: 127.5px;
+    /* Set the height to 85% of the original value (150px) */
     object-fit: cover;
     border-radius: 8px;
     border-top-width: 4px;
@@ -94,17 +96,11 @@ button[type="submit"] {
 }
 
 /* ChartCarousel */
+/* ChartCarousel */
 #chartCarousel {
     margin-top: 20px;
     max-width: 1500px;
 }
-
-/* .chart-container {
-    border: 1px solid #ccc;
-    padding: 50px;
-    max-width: 1500px;
-} */
-
 
 /* Sensors */
 #sensor-container {
@@ -233,13 +229,6 @@ button[type="submit"] {
     white-space: normal;
     overflow: visible;
     overflow-wrap: break-word;
-    aspect-ratio: 1/1; /* Set aspect ratio of the button to 1:1 */
+    aspect-ratio: 1/1;
+    /* Set aspect ratio of the button to 1:1 */
 }
-
-
-
-
-
-
-
-

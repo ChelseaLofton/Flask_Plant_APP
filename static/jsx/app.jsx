@@ -67,6 +67,7 @@ function ChartCarousel() {
     );
 }
 
+
 //Organizes our components into a tool box
 function Toolbox() {
     return (

@@ -68,7 +68,7 @@ const MoistureData = (props) => {
                             },
                         },
                     },
-                    
+
                     layout: {
                         padding: {
                             right: 10,
@@ -109,8 +109,10 @@ const MoistureChart = () => {
         <React.Fragment>
             <div className="text-center">
                 <h2>Soil Moisture</h2>
-                <p>This chart shows soil moisture readings for sensors from the last 24 hours, taken in 5 minute intervals.</p>
+                <p>Soil moisture readings taken in 5 minute intervals.<
+                    br />Click the sides of the charts to view more!</p>
             </div>
+
             <div className="container">
                 <div className="row">
                     <div className="col">
