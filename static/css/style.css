@@ -16,12 +16,20 @@ body {
     margin-top: 20px;
 }
 
-h2, h3 {
+h2 {
     font-family: 'Rock Salt', regular;
     font-weight: bold;
     font-size: 2rem;
     color: #161810;
 }
+
+h3 {
+    font-family: 'Rock Salt', regular;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #161810;
+}
+
 
 p {
     font-family: 'Rock Salt', regular;

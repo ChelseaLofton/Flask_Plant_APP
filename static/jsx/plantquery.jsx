@@ -19,7 +19,8 @@ const PlantDataModal = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title">Plant Library Data</h2>
+                        <h2 className="modal-title" style={{ fontWeight: "bold" }}>Plant Library Data</h2>
+
 
                         <button type="button" className="btn-close" onClick={handleClose}></button>
                     </div>
@@ -27,10 +28,20 @@ const PlantDataModal = (props) => {
                         {plantData && (
                             <div id="plantbook-data">
                                 <h3>Tolerances and Classifications</h3>
-                                Alias: {plantData.alias}; Category: {plantData.category}; Max Light: {plantData.max_light_lux}lux;
-                                Min Light: {plantData.min_light_lux}lux; Max Temperature: {plantData.max_temp}°F; Min Temperature: {plantData.min_temp}°F;
-                                Max Env. Humidity: {plantData.max_env_humid}%; Min Env. Humidity: {plantData.min_env_humid}%; Max Soil Moisture: {plantData.max_soil_moist}%;
-                                Min Soil Moisture = {plantData.min_soil_moist}%; Max Soil EC: {plantData.max_soil_ec}; Min Soil EC: {plantData.min_soil_ec};
+                                <ul style={{ listStyleType: "disc" }}>
+                                    <li>Alias: {plantData.alias}</li>
+                                    <li>Category: {plantData.category}</li>
+                                    <li>Max Light: {plantData.max_light_lux}lux</li>
+                                    <li>Min Light: {plantData.min_light_lux}lux</li>
+                                    <li>Max Temperature: {plantData.max_temp}°F</li>
+                                    <li>Min Temperature: {plantData.min_temp}°F</li>
+                                    <li>Max Env. Humidity: {plantData.max_env_humid}%</li>
+                                    <li>Min Env. Humidity: {plantData.min_env_humid}%</li>
+                                    <li>Max Soil Moisture: {plantData.max_soil_moist}%</li>
+                                    <li>Min Soil Moisture = {plantData.min_soil_moist}%</li>
+                                    <li>Max Soil EC: {plantData.max_soil_ec}</li>
+                                    <li>Min Soil EC: {plantData.min_soil_ec}</li>
+                                </ul>
                                 <img src={plantData.image_url} alt={plantData.alias} style={{ height: "200px", width: "200px" }} />
                             </div>
                         )}
@@ -49,7 +60,7 @@ const PlantForm = (props) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="plant-input">Use the scientific name to search PlantBook <br />  Examples: <br /> ("philodendron erubescens", "alocasia macrorrhizos") </label>
+            <label htmlFor="plant-input">Use a scientific plant name to search PlantBook <br />  Examples: <br /> (philodendron erubescens, alocasia macrorrhizos) </label>
             <input
                 id="plant-input"
                 type="text"
