@@ -4,6 +4,15 @@
     padding-right: 0;
 }
 
+body {
+    background-color: #161810;
+}
+
+#main-heading {
+    color: #F5F5F5;
+}
+
+
 /* Plant query*/
 input[type="text"] {
     border-radius: 5px;
@@ -29,7 +38,7 @@ button[type="submit"] {
 
 /* Toolbox-container CSS */
 .toolbox-container {
-    background-color: #f7f7f7;
+    background: #F5F5F5;
     border: 1px solid #ccc;
     padding: 20px;
 }
@@ -83,7 +92,7 @@ button[type="submit"] {
     padding: 15px 5px 25px 5px;
     border: 0.5px solid black;
     border-radius: 5px;
-    background: transparent;
+    background: #F5F5F5;
     cursor: pointer;
     position: relative;
     width: 150px;
