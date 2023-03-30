@@ -39,6 +39,7 @@ function App() {
 ReactDOM.render(<App />, document.getElementById('root'));
 
 
+
 // Renders our carousel of charts
 function ChartCarousel() {
     return (
