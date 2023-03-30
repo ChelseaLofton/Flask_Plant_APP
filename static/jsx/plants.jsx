@@ -14,10 +14,12 @@ const PlantModal = (props) => {
     const { plantBookData, sensorData, selectedPlantId, showModal, handleClose } = props;
     const displayName = selectedPlantId ? selectedPlantId.slice(0, -2) : '';
     const sensorNumber = selectedPlantId ? selectedPlantId.slice(-2) : '';
+    const isMoistureOutOfRange = sensorData && plantBookData && (sensorData.moisture < plantBookData.min_soil_moist || sensorData.moisture > plantBookData.max_soil_moist);
+
 
     return (
         <div className={`modal fade ${showModal ? "show" : ""}`} tabIndex="-1" aria-hidden={!showModal} style={{ display: showModal ? "block" : "none" }}>
-            <div className="modal-dialog">
+            <div className="modal-dialog modal-sm">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h2 className="modal-title">{displayName}</h2>
@@ -29,7 +31,7 @@ const PlantModal = (props) => {
                                 <h3>Live Sensor Readings</h3>
                                 <ul>
                                     <li> Sensor Id: {sensorNumber}</li>
-                                    <li>Moisture: {sensorData.moisture}%</li>
+                                    <li className={isMoistureOutOfRange ? "text-danger" : ""}>Moisture: {sensorData.moisture}%</li>
                                     <li>Temperature: {sensorData.temperature}°F</li>
                                     <li>Illuminance: {sensorData.illuminance}lux</li>
                                     <li>Conductivity: {sensorData.conductivity}</li>
