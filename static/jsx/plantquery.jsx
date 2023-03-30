@@ -49,7 +49,7 @@ const PlantForm = (props) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="plant-input">Plant Name:</label>
+            <label htmlFor="plant-input">Use the scientific name to search the PlantBook Library <br />  Examples: <br /> (philodendron erubescens, alocasia macrorrhizos) </label>
             <input
                 id="plant-input"
                 type="text"

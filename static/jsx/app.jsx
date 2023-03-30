@@ -73,10 +73,6 @@ function Toolbox() {
     return (
         <div className="toolbox-container">
             <div className="toolbox-group">
-                <h2>Plant Library</h2>
-                <PlantData />
-            </div>
-            <div className="toolbox-group">
                 <h2>Plant Sensors</h2>
                 <Sensor />
             </div>
@@ -87,6 +83,10 @@ function Toolbox() {
             <div className="toolbox-group">
                 <h2>Outlets States</h2>
                 <Outlets />
+            </div>
+            <div className="toolbox-group">
+                <h2>Plant Library</h2>
+                <PlantData />
             </div>
         </div>
     );
