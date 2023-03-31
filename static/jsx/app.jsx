@@ -85,7 +85,7 @@ function Toolbox() {
                 <Humidity />
             </div>
             <div className="toolbox-group">
-                <h2>Outlets States</h2>
+                <h2>Outlet States</h2>
                 <Outlets />
             </div>
             <div className="toolbox-group">
