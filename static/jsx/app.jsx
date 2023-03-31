@@ -43,7 +43,12 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // Renders our carousel of charts
 function ChartCarousel() {
     return (
-        <div id="chartCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+        <div id="chartCarousel" className="carousel carousel-dark slide" data-bs-ride="false" data-bs-interval="false">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
             <div className="carousel-inner">
                 <div className="carousel-item active">
                     <MoistureChart />
