@@ -85,6 +85,8 @@ input[type="text"] {
     border-radius: 3px;
     padding: 5px;
     margin-bottom: 5px;
+    align-items: center;
+    
 }
 
 button[type="submit"] {

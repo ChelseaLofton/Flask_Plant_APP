@@ -83,6 +83,7 @@ function Toolbox() {
         <div className="toolbox-container">
             <div className="toolbox-group">
                 <h2>Plant Sensors</h2>
+                <p>Click to see information on soil moisture, conductivity, temperature, light and battery readings by sensor number</p>
                 <Sensor />
             </div>
             <div className="toolbox-group">
