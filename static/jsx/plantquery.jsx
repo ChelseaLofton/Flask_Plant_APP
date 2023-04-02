@@ -4,7 +4,7 @@
  * Language: JavaScript (JSX)
  * Frameworks: React
  * Libraries: React Bootstrap
- * APIs: PlantBook API
+ * APIs: Open PlantBook API
  * Components: PlantDataModal, PlantForm, PlantData
  */
 
@@ -19,7 +19,7 @@ const PlantDataModal = (props) => {
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h2 className="modal-title" style={{ fontWeight: "bold" }}>Plant Library Data</h2>
+                        <h2 className="modal-title" style={{ fontWeight: "bold" }}>Open PlantBook Library</h2>
 
 
                         <button type="button" className="btn-close" onClick={handleClose}></button>
@@ -60,7 +60,7 @@ const PlantForm = (props) => {
 
     return (
         <form onSubmit={onSubmit}>
-            <label htmlFor="plant-input">Use a scientific plant name to search PlantBook <br />  Examples: <br /> (philodendron erubescens, alocasia macrorrhizos) </label>
+            <label htmlFor="plant-input">Use a scientific plant name to search Open PlantBook <br />  Examples: <br /> (philodendron erubescens, alocasia macrorrhizos) </label>
             <input
                 id="plant-input"
                 type="text"

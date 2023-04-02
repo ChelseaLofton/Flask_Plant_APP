@@ -43,7 +43,7 @@ const PlantModal = (props) => {
                         )}
                         {plantBookData && (
                             <div id="plantbook-data">
-                                <h3>Plant Library Data</h3>
+                                <h3>Open PlantBook Library</h3>
                                 <ul>
                                     <li>Alias: {plantBookData.alias}</li>
                                     <li>Category: {plantBookData.category}</li>

@@ -1,8 +1,9 @@
 """
-This script uses the PlantBook API to query information about plants.
+This script uses the Open PlantBook API to query information about plants.
 
 Language: Python
-API: PlantBook API (https://open.plantbook.io/)
+API: Open
+PlantBook API (https://open.plantbook.io/)
 """
 
 import os
