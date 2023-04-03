@@ -2,7 +2,6 @@
 This script uses the Open PlantBook API to query information about plants.
 
 Language: Python
-API: Open
 PlantBook API (https://open.plantbook.io/)
 """
 
@@ -36,7 +35,6 @@ IMPORTANT: Before using the script, follow these steps to get the $PLANTBOOK_ACC
 
     source secrets.sh
 """
-
 
 class PlantBookAPI(object):
     BASE_URL = "https://open.plantbook.io/api/v1"
@@ -115,7 +113,3 @@ class PlantBookAPI(object):
 client = PlantBookAPI(os.environ["CLIENT_ID"], os.environ["CLIENT_SECRET"])
 # print(json.dumps(client.get("/plant/search", alias="acer", limit=5).json()))
 
-
-# pid = "platanus acerifolia"
-# calathea_11 = client.get(f"/plant/detail/{urllib.parse.quote(pid)}/").json()
-# print(calathea_11)
