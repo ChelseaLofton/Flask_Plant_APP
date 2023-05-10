@@ -86,7 +86,7 @@ input[type="text"] {
     padding: 5px;
     margin-bottom: 5px;
     align-items: center;
-    
+
 }
 
 button[type="submit"] {
@@ -133,7 +133,8 @@ button[type="submit"] {
 }
 
 .carousel-inner {
-    padding-top: 30px; /* add more or less padding as needed */
+    padding-top: 30px;
+    /* add more or less padding as needed */
 }
 
 
@@ -286,7 +287,8 @@ button[type="submit"] {
 
 
 .switch.on {
-    background-color: #8cb602;;
+    background-color: #8cb602;
+    ;
 }
 
 .switch.off {
@@ -294,17 +296,28 @@ button[type="submit"] {
 }
 
 
+/* Humidity */
+.humidity-item {
+    display: flex;
+    flex-direction: column;
+}
 
 .humidity-item h2 {
     font-family: 'Rock Salt', regular;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 15px;
     color: #161810;
+    display: flex;
+    width: 100%;
 }
 
 .humidity-item ul {
     list-style-type: none;
     padding-left: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
 }
 
 .humidity-item li {

@@ -24,7 +24,7 @@ function getNameForId(id) {
 function HumidityData({ humidityId, humidityData }) {
     return (
         <div key={humidityId} className="humidity-item">
-            <h2>{getNameForId(humidityId)} Humidity</h2>
+            <h2>{getNameForId(humidityId)} </h2>
             {humidityData && (
                 <ul>
                     <li>Humidity: {humidityData.humidity}%</li>
@@ -41,7 +41,7 @@ function Humidity() {
     const [humidityIds, setHumidityIds] = React.useState([]);
     const [humidityData, setHumidityData] = React.useState({});
     // const [showModal, setShowModal] = React.useState(false);
-    // const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
+    const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
 
     // Fetch humidity sensor IDs and data from API
     React.useEffect(() => {

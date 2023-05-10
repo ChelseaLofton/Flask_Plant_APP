@@ -81,13 +81,13 @@ function ChartCarousel() {
 function Toolbox() {
     return (
         <div className="toolbox-container">
-            <div className="toolbox-group">
+            {/* <div className="toolbox-group">
                 <h2>Plant Sensors</h2>
                 <p>Click to see information on soil moisture, conductivity, temperature, light and battery readings by sensor number</p>
                 <Sensor />
-            </div>
+            </div> */}
             <div className="toolbox-group">
-                <h2>  Humidity Data</h2>
+                <h2>  Humidity </h2>
                 <Humidity />
             </div>
             <div className="toolbox-group">
