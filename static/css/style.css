@@ -325,7 +325,7 @@ button[type="submit"] {
     margin-top: 0;
 }
 
-.humidity-button {
+/* .humidity-button {
     font-size: 17px;
     padding: 10px;
     border-radius: 5px;
@@ -338,4 +338,4 @@ button[type="submit"] {
     font-family: 'Edu NSW ACT Foundation';
     font-weight: regular;
     aspect-ratio: 1/1;
-}
+} */
