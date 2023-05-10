@@ -295,47 +295,22 @@ button[type="submit"] {
 
 
 
-/* Humidity */
-#humidity-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    justify-content: center;
+.humidity-item h2 {
+    font-family: 'Rock Salt', regular;
+    font-weight: bold;
+    font-size: 25px;
+    color: #161810;
 }
 
-#humidity-ids {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-left: 15px;
-    padding-right: 0;
-
+.humidity-item ul {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.humidity-item {
-    width: calc(33.33% - 5px);
-    margin-bottom: 10px;
-    margin-right: 30px;
-    display: flex;
-    justify-content: center;
-}
-
-.humidity-value {
-    font-size: 24px;
-    margin-top: 0;
-}
-
-/* .humidity-button {
-    font-size: 17px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1.5px solid #161810;
-    text-overflow: clip;
-    white-space: normal;
-    overflow: visible;
-    overflow-wrap: break-word;
-    background: #8cb602;
+.humidity-item li {
     font-family: 'Edu NSW ACT Foundation';
     font-weight: regular;
-    aspect-ratio: 1/1;
-} */
+    font-size: 1rem;
+    color: #161810;
+    margin-bottom: 0.5rem;
+}

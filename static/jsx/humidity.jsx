@@ -9,6 +9,75 @@
  */
 
 
+function getNameForId(id) {
+    switch (id) {
+        case 'livingroom':
+            return 'Living Room';
+        case 'propagation':
+            return 'Propagation Tent';
+        // add more cases for other ids as needed
+        default:
+            return id;
+    }
+}
+
+function HumidityData({ humidityId, humidityData }) {
+    return (
+        <div key={humidityId} className="humidity-item">
+            <h2>{getNameForId(humidityId)} Humidity</h2>
+            {humidityData && (
+                <ul>
+                    <li>Humidity: {humidityData.humidity}%</li>
+                    <li>Pressure: {humidityData.pressure}</li>
+                    <li>Temperature: {humidityData.temperature}°F</li>
+                    <li>Battery: {humidityData.battery}%</li>
+                </ul>
+            )}
+        </div>
+    );
+}
+
+function Humidity() {
+    const [humidityIds, setHumidityIds] = React.useState([]);
+    const [humidityData, setHumidityData] = React.useState({});
+    // const [showModal, setShowModal] = React.useState(false);
+    // const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
+
+    // Fetch humidity sensor IDs and data from API
+    React.useEffect(() => {
+        const url = "/humidity.json";
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                setHumidityIds(data);
+                const humidityDataPromises = data.map((humidityId) => {
+                    const humidityDataUrl = `/humidity/${humidityId}.json`;
+                    return fetch(humidityDataUrl)
+                        .then((response) => response.json())
+                        .then((data) => ({ [humidityId]: data }));
+                });
+                Promise.all(humidityDataPromises).then((sensorData) => {
+                    const mergedSensorData = Object.assign({}, ...sensorData);
+                    setHumidityData(mergedSensorData);
+                    setSelectedHumidityId(data[0]);
+                });
+            });
+    }, []);
+
+    return (
+        <React.Fragment>
+            {humidityIds.map((humidityId) => (
+                <HumidityData
+                    key={humidityId}
+                    humidityId={humidityId}
+                    humidityData={humidityData[humidityId]}
+                />
+            ))}
+        </React.Fragment>
+    );
+}
+
+
 
 // HumidityModal component displays live sensor readings in a modal
 // const HumidityModal = (props) => {
@@ -63,45 +132,9 @@
 //     );
 // };
 
-function getNameForId(id) {
-    switch (id) {
-        case 'livingroom':
-            return 'Living Room';
-        case 'propagation':
-            return 'Propagation Tent';
-        // add more cases for other ids as needed
-        default:
-            return id;
-    }
-}
 
 
-function Humidity() {
-    const [humidityIds, setHumidityIds] = React.useState([]);
-    const [humidityData, setHumidityData] = React.useState({});
-    const [showModal, setShowModal] = React.useState(false);
-    const [selectedHumidityId, setSelectedHumidityId] = React.useState(null);
 
-    // Fetch humidity sensor IDs and data from API
-    React.useEffect(() => {
-        const url = "/humidity.json";
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => {
-                setHumidityIds(data);
-                const humidityDataPromises = data.map((humidityId) => {
-                    const humidityDataUrl = `/humidity/${humidityId}.json`;
-                    return fetch(humidityDataUrl)
-                        .then((response) => response.json())
-                        .then((data) => ({ [humidityId]: data }));
-                });
-                Promise.all(humidityDataPromises).then((sensorData) => {
-                    const mergedSensorData = Object.assign({}, ...sensorData);
-                    setHumidityData(mergedSensorData);
-                    setSelectedHumidityId(data[0]);
-                });
-            });
-    }, []);
 
     // Handle click event on a humidity sensor button
     // const handleHumidityClick = (humidityId) => {
@@ -121,24 +154,7 @@ function Humidity() {
     //     setShowModal(false);
     // };
 
-    return (
-        <React.Fragment>
-            {humidityIds.map((humidityId) => (
-                <div key={humidityId} className="humidity-item">
-                    <h2>{getNameForId(humidityId)} Atmospheric Humidity</h2>
-                    {humidityData[humidityId] && (
-                        <ul>
-                            <li>Humidity: {humidityData[humidityId].humidity}%</li>
-                            <li>Pressure: {humidityData[humidityId].pressure}</li>
-                            <li>Temperature: {humidityData[humidityId].temperature}°F</li>
-                            <li>Battery: {humidityData[humidityId].battery}%</li>
-                        </ul>
-                    )}
-                </div>
-            ))}
-        </React.Fragment>
-    );
-}
+
 
 
 
